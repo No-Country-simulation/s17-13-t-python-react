@@ -30,7 +30,7 @@ export default function PasswordInput({
       control={control}
       defaultValue=""
       render={({ field }) => (
-        <div className="relative">
+        <div className="relative w-full max-w-[21.875rem]">
           <input
             {...field}
             type={showPassword ? 'text' : 'password'}

@@ -22,7 +22,7 @@ export default function Login() {
 
   return (
     <form
-      className="flex flex-col gap-10"
+      className="flex w-full max-w-[21.875rem] flex-col gap-6"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
