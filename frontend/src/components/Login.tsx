@@ -27,13 +27,13 @@ export default function Login() {
       noValidate
       autoComplete="off"
     >
-      <BaseInput
+      {/* <BaseInput
         name="email"
         placeholder="email"
         control={control}
         type="email"
         error={errors.email}
-      />
+      /> */}
       <PasswordInput
         name="password"
         placeholder="password"
