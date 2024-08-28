@@ -1,9 +1,13 @@
-import { propOptionModal } from '@/interfaces/modal'
+import { propOptionModal } from '@/interfaces/modal';
 
-
-export default function OptionModal({ option, checkedItems, handleCheck, preferenceModalHandler }: propOptionModal) {
+export default function OptionModal({
+  option,
+  checkedItems,
+  handleCheck,
+  preferenceModalHandler,
+}: propOptionModal) {
   return (
-    <div className='sm:flex sm:justify-center'>
+    <div className="sm:flex sm:justify-center">
       <label htmlFor={option}>
         <input
           type="checkbox"
@@ -14,13 +18,11 @@ export default function OptionModal({ option, checkedItems, handleCheck, prefere
         />
         <span
           onClick={() => preferenceModalHandler(option, !checkedItems[option])}
-          className={`w-full sm:w-[145px] h-[45px] grid place-items-center cursor-pointer rounded-full select-none transition
-        ${checkedItems[option] ? "bg-[#1E1E1E] text-white scale-105 option-shadow" : "bg-transparent outline outline-1 outline-[#1E1E1E] text-[#1E1E1E]"}
-      `}
+          className={`grid h-[45px] w-full cursor-pointer select-none place-items-center rounded-full transition sm:w-[145px] ${checkedItems[option] ? 'option-shadow scale-105 bg-[#1E1E1E] text-white' : 'bg-transparent text-[#1E1E1E] outline outline-1 outline-[#1E1E1E]'} `}
         >
           {option}
         </span>
       </label>
     </div>
-  )
+  );
 }
