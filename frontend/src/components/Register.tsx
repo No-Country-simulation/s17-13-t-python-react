@@ -15,9 +15,9 @@ export default function Register() {
 
   // Funcion de envio de datos al backend
   const onSubmit: SubmitHandler<RegisterValues> = (data) => {
-    console.log(data)
+    console.log(data);
     // LOGICA
-  }
+  };
 
   return (
     <>
@@ -41,5 +41,5 @@ export default function Register() {
         />
       </form>
     </>
-  )
+  );
 }

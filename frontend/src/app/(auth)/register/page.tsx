@@ -1,8 +1,7 @@
-import Register from "@/components/Register";
-import ButtonMedia from "@/shared/components/ButtonMedia";
-import { SocialType } from "@/shared/types/SocialType";
-import Link from "next/link";
-
+import Register from '@/components/Register';
+import ButtonMedia from '@/shared/components/ButtonMedia';
+import { SocialType } from '@/shared/types/SocialType';
+import Link from 'next/link';
 
 export default function page() {
   const socialMedia = ['Google', 'Apple', 'Facebook'];
@@ -25,5 +24,5 @@ export default function page() {
       </header>
       <Register />
     </section>
-  )
+  );
 }
