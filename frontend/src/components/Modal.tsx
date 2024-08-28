@@ -25,7 +25,7 @@ export default function Modal({ setOpenModal }: propModal) {
   }
 
   // Mostrar gustos por consola y cerrar modal
-  const sendGustos = () => {
+  const sendPreference = () => {
     console.log(preference) // ESTO SERIAN LOS DATOS A ENVIAR AL BACKEND
     setOpenModal(false)
   }
@@ -55,7 +55,7 @@ export default function Modal({ setOpenModal }: propModal) {
           </section>
           <div className="flex justify-end w-full px-4 sm:px-14">
             <button
-              onClick={sendGustos} 
+              onClick={sendPreference} 
               className="bg-[#1E1E1E] text-white w-full sm:w-[145px] h-[45px] grid place-items-center rounded-full">
               Continuar
             </button>
