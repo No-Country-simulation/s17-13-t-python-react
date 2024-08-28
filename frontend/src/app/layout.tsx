@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} min-h-dvh`}>{children}</body>
+      <body className={`${roboto.className} bg-secondary text-primary min-h-dvh`}>{children}</body>
     </html>
   );
 }
