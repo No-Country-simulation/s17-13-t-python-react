@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-[#D9D9D9] min-h-[400px] py-10 px-14 text-gray-800">
+    <footer className="bg-[#D9D9D9] min-h-[400px] py-20 px-14 text-gray-800">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
         <section>
           <h3 className="font-semibold mb-1 text-[16px] md:text-[20px]">BibliOz</h3>
@@ -32,9 +32,23 @@ const Footer = () => {
         </section>
         <section>
           <h3 className="font-bold mb-4 text-[16px] md:text-[20px]">Seguinos en nuestras redes</h3>
-          <div>
-
-          </div>
+          <ul className="flex space-x-4">
+              <li>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <img src="/logo-instagram.svg" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <img src="/logo-facebook.svg" alt="Facebook"  />
+                </a>
+              </li>
+              <li>
+                <a href="https://www.x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+                  <img src="/logo-x.svg" alt="X"  />
+                </a>
+              </li>
+            </ul>
         </section>
       </div>
     </footer>
