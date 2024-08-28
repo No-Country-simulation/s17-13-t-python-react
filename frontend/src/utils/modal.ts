@@ -1,4 +1,4 @@
-export const options = [
+export const options: string[] = [
   'paseador1',
   'paseador2',
   'paseador3',

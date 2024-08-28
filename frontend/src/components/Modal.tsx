@@ -8,7 +8,7 @@ import '../styles/Modal.css'
 
 
 export default function Modal({ setOpenModal }: propModal) {
-  const [gustos, setGustos] = useState<string[]>([]);
+  const [preference, setPreference] = useState<string[]>([]);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
 
   // Hace el "toggle" en cada opcion
@@ -18,15 +18,15 @@ export default function Modal({ setOpenModal }: propModal) {
   }
 
   // Agrega los gustos dependiendo del estado de cada opcion
-  const handleGustos = (text: string, status: boolean) => {
+  const preferenceModalHandler = (text: string, status: boolean) => {
     status 
-      ? setGustos((prev => ([...prev, text])))
-      : setGustos((prev => prev.filter(txt => txt !== text)))
+      ? setPreference((prev => ([...prev, text])))
+      : setPreference((prev => prev.filter(txt => txt !== text)))
   }
 
   // Mostrar gustos por consola y cerrar modal
   const sendGustos = () => {
-    console.log(gustos) // ESTO SERIAN LOS DATOS A ENVIAR AL BACKEND
+    console.log(preference) // ESTO SERIAN LOS DATOS A ENVIAR AL BACKEND
     setOpenModal(false)
   }
 
@@ -49,7 +49,7 @@ export default function Modal({ setOpenModal }: propModal) {
                 option={option} 
                 checkedItems={checkedItems} 
                 handleCheck={handleCheck} 
-                handleGustos={handleGustos}
+                preferenceModalHandler={preferenceModalHandler}
               />
             ))}
           </section>
