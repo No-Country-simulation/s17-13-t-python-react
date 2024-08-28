@@ -22,8 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`min-h-dvh bg-secondary text-primary ${roboto.className}`}>
+      <body className={`min-h-dvh bg-secondary text-primary grid grid-rows-[auto_1fr_auto] ${roboto.className}`}>
         {children}
+        <div>
+
+        </div>
         <Footer />
       </body>
     </html>
