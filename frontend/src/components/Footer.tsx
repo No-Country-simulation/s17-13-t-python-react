@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="bg-[#D9D9D9] min-h-[400px] py-20 px-14 text-gray-800">
+    <footer className="bg-[#D9D9D9] min-h-[25rem] py-20 px-14 text-gray-800">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
         <section>
           <h3 className="font-semibold mb-1 text-[16px] md:text-[20px]">BibliOz</h3>

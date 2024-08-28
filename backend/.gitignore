@@ -1,0 +1,5 @@
+venv
+migrations
+instance
+__pycache__
+media
