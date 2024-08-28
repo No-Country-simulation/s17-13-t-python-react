@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { create } from 'zustand';
 
-interface Libro {
+interface Book {
   firstName: string;
   lastName: string;
 }
@@ -15,8 +15,8 @@ interface SearchId {
 }
 
 const SearchBar = () => {
-  const [libros, setLibros] = useState<Libro[]>([]);
-  const [mensaje, setMensaje] = useState<string>('');
+  const [books, setbooks] = useState<Libro[]>([]);
+  const [message, setMessage] = useState<string>('');
   const [searchId, setSearchId] = useState<number | null>(null); //
 
   const handleSearch = () => {
