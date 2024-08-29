@@ -4,8 +4,10 @@ import { FaSearch } from 'react-icons/fa';
 import { create } from 'zustand';
 
 interface Book {
-  firstName: string;
-  lastName: string;
+  id: number;
+  title: string;
+  genre: string;
+  author: string;
 }
 interface message {
   message: string;
@@ -13,21 +15,43 @@ interface message {
 interface SearchId {
   id: number;
 }
+interface SearchState {
+  books: Book[];
+  filteredBooks: Book[];
+  message: string;
+  setBooks: (books: Book[]) => void;
+  setFilteredBooks: (books: Book[]) => void;
+  setMessage: (message: string) => void;
+}
+const useSearchStore = create<SearchState>((set) => ({
+  books: [],
+  filteredBooks: [],
+  message: '',
+  setBooks: (books) => set({ books }),
+  setFilteredBooks: (books) => set({ filteredBooks: books }),
+  setMessage: (message) => set({ message }),
+}));
 
 const SearchBar = () => {
-  const [books, setbooks] = useState<Libro[]>([]);
-  const [message, setMessage] = useState<string>('');
-  const [searchId, setSearchId] = useState<number | null>(null); //
+  const { books, filteredBooks, message, setFilteredBooks, setMessage } = useSearchStore();
+  const [inputValue, setInputValue] = useState<string>('');
 
   const handleSearch = () => {
-    // const filtered = libros.filter(lib => lib.Id.includes(searchId));
-    // setFiltered(filtered);
-    // setSearchId('');
-    //     if (filtered.length === 0) {
-    //       setMensaje("La consulta no arrojó datos");
-    //     } else {
-    //       setMensaje("");
-    //     }
+    const query = inputValue.toLowerCase();
+    const results = books.filter(
+      (book) =>
+        book.title.toLowerCase().includes(query) ||
+        book.genre.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query),
+    );
+
+    if (results.length === 0) {
+      setMessage('No se encontraron resultados');
+    } else {
+      setMessage('');
+    }
+
+    setFilteredBooks(results);
   };
 
   return (
@@ -40,6 +64,8 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Título, autor o género"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
             style={{ backgroundColor: '#264E61' }}
             className="w-full bg-blue-600 p-4 text-lg text-white placeholder-gray-300 focus:outline-none"
           />
@@ -51,6 +77,16 @@ const SearchBar = () => {
             <FaSearch />
           </button>
         </div>
+      </div>
+      {message && <p>{message}</p>}
+      <div>
+        {filteredBooks.map((book) => (
+          <div key={book.id}>
+            <h2>{book.title}</h2>
+            <p>{book.author}</p>
+            <p>{book.genre}</p>
+          </div>
+        ))}
       </div>
     </>
   );

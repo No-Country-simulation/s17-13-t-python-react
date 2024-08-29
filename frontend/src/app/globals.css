@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --primary-clr: #1E1E1E;
-  --secondary-clr: #F1F1F1;
+  --primary-clr: #1e1e1e;
+  --secondary-clr: #f1f1f1;
 
-  --main-clr: #62262E;
-  --accent-clr: #47242A;
-  --auxiliary-clr: #264E61;
-  --light-clr: #E7E0CF;
+  --main-clr: #62262e;
+  --accent-clr: #47242a;
+  --auxiliary-clr: #264e61;
+  --light-clr: #e7e0cf;
 
   /* TODO remove CSS variable */
   --variable-test: #649;
@@ -18,13 +18,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* TODO implement dark mode */
-    --primary-clr: #1E1E1E;
-    --secondary-clr: #F1F1F1;
-  
-    --main-clr: #62262E;
-    --accent-clr: #47242A;
-    --auxiliary-clr: #264E61;
-    --light-clr: #E7E0CF;
+    --primary-clr: #1e1e1e;
+    --secondary-clr: #f1f1f1;
+
+    --main-clr: #62262e;
+    --accent-clr: #47242a;
+    --auxiliary-clr: #264e61;
+    --light-clr: #e7e0cf;
   }
 }
 
