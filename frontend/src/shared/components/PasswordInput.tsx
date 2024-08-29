@@ -2,21 +2,9 @@ import { useState } from 'react';
 import { Controller, Control, FieldError } from 'react-hook-form';
 import EyeSvg from '../icons/EyeSvg';
 import EyeFillSvg from '../icons/EyeFillSvg';
-import { LoginValues } from '../validations/loginSchema.';
+import { PasswordInputProps } from '../interfaces/InputProps.interface';
 
-interface PasswordInputProps<T> {
-  name: keyof T;
-  placeholder: string;
-  control: Control;
-  error?: FieldError;
-}
-
-export default function PasswordInput({
-  name,
-  placeholder,
-  control,
-  error,
-}: PasswordInputProps<LoginValues>) {
+export default function PasswordInput({ name, placeholder, control, error }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const inputStyles = `shadow-btn h-12 w-full max-w-[21.875rem] rounded-3xl border-[.1rem] border-[#1E1E1E] bg-[#FDF8FF] px-5 pr-10 text-lg font-medium placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
 
