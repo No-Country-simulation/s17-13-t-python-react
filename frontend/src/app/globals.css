@@ -10,9 +10,6 @@
   --accent-clr: #47242a;
   --auxiliary-clr: #264e61;
   --light-clr: #e7e0cf;
-
-  /* TODO remove CSS variable */
-  --variable-test: #649;
 }
 
 @media (prefers-color-scheme: dark) {
