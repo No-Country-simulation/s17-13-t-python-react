@@ -1,18 +1,18 @@
 'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import PasswordInput from '@/shared/components/PasswordInput';
 import BaseInput from '@/shared/components/BaseInput';
 import FeedbackButton from '@/shared/components/FeedbackButton';
-import { AuthValues, loginSchema } from '@/shared/validations/authSchemas';
+import { AuthValues, registerSchema } from '@/shared/validations/authSchemas';
+import PasswordInput from '@/shared/components/PasswordInput';
 
-export default function Login() {
+export default function Register() {
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting, isValid },
   } = useForm<AuthValues>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
     mode: 'onChange',
   });
 
@@ -27,6 +27,7 @@ export default function Login() {
       noValidate
       autoComplete="off"
     >
+      <BaseInput name="name" placeholder="name" control={control} type="text" error={errors.name} />
       <BaseInput
         name="email"
         placeholder="email"
@@ -40,6 +41,13 @@ export default function Login() {
         control={control}
         error={errors.password}
       />
+      <PasswordInput
+        name="confirmedPassword"
+        placeholder="Repetir contraseña"
+        control={control}
+        error={errors.confirmedPassword}
+      />
+
       <div className="flex flex-col items-center justify-center gap-4 xs:flex-row xs:justify-between">
         <label
           htmlFor="saveData"

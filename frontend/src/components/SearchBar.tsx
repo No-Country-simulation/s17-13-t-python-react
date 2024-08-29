@@ -33,8 +33,9 @@ const useSearchStore = create<SearchState>((set) => ({
 }));
 
 const SearchBar = () => {
-  const { books, filteredBooks, message, setFilteredBooks, setMessage } = useSearchStore();
-  const [inputValue, setInputValue] = useState<string>('');
+  const [books, setbooks] = useState<Book[]>([]);
+  const [message, setMessage] = useState<string>('');
+  const [searchId, setSearchId] = useState<number | null>(null); //
 
   const handleSearch = () => {
     const query = inputValue.toLowerCase();
