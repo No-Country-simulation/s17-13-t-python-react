@@ -3,30 +3,30 @@ import React from 'react';
 
 //////////////////////////////
 
-interface SubGenero {
+interface subgenre {
   title: string;
   href?: string;
 }
 
-interface Genero {
+interface genre {
   id: number;
   title: string;
-  subGenero: SubGenero[];
+  subgenre: subgenre[];
 }
 
 interface CategoryItemProps {
-  genero: Genero;
+  genre: genre;
 }
 
 //////////////////////////////
 
-const CategoryItem: React.FC<CategoryItemProps> = ({ genero }) => {
+const CategoryItem: React.FC<CategoryItemProps> = ({ genre }) => {
   return (
     <div>
-      <h3 className="mb-4 text-lg font-bold">{genero.title}</h3>
+      <h3 className="mb-4 text-lg font-bold">{genre.title}</h3>
 
       <ul className="flex flex-col gap-1">
-        {genero.subGenero.map((sub) => (
+        {genre.subgenre.map((sub) => (
           <li key={sub.title}>
             <Link href={`/${sub.href}`}>{sub.title}</Link>
           </li>
