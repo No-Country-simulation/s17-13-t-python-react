@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from './swipperConfig';
 import { Books } from '@/interfaces/BookSlice.interface';
 import 'swiper/css/navigation';
