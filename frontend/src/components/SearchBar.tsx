@@ -15,7 +15,7 @@ interface SearchId {
 }
 
 const SearchBar = () => {
-  const [books, setbooks] = useState<Libro[]>([]);
+  const [books, setbooks] = useState<Book[]>([]);
   const [message, setMessage] = useState<string>('');
   const [searchId, setSearchId] = useState<number | null>(null); //
 
