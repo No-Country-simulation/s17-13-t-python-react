@@ -1,14 +1,11 @@
 import { Control, FieldError } from 'react-hook-form';
-import { LoginValues } from '../validations/loginSchema.';
-import { RegisterValues } from '../validations/registerSchema';
-
-type FormType = LoginValues & RegisterValues;
+import { AuthValues } from '../validations/authSchemas';
 
 export interface BaseInputProps {
   type: 'text' | 'number' | 'email';
-  name: keyof FormType;
+  name: keyof AuthValues;
   placeholder: string;
-  control: Control<FormType>;
+  control: Control<AuthValues>;
   error?: FieldError;
 }
 

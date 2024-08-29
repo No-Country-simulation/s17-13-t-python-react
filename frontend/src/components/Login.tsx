@@ -1,22 +1,22 @@
 'use client';
-import { Control, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginValues, loginSchema } from '@/shared/validations/loginSchema.';
 import PasswordInput from '@/shared/components/PasswordInput';
 import BaseInput from '@/shared/components/BaseInput';
 import FeedbackButton from '@/shared/components/FeedbackButton';
+import { AuthValues, loginSchema } from '@/shared/validations/authSchemas';
 
 export default function Login() {
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<LoginValues>({
+  } = useForm<AuthValues>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
 
-  const onSubmit: SubmitHandler<LoginValues> = (data) => {
+  const onSubmit: SubmitHandler<AuthValues> = (data) => {
     console.log(data);
   };
 
@@ -27,17 +27,17 @@ export default function Login() {
       noValidate
       autoComplete="off"
     >
-      {/* <BaseInput
+      <BaseInput
         name="email"
         placeholder="email"
         control={control}
         type="email"
         error={errors.email}
-      /> */}
+      />
       <PasswordInput
         name="password"
         placeholder="password"
-        control={control as unknown as Control}
+        control={control}
         error={errors.password}
       />
       <div className="flex flex-col items-center justify-center gap-4 xs:flex-row xs:justify-between">
