@@ -2,6 +2,7 @@
 
 import Modal from '@/components/Modal';
 import { useState } from 'react';
+import Carousel from '@/components/Carousel/Carousel';
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(true);
@@ -15,6 +16,7 @@ export default function Home() {
       >
         Registrado / Logueado
       </button>
+      <Carousel />
       {openModal && <Modal setOpenModal={setOpenModal} />}
     </>
   );
