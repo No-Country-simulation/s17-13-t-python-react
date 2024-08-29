@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "cd .. && husky frontend/.husky",
+    "prepare": "[ -d ../frontend/.husky ] || (cd .. && husky frontend/.husky)",
     "format": "prettier --write \"./src/**/*.{ts,json,html,css,tsx,jsx}\"",
-    "format-pre-commit": "pnpx pretty-quick && pnpm run lint"
+    "format-pre-commit": "pnpx pretty-quick && pnpm run lint --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
