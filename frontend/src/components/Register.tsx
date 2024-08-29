@@ -5,7 +5,6 @@ import BaseInput from '@/shared/components/BaseInput';
 import FeedbackButton from '@/shared/components/FeedbackButton';
 import { AuthValues, registerSchema } from '@/shared/validations/authSchemas';
 import PasswordInput from '@/shared/components/PasswordInput';
-import transformCharacters from '@/utils/transformCharacters';
 
 export default function Register() {
   const {
