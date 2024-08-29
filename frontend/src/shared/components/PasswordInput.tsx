@@ -4,13 +4,7 @@ import EyeSvg from '../icons/EyeSvg';
 import EyeFillSvg from '../icons/EyeFillSvg';
 import { PasswordInputProps } from '../interfaces/InputProps.interface';
 
-
-export default function PasswordInput({
-  name,
-  placeholder,
-  control,
-  error,
-}: PasswordInputProps) {
+export default function PasswordInput({ name, placeholder, control, error }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const inputStyles = `shadow-btn h-12 w-full max-w-[21.875rem] rounded-3xl border-[.1rem] border-[#1E1E1E] bg-[#FDF8FF] px-5 pr-10 text-lg font-medium placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
 
