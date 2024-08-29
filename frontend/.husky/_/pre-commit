@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-cd frontend
-pnpm run format-pre-commit
+. "$(dirname "$0")/h"
