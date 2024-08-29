@@ -3,22 +3,22 @@ import CategoryItem from './CategoryItem';
 
 //////////////////////////////
 
-interface SubGenero {
+interface subgenre {
   title: string;
   href?: string;
 }
 
-interface Genero {
+interface genre {
   id: number;
   title: string;
-  subGenero: SubGenero[];
+  subgenre: subgenre[];
 }
 
-const generos: Genero[] = [
+const genres: genre[] = [
   {
     id: 1,
     title: 'Ficción',
-    subGenero: [
+    subgenre: [
       { title: 'Novela', href: 'novela' },
       { title: 'Cuento', href: 'cuento' },
       { title: 'Novela corta', href: 'novelaCorta' },
@@ -33,7 +33,7 @@ const generos: Genero[] = [
   {
     id: 2,
     title: 'No Ficción',
-    subGenero: [
+    subgenre: [
       { title: 'Biografía/autobiografía', href: 'biografia' },
       { title: 'Ensayo', href: 'ensayo' },
       { title: 'Historia', href: 'historia' },
@@ -51,7 +51,7 @@ const generos: Genero[] = [
   {
     id: 3,
     title: 'Géneros específicos',
-    subGenero: [
+    subgenre: [
       { title: 'Literatura', href: 'Literatura' },
       { title: 'Clásica', href: 'clasica' },
       { title: 'Contemporánea', href: 'contemporanea' },
@@ -68,7 +68,7 @@ const generos: Genero[] = [
   {
     id: 4,
     title: 'Especializados',
-    subGenero: [
+    subgenre: [
       { title: 'Idiomas', href: 'idiomas' },
       { title: 'Computación', href: 'computacion' },
       { title: 'Administración', href: 'administracion' },
@@ -86,8 +86,8 @@ export default function Category() {
   return (
     <div className="absolute left-[50%] top-[110%] z-30 w-[80%] translate-x-[-50%] rounded-lg bg-stone-400 px-6 py-6 text-[#1e1e1e]">
       <div className="flex justify-evenly gap-6">
-        {generos.map((genero) => (
-          <CategoryItem genero={genero} key={genero.id} />
+        {genres.map((genre) => (
+          <CategoryItem genre={genre} key={genre.id} />
         ))}
       </div>
     </div>
