@@ -3,22 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-clr: #1e1e1e;
+  --secondary-clr: #f1f1f1;
+
+  --main-clr: #62262e;
+  --accent-clr: #47242a;
+  --auxiliary-clr: #264e61;
+  --light-clr: #e7e0cf;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+    /* TODO implement dark mode */
+    --primary-clr: #1e1e1e;
+    --secondary-clr: #f1f1f1;
 
-body {
-  color: #1e1e1e;
-  background: #ffff;
+    --main-clr: #62262e;
+    --accent-clr: #47242a;
+    --auxiliary-clr: #264e61;
+    --light-clr: #e7e0cf;
+  }
 }
 
 @layer utilities {
