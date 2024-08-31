@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-secondary text-primary grid min-h-dvh grid-rows-[auto_1fr_auto] ${roboto.className}`}
+        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] bg-secondary text-primary ${roboto.className}`}
       >
         <Navbar />
         {children}
