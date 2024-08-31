@@ -16,10 +16,10 @@ export default function Home() {
       >
         Registrado / Logueado
       </button> */}
-      <Carousel carouselTitle='Tus recomendados' />
-      <div className='min-h-[80dvh] bg-light grid place-content-center'>Empty section</div>
-      <Carousel carouselTitle='Agregados recientemente' />
-      <Carousel carouselTitle='Los más buscados' />
+      <Carousel carouselTitle="Tus recomendados" />
+      <div className="grid min-h-[80dvh] place-content-center bg-light">Empty section</div>
+      <Carousel carouselTitle="Agregados recientemente" />
+      <Carousel carouselTitle="Los más buscados" />
       {openModal && <Modal setOpenModal={setOpenModal} />}
     </>
   );

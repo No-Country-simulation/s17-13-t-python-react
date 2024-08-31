@@ -10,7 +10,7 @@ interface Props {
   books: Books[];
 }
 
-// TODO Eliminar Partial type cuando se tenga lña data dinámica
+// TODO Eliminar Partial type cuando se tenga la data dinámica
 export default function Carousel({ books, carouselTitle }: Partial<Props>) {
   const controls = ['swiper-button-next', 'swiper-button-prev'];
   const mockupBooks: Books[] = [
