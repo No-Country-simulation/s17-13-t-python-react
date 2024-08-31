@@ -1,0 +1,16 @@
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+  --swiper-navigation-size: 1.5rem;
+  color: var(--secondary-clr);
+  margin-inline: 1rem;
+
+  &::after {
+    font-weight: bold;
+    -webkit-text-stroke: 4px;
+  }
+
+  @media (width > 700px) {
+    --swiper-navigation-size: 2.5rem;
+    margin-inline: 1.5rem;
+  }
+}
