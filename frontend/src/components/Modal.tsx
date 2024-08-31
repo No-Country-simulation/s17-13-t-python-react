@@ -31,7 +31,7 @@ export default function Modal({ setOpenModal }: propModal) {
 
   return (
     <>
-      <section className="absolute left-0 top-0 min-h-screen w-full items-center justify-center bg-black/60 sm:fixed sm:flex">
+      <section className="absolute left-0 top-0 min-h-screen w-full items-center justify-center bg-black/60 sm:fixed sm:flex z-50">
         <div className="relative w-full gap-5 bg-[#EEE4F7] pb-4 pt-14 sm:flex sm:w-fit sm:flex-col sm:items-center sm:rounded-[25px] sm:pt-10">
           <button
             className="absolute right-5 top-3 text-2xl font-extrabold text-[#49454F]"
