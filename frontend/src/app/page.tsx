@@ -3,6 +3,7 @@
 import Modal from '@/components/Modal';
 import { useState } from 'react';
 import Carousel from '@/components/Carousel/Carousel';
+import TopTenBooks from '@/components/TopTenBooks';
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(true);
@@ -17,7 +18,8 @@ export default function Home() {
         Registrado / Logueado
       </button> */}
       <Carousel carouselTitle="Tus recomendados" />
-      <div className="grid min-h-[80dvh] place-content-center bg-light">Empty section</div>
+      {/* <div className="grid min-h-[80dvh] place-content-center bg-light">Empty section</div> */}
+      {/* <TopTenBooks />  */}
       <Carousel carouselTitle="Agregados recientemente" />
       <Carousel carouselTitle="Los más buscados" />
       {openModal && <Modal setOpenModal={setOpenModal} />}

@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
-        <header className="grid h-24 place-content-center bg-main text-white">Header Empty</header>
+        <Navbar />
         <main>{children}</main>
         <Footer />
       </body>
