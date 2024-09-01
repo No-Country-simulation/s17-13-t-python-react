@@ -3,6 +3,8 @@ import { Roboto } from 'next/font/google';
 import Footer from '@/components/Footer';
 import './globals.css';
 
+import Navbar from '@/components/Navbar';
+
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
   style: ['normal', 'italic'],
