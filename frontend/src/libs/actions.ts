@@ -27,7 +27,7 @@ export async function getTopTenBooks() {
 
     return bookDetails;
   } catch (error) {
-    console.error(`💥Error:`, error);
+    console.error('💥Error:', error);
     return null;
   }
 }
