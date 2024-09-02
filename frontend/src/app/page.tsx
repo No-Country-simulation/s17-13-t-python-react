@@ -19,6 +19,7 @@ export default function Home() {
       </button> */}
       <Carousel carouselTitle="Tus recomendados" />
       {/* <div className="grid min-h-[80dvh] place-content-center bg-light">Empty section</div> */}
+      // TODO fix component
       {/* <TopTenBooks />  */}
       <Carousel carouselTitle="Agregados recientemente" />
       <Carousel carouselTitle="Los más buscados" />

@@ -1,4 +1,4 @@
-import ButtonMedia from '@/shared/components/ButtonMedia';
+import ButtonMedia from '@/components/ButtonMedia';
 import Login from '@/components/Login';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
