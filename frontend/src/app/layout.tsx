@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import './globals.css';
 import Footer from '@/components/Footer';
+import './globals.css';
 
 import Navbar from '@/components/Navbar';
 
@@ -24,12 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] bg-secondary text-primary ${roboto.className}`}
-      >
+      <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
         <Navbar />
-        {children}
-        <div></div>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

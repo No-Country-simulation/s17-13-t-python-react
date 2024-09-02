@@ -1,10 +1,10 @@
 'use client';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import PasswordInput from '@/shared/components/PasswordInput';
-import BaseInput from '@/shared/components/BaseInput';
-import FeedbackButton from '@/shared/components/FeedbackButton';
-import { AuthValues, loginSchema } from '@/shared/validations/authSchemas';
+import PasswordInput from '@/components/PasswordInput';
+import BaseInput from '@/components/BaseInput';
+import FeedbackButton from '@/components/FeedbackButton';
+import { AuthValues, loginSchema } from '@/app/(auth)/_validations/authSchemas';
 
 export default function Login() {
   const {

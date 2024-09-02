@@ -29,4 +29,22 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .grid-layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .interactive-btn {
+    transform-origin: center;
+    transition: transform 0.2s linear;
+
+    &:hover {
+      transform: scale(0.9);
+    }
+    &:active {
+      transform: scale(1.2);
+    }
+  }
 }
