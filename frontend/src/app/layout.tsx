@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import './globals.css';
 import Footer from '@/components/Footer';
+import './globals.css';
+
+import Navbar from '@/components/Navbar';
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -22,13 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`grid min-h-dvh grid-rows-[auto_1fr_auto] bg-secondary text-primary ${roboto.className}`}
-      >
-        {children}
-        <div></div>
-        <Footer />
-      </body>
-    </html>
+    <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </body>
+  </html>
   );
 }

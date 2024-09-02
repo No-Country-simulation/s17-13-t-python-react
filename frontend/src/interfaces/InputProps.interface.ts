@@ -1,5 +1,5 @@
 import { Control, FieldError } from 'react-hook-form';
-import { AuthValues } from '../validations/authSchemas';
+import { AuthValues } from '@/app/(auth)/_validations/authSchemas';
 
 export interface BaseInputProps {
   type: 'text' | 'number' | 'email';
