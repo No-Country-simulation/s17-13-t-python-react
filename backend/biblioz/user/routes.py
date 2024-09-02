@@ -1,63 +1,51 @@
-from flask import request
-from flask_restx import Namespace, Resource, fields
-from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
+from flask import request, session
+from flask_restx import Resource, Namespace, fields
 from biblioz import db
+from biblioz.user.models import User
+from biblioz.user.schemas import UserSchema, UserLoginSchema
+from biblioz.user.swagger_models import api, user_register_model, user_login_model
+from werkzeug.security import generate_password_hash, check_password_hash
 
-api = Namespace('users', description='User related operations')
 
-# Definir el modelo de datos para la documentación
-user_model = api.model('User', {
-    'id': fields.Integer(readOnly=True, description='The unique identifier of the user'),
-    'name': fields.String(required=True, description='The user\'s name'),
-    'email': fields.String(required=True, description='The email address'),
-    'author_favorite': fields.String(required=True, description='The favorite author'),
-    'genre_favorite': fields.String(required=True, description='The favorite genre'),
-    'created_at': fields.DateTime(description='The creation time of the user record'),
-    'updated_at': fields.DateTime(description='The last update time of the user record')
-})
-
-register_model = api.model('Register', {
-    'name': fields.String(required=True, description='The user\'s name'),
-    'email': fields.String(required=True, description='The email address'),
-    'password': fields.String(required=True, description='The password'),
-    'author_favorite': fields.String(required=True, description='The favorite author'),
-    'genre_favorite': fields.String(required=True, description='The favorite genre')
-})
-
-login_model = api.model('Login', {
-    'email': fields.String(required=True, description='The email address'),
-    'password': fields.String(required=True, description='Contraseña')
-})
-
+# Rutas
 @api.route('/register')
 class Register(Resource):
-    @api.expect(register_model)
+    @api.doc('register_user')
+    @api.expect(user_register_model)
     def post(self):
+        """Registrar un nuevo usuario"""
         data = request.json
+        schema = UserSchema()
+        errors = schema.validate(data)
+        print(errors)
+        if errors:
+            return {'errors': errors}, 400
+
         if User.query.filter_by(email=data['email']).first():
-            return {'message': 'El usuario ya existe'}, 400
-        
+            return {'message': 'El email ya está en uso'}, 400
+
         hashed_password = generate_password_hash(data['password'])
-        user = User(
-            name=data['name'],
-            email=data['email'],
-            password=hashed_password,
-            author_favorite=data['author_favorite'],
-            genre_favorite=data['genre_favorite']
-        )
-        db.session.add(user)
+        new_user = User(name=data['name'], email=data['email'], password=hashed_password)
+        db.session.add(new_user)
         db.session.commit()
         
-        return {'message': 'Se creo la cuenta exitosamente'}, 201
+        return schema.dump(new_user), 201
 
 @api.route('/login')
 class Login(Resource):
-    @api.expect(login_model)
+    @api.doc('login_user')
+    @api.expect(user_login_model)
     def post(self):
+        """Iniciar sesión de un usuario"""
         data = request.json
+        schema = UserLoginSchema()
+        errors = schema.validate(data)
+        if errors:
+            return {'errors': errors}, 400
+
         user = User.query.filter_by(email=data['email']).first()
-        if user and check_password_hash(user.password, data['password']):
-            return {'message': 'Inicio de sesion exitoso'}, 200
-        
-        return {'message': 'Credenciales invalidas'}, 401
+        if not user or not check_password_hash(user.password, data['password']):
+            return {'message': 'Credenciales inválidas'}, 401
+
+        session['user_id'] = user.id
+        return {'message': 'Inicio de sesión exitoso'}, 200
