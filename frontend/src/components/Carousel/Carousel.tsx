@@ -1,3 +1,5 @@
+'use client'
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from './swipperConfig';
 import { Books } from '@/interfaces/BookSlice.interface';
