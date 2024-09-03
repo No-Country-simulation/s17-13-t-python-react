@@ -10,9 +10,6 @@
   --accent-clr: #47242a;
   --auxiliary-clr: #264e61;
   --light-clr: #e7e0cf;
-
-  /* TODO remove CSS variable */
-  --variable-test: #649;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,5 +28,23 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .grid-layout {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .interactive-btn {
+    transform-origin: center;
+    transition: transform 0.2s linear;
+
+    &:hover {
+      transform: scale(0.9);
+    }
+    &:active {
+      transform: scale(1.2);
+    }
   }
 }

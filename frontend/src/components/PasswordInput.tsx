@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Controller, Control, FieldError } from 'react-hook-form';
-import EyeSvg from '../icons/EyeSvg';
-import EyeFillSvg from '../icons/EyeFillSvg';
-import { PasswordInputProps } from '../interfaces/InputProps.interface';
+import { Controller } from 'react-hook-form';
+import { PasswordInputProps } from '@/interfaces/InputProps.interface';
+import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 export default function PasswordInput({ name, placeholder, control, error }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +29,7 @@ export default function PasswordInput({ name, placeholder, control, error }: Pas
             onClick={togglePasswordVisibility}
             className="absolute inset-y-0 right-0 flex items-center pr-3"
           >
-            {showPassword ? <EyeFillSvg /> : <EyeSvg />}
+            {showPassword ? <IoEyeOff size={25} /> : <IoEye size={25} />}
           </button>
           {error && (
             <p className="absolute translate-y-1 pl-5 text-xs font-medium tracking-wide text-red-500">

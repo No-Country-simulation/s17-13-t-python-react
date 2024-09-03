@@ -4,12 +4,13 @@ from flask_migrate import Migrate
 from config import Config
 from flask_restx import Api
 from flask_cors import CORS
+from flask_marshmallow import Marshmallow
 import os
 
 db = SQLAlchemy()  # Instancia de SQLAlchemy para manejar la base de datos
 migrate = Migrate()  # Instancia de Migrate para manejar las migraciones de la base de datos
 api = Api()  # Instancia de Api para manejar la API REST con Flask-RESTX
-
+ma = Marshmallow()
 def create_app():
     
     app = Flask(__name__)    # Crea una instancia de la aplicación Flask
@@ -21,7 +22,7 @@ def create_app():
 
     db.init_app(app)   # Inicializa la extensión SQLAlchemy con la aplicación
     migrate.init_app(app, db) # Inicializa la extensión Migrate con la aplicación y la instancia de SQLAlchemy
-    
+    ma.init_app(app)
 
     # Configura Flask-RESTX para manejar las rutas y la documentación de la API
     api = Api(
