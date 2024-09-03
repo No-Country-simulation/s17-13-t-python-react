@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from './swipperConfig';
