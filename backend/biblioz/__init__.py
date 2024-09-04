@@ -43,6 +43,8 @@ def create_app():
         from biblioz.user.routes import api as user_api
         api.add_namespace(user_api)
 
+        from biblioz.userProfile.routes import api as userProfile_api
+        api.add_namespace(userProfile_api)
 
 
     return app
