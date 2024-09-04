@@ -24,11 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </body>
-  </html>
+      <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+
   );
 }
