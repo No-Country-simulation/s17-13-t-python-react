@@ -9,6 +9,9 @@ load_dotenv(path.join(basedir, ".env"))
 
 class Config:
 
+    # Clave secreta para la aplicación. Se utiliza para la protección de datos sensibles y cookies.
+    SECRET_KEY = environ.get("SECRET_KEY", "12345")
+
     # Config de la base de datos en sqlite3
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI", "sqlite:///db.sqlite3")
     SQLALCHEMY_TRACK_MODIFICATIONS = False   # Desactiva el seguimiento de modificaciones para evitar sobrecargar la memoria con cambios innecesarios
