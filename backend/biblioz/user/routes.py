@@ -2,6 +2,7 @@ from flask import request, session
 from flask_restx import Resource, Namespace, fields
 from biblioz import db
 from biblioz.user.models import User
+from biblioz.userProfile.models import UserProfile
 from biblioz.user.schemas import UserSchema, UserLoginSchema
 from biblioz.user.swagger_models import api, user_register_model, user_login_model
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -29,6 +30,10 @@ class Register(Resource):
         db.session.add(new_user)
         db.session.commit()
         
+        new_user_profile = UserProfile(user_id=new_user.id)
+        db.session.add(new_user_profile)
+        db.session.commit()
+
         return schema.dump(new_user), 201
 
 @api.route('/login')
