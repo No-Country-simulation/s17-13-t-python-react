@@ -6,6 +6,7 @@ settings:
 
 importers:
 
+
   .:
     dependencies:
       '@hookform/resolvers':
@@ -28,7 +29,7 @@ importers:
         version: 5.3.0(react@18.3.1)
       swiper:
         specifier: ^11.1.11
-        version: 11.1.11
+        version: 11.1.12
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -1739,8 +1740,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  swiper@11.1.11:
-    resolution: {integrity: sha512-077Aw3OrlZpkkBRf/6+44bGh/HZY/vsLEyate2db2KkJgYUIR5TvDgvvhcJtW/puXzw79w5KBc30DauEX6GZYQ==}
+  swiper@11.1.12:
+    resolution: {integrity: sha512-PUkCToYAZMB4kP7z+YfPnkMHOMwMO71g8vUhz2o5INGIgIMb6Sb0XiP6cEJFsiFTd7FRDn5XCbg+KVKPDZqXLw==}
     engines: {node: '>= 4.7.0'}
 
   synckit@0.9.1:
@@ -3688,7 +3689,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  swiper@11.1.11: {}
+  swiper@11.1.12: {}
 
   synckit@0.9.1:
     dependencies:

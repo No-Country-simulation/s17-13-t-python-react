@@ -27,7 +27,13 @@ export default function Register() {
       noValidate
       autoComplete="off"
     >
-      <BaseInput name="name" placeholder="name" control={control} type="text" error={errors.name} />
+      <BaseInput
+        name="name"
+        placeholder="Nombre y apellido"
+        control={control}
+        type="text"
+        error={errors.name}
+      />
       <BaseInput
         name="email"
         placeholder="email"
@@ -37,7 +43,7 @@ export default function Register() {
       />
       <PasswordInput
         name="password"
-        placeholder="password"
+        placeholder="contraseña"
         control={control}
         error={errors.password}
       />
@@ -48,10 +54,10 @@ export default function Register() {
         error={errors.confirmedPassword}
       />
 
-      <div className="flex flex-col items-center justify-center gap-4 xs:flex-row xs:justify-between">
+      <div className="flex flex-col items-center justify-center gap-4 pb-[76px] xs:flex-row xs:justify-between">
         <label
           htmlFor="saveData"
-          className="flex items-center gap-2 text-lg font-medium capitalize"
+          className="flex items-center gap-2 text-lg font-medium capitalize text-[#E7E0CF]"
         >
           <input
             className="size-[1.43rem] accent-current"
