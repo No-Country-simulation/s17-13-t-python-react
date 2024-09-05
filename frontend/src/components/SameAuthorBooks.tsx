@@ -1,9 +1,10 @@
+'use client';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from '../components/Carousel/swipperConfig';
 import { Books } from '@/interfaces/BookSlice.interface';
 import 'swiper/css/navigation';
 import 'swiper/css';
-// import './swiper.styles.css';
 
 interface Props {
   title: string;
@@ -13,7 +14,9 @@ interface Props {
 export default function SameAuthorBooks({ title, books }: Props) {
   return (
     <section className="min-h-dvh">
-      {title && <h2 className="mx-auto max-w-[81.25rem] py-16 text-lg font-semibold">{title}</h2>}
+      {title && (
+        <h2 className="mx-auto max-w-[81.25rem] py-16 text-[2.1875rem] font-semibold">{title}</h2>
+      )}
       {books.length === 1 ? (
         <div className="flex px-7">
           <img
@@ -26,7 +29,7 @@ export default function SameAuthorBooks({ title, books }: Props) {
       ) : (
         <Swiper {...SwiperConfig}>
           {books.map(({ name, url }) => (
-            <SwiperSlide className="w-fit" key={name}>
+            <SwiperSlide className="flex" key={name}>
               <img
                 className="mx-auto h-72 w-48 select-none object-cover md:h-[21.625rem] md:w-56"
                 title={name}
