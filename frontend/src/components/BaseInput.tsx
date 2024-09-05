@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 import { BaseInputProps } from '@/interfaces/InputProps.interface';
 
 export default function BaseInput({ placeholder, name, type, control, error }: BaseInputProps) {
-  const inputStyles = `shadow-btn h-12 w-full max-w-[21.875rem] rounded-3xl border-[.1rem] border-[#1E1E1E] bg-[#FDF8FF] px-5 text-lg font-medium placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
+  const inputStyles = `shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
 
   return (
     <div className="relative">
@@ -24,7 +24,7 @@ export default function BaseInput({ placeholder, name, type, control, error }: B
         )}
       />
       {error && (
-        <p className="absolute translate-y-1 pl-5 text-xs font-medium tracking-wide text-red-500">
+        <p className="absolute translate-y-1 pl-5 text-xs font-bold tracking-wide text-[#62262E]">
           {error.message}
         </p>
       )}
