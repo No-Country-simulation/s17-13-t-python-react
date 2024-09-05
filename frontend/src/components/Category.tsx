@@ -84,7 +84,7 @@ const genres: genre[] = [
 
 export default function Category() {
   return (
-    <div className="absolute left-[50%] top-[110%] z-30 w-[80%] translate-x-[-50%] rounded-lg bg-stone-400 px-6 py-6 text-[#1e1e1e]">
+    <div className="absolute left-[50%] top-[110%] z-30 w-[80%] translate-x-[-50%] rounded-lg bg-[#E7E0CF] px-6 py-6 text-[#232020]">
       <div className="flex justify-evenly gap-6">
         {genres.map((genre) => (
           <CategoryItem genre={genre} key={genre.id} />
