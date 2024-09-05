@@ -1,4 +1,5 @@
 import Carousel from '@/components/Carousel/Carousel';
+import SameAuthorBooks from '@/components/SameAuthorBooks';
 import SearchBar from '@/components/SearchBar';
 import TopTenBooks from '@/components/TopTenBooks';
 
