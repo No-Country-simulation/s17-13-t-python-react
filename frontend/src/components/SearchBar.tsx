@@ -63,10 +63,10 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="flex items-center justify-end rounded-lg p-10">
+      <div className="flex   items-center justify-end rounded-lg p-5">
         <div
           style={{ backgroundColor: '#264E61' }}
-          className="flex p-2 pl-12 pr-14 items-center overflow-hidden rounded-full bg-blue-600"
+          className="flex w-96  h-9 items-center overflow-hidden rounded-full bg-blue-600"
         >
           <input
             type="text"
@@ -74,12 +74,12 @@ const SearchBar = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             style={{ backgroundColor: '#264E61' }}
-            className="w-full bg-blue-600 p-4 pl-14 pr-14 text-lg text-white placeholder-gray-300 focus:outline-none"
+            className=" bg-blue-600     pl-14 pr-14 text-xl text-white placeholder-gray-300 focus:outline-none"
           />
           <button
             onClick={handleSearch}
             style={{ backgroundColor: '#264E61' }}
-            className="p-4 text-white"
+            className="p-4 text-xl sm:p-3 md:p-4  text-white"
           >
             <FaSearch />
           </button>
