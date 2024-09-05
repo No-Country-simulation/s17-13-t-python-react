@@ -52,5 +52,8 @@ def create_app():
         from biblioz.author.routes import api as author_api
         api.add_namespace(author_api)
 
+        from biblioz.genre.routes import api as genre_api
+        api.add_namespace(genre_api)
+
         
     return app
