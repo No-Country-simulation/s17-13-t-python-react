@@ -1,7 +1,4 @@
-interface SummaryItem {
-  icon: JSX.Element;
-  text: string;
-}
+import { SummaryItem } from "@/interfaces/SummaryItem.interface";
 
 interface Props {
   dataList: SummaryItem[];

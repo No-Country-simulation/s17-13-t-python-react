@@ -5,14 +5,10 @@ import { FaUserLarge } from 'react-icons/fa6';
 import Title from '@/components/Typography/Title';
 import ProfileSummaryList from '@/components/ProfileSummaryList';
 import ButtonBase from '@/components/ButtonBase';
-
-interface ItemUser {
-  icon: JSX.Element;
-  text: string;
-}
+import { SummaryItem } from '@/interfaces/SummaryItem.interface';
 
 export default function page() {
-  const profileInfoMockup: ItemUser[] = [
+  const profileInfoMockup: SummaryItem[] = [
     {
       icon: <HiLocationMarker size={25} />,
       text: 'Buenos Aires, Argentina',
