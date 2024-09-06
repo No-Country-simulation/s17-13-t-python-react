@@ -12,12 +12,12 @@ interface Props {
 export default function ThumbsUpDownButtons({ disLikes = 0, likes = 0 }: Props) {
   const { action, handleAction } = useThumbsInteraction();
   const buttons: ThumbButton[] = [
-    { alt: 'like', icon: <BiSolidLike size={20} className='text-auxiliary'/> },
-    { alt: 'dislike', icon: <BiSolidDislike size={20} className='text-auxiliary' /> },
+    { alt: 'like', icon: <BiSolidLike size={20} className="text-auxiliary" /> },
+    { alt: 'dislike', icon: <BiSolidDislike size={20} className="text-auxiliary" /> },
   ];
   const activeStyle = (currentAction: ActionType) => {
     return currentAction === action ? 'opacity-100' : 'opacity-50';
-  } 
+  };
 
   return (
     <ul className="flex gap-6">

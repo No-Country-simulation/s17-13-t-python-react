@@ -13,7 +13,7 @@ export default function BookOptionsBar() {
 
   return (
     <nav>
-      <ul className="grid w-fit auto-cols-auto grid-flow-col place-items-center gap-y-10 gap-x-4 text-white mx-auto md:mx-0">
+      <ul className="mx-auto grid w-fit auto-cols-auto grid-flow-col place-items-center gap-x-4 gap-y-10 text-white md:mx-0">
         {navbarItems.map(({ alt, text }, i) => (
           <li key={i} className="contents">
             <Link href="/" className="contents">

@@ -1,4 +1,4 @@
-import { ActionType } from "@/interfaces/ItemData.interface";
+import { ActionType } from '@/interfaces/ItemData.interface';
 import { useState } from 'react';
 
 export function useThumbsInteraction(initialAction: ActionType = 'empty') {
@@ -10,7 +10,7 @@ export function useThumbsInteraction(initialAction: ActionType = 'empty') {
     }
 
     setAction(type);
-  }
+  };
 
   return {
     handleAction,
