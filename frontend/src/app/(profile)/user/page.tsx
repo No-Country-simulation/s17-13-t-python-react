@@ -5,11 +5,11 @@ import { FaUserLarge } from 'react-icons/fa6';
 import Title from '@/components/Typography/Title';
 import ProfileSummaryList from '@/components/ProfileSummaryList';
 import ButtonBase from '@/components/ButtonBase';
-import { SummaryItem } from '@/interfaces/SummaryItem.interface';
+import { ItemInfo } from '@/interfaces/ItemData.interface';
 import { FaRegEdit } from 'react-icons/fa';
 
 export default function page() {
-  const profileInfoMockup: SummaryItem[] = [
+  const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,
       text: 'Buenos Aires, Argentina',
