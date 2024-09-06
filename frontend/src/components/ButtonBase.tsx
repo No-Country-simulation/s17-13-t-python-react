@@ -1,20 +1,40 @@
+import { CSSProperties } from 'react';
+
 interface Props {
   text: string;
   alt: string;
-  type?: 'button' | 'reset' | 'submit';
-  customClass?: string;
-  icon?: JSX.Element;
+  type: 'button' | 'reset' | 'submit';
+  customClass: string;
+  style: CSSProperties;
+  icon: JSX.Element;
+  hoverStyles: boolean;
+  handleCLick: () => void;
 }
 
 interface BtnTemplate {
-  children?: JSX.Element | JSX.Element[];
-  btnTemplateClass?: string;
+  children: JSX.Element | JSX.Element[];
+  btnTemplateClass: string;
 }
 
-export default function ButtonBase({ text, customClass, icon, alt, type = 'button' }: Props) {
-  const styles = `grid place-content-center max-w-40 rounded-3xl bg-auxiliary text-lg font-medium text-secondary shadow-[0px_4px_4px_0px_#00000040] ${customClass || ''}`;
-  const BtnTemplate = ({ children, btnTemplateClass }: BtnTemplate) => (
-    <button className={`${styles}${btnTemplateClass || ''}`} type={type} title={alt}>
+export default function ButtonBase({
+  text,
+  customClass,
+  icon,
+  alt,
+  hoverStyles,
+  handleCLick,
+  style,
+  type = 'button',
+}: Partial<Props>) {
+  const buttonStyles = `grid place-content-center max-w-40 rounded-3xl bg-auxiliary text-lg font-medium text-secondary shadow-[0px_4px_4px_0px_#00000040] text-inherit ${customClass || ''} ${hoverStyles && 'interactive-btn'}`;
+  const BtnTemplate = ({ children, btnTemplateClass }: Partial<BtnTemplate>) => (
+    <button
+      className={`${buttonStyles} ${btnTemplateClass || ''}`}
+      style={style}
+      onClick={handleCLick}
+      type={type}
+      title={alt}
+    >
       {children}
     </button>
   );
