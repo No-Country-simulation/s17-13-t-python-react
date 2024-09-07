@@ -15,7 +15,7 @@ export default function ProfileLayout({
           aria-hidden="true"
         />
       </div>
-      <div>{children}</div>
+      <div className="mx-auto w-full max-w-[85rem] px-4 md:px-8">{children}</div>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from './swipperConfig';
+import Title from '../Typography/Title';
 import { Books } from '@/interfaces/BookSlice.interface';
 import 'swiper/css/navigation';
 import 'swiper/css';
@@ -25,11 +26,13 @@ export default function Carousel({ books, carouselTitle }: Partial<Props>) {
   ];
 
   return (
-    <section className="min-h-dvh">
+    <section className="py-32">
       {carouselTitle && (
-        <h2 className="mx-auto max-w-[81.25rem] py-16 text-[2.1875rem] font-semibold">
-          {carouselTitle}
-        </h2>
+        <Title
+          level={2}
+          title={carouselTitle}
+          customClass="mx-auto max-w-[85rem] pb-16 text-[2.1875rem] font-semibold"
+        />
       )}
       <Swiper {...SwiperConfig}>
         {mockupBooks.map(({ name, url }) => (
