@@ -15,7 +15,7 @@ export default function SameAuthorBooks({ title, books }: Props) {
   return (
     <section className="min-h-dvh">
       {title && (
-        <h2 className="mx-auto max-w-[81.25rem] py-16 text-[2.1875rem] font-semibold">{title}</h2>
+        <h2 className="mx-auto max-w-[85rem] py-16 text-[2.1875rem] font-semibold">{title}</h2>
       )}
       {books.length === 1 ? (
         <div className="flex px-7">

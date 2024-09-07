@@ -1,7 +1,7 @@
-import { SummaryItem } from '@/interfaces/SummaryItem.interface';
+import { ItemInfo } from '@/interfaces/ItemData.interface';
 
 interface Props {
-  dataList: SummaryItem[];
+  dataList: ItemInfo[];
   customClass?: string;
 }
 
