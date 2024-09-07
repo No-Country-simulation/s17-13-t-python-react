@@ -1,7 +1,17 @@
+import Carousel from '@/components/Carousel/Carousel';
+import SameAuthorBooks from '@/components/SameAuthorBooks';
+import SearchBar from '@/components/SearchBar';
+import TopTenBooks from '@/components/TopTenBooks';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      empty template
-    </main>
+    <>
+      <SearchBar />
+      <Carousel carouselTitle="Tus recomendados" />
+
+      <TopTenBooks />
+      <Carousel carouselTitle="Agregados recientemente" />
+      <Carousel carouselTitle="Los más buscados" />
+    </>
   );
 }

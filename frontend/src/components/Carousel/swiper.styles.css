@@ -1,0 +1,39 @@
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+  --swiper-navigation-size: 1.5rem;
+  color: var(--secondary-clr);
+  /* margin-inline: 1rem; */
+  height: 100%;
+  padding: 2rem;
+  display: grid;
+  margin: auto;
+  transform: translateY(-50%);
+  background-color: #1e1e1e80;
+
+  &::after {
+    font-weight: bold;
+    -webkit-text-stroke: 4px;
+    margin-inline: auto;
+    transform: translateX(-20%);
+  }
+
+  @media (width > 700px) {
+    --swiper-navigation-size: 2.5rem;
+  }
+}
+
+.swiper .swiper-button-prev {
+  left: 0;
+
+  &::after {
+    transform: translateX(-20%);
+  }
+}
+
+.swiper .swiper-button-next {
+  right: 0;
+
+  &::after {
+    transform: translateX(20%);
+  }
+}
