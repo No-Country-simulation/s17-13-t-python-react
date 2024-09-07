@@ -1,6 +1,7 @@
 import React from 'react';
 import BookOverview from '@/components/BookOverview';
 import { getBook } from '@/libs/actions';
+import BookReview from '@/components/BookReview';
 
 ////////////////////////////
 
@@ -27,6 +28,7 @@ export default async function page({ params }: PageProps) {
   return (
     <section className="mt-8">
       <BookOverview book={book} />
+      <BookReview />
     </section>
   );
 }
