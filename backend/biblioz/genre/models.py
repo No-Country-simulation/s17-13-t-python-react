@@ -1,5 +1,6 @@
 from biblioz import db
 from sqlalchemy.orm import relationship
+from biblioz.userPrefs.models import UserFavoriteGenre
 
 class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,3 +10,6 @@ class Genre(db.Model):
 
     # Relación uno a muchos con Book
     books = db.relationship('Book', back_populates='genre')
+
+    # Relación muchos a muchos con User
+    users = db.relationship('User', secondary=UserFavoriteGenre.__tablename__ , back_populates='genres')

@@ -58,5 +58,9 @@ def create_app():
         from biblioz.review.routes import api as review_api
         api.add_namespace(review_api)
 
+        from biblioz.userPrefs.routes import api as userPreferences_api
+        api.add_namespace(userPreferences_api)
+
+
         
     return app
