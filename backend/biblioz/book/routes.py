@@ -2,6 +2,8 @@ from flask import request, current_app
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.book.models import Book
+from biblioz.genre.models import Genre
+from biblioz.author.models import Author
 from biblioz.book.schemas import BookSchema
 from biblioz.book.swagger_models import api, book_model
 from werkzeug.utils import secure_filename
@@ -18,6 +20,17 @@ class BookListResource(Resource):
         books = Book.query.all()
         if not books:
             api.abort(404, 'No hay libros disponibles')
+        books_data = [
+            {
+                "id": book.id,
+                "title": book.title,
+                "description": book.description,
+                "author": book.author,
+                "genre": book.genre
+            }
+            for book in books
+        ]
+
         return books
 
 
@@ -33,9 +46,11 @@ class BookListResource(Resource):
         data = {
             'title': request.form.get('title'),
             'description': request.form.get('description'),
-            'img': request.files.get('img').filename if request.files.get('img') else None
+            'img': request.files.get('img').filename if request.files.get('img') else None,
+
+            'genre_id': request.form.get('genre_id'),
+            'author_id': request.form.get('author_id')
         }
-        print(f"Datos recibidos: {data}")
 
         book_schema = BookSchema()
         errors = book_schema.validate(data)
@@ -46,9 +61,18 @@ class BookListResource(Resource):
         else:
             
             validated_data = book_schema.load(data)
+
+            if not Genre.query.get(validated_data.get('genre_id')):
+                abort(400, 'Género no válido.')
+            if not Author.query.get(validated_data.get('author_id')):
+                abort(400, 'Autor no válido.')
+
             new_book = Book(
                 title=validated_data.get('title'),
                 description=validated_data.get('description'),
+
+                genre_id=validated_data.get('genre_id'),
+                author_id=validated_data.get('author_id')
             )
 
             file = request.files.get('img')
@@ -127,6 +151,19 @@ class BookResource(Resource):
         book.title = validated_data.get('title', book.title)
         book.description = validated_data.get('description', book.description)
 
+        genre_id = validated_data.get('genre_id', book.genre_id)
+        author_id = validated_data.get('author_id', book.author_id)
+
+        if genre_id:
+            if not Genre.query.get(genre_id):
+                abort(400, 'Género no válido.')
+            book.genre_id = genre_id
+        
+        if author_id:
+            if not Author.query.get(author_id):
+                abort(400, 'Autor no válido.')
+            book.author_id = author_id
+
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             books_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], 'books')
@@ -139,9 +176,6 @@ class BookResource(Resource):
 
         elif file:
             abort(400, 'Archivo no permitido.')
-            
-        # book.genre_id = data.get('genre_id', book.genre_id)
-        # book.author_id = data.get('author_id', book.author_id)
 
         db.session.commit()
         return book

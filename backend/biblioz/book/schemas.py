@@ -5,6 +5,9 @@ class BookSchema(Schema):
     description = fields.String(validate=fields.Length(max=1500), allow_none=True)
     img = fields.String(required=False)
 
+    genre_id = fields.Int(required=True)
+    author_id = fields.Int(required=True)
+
     @validates('title')
     def validate_title(self, value):
         if value is None or value.strip() == '':

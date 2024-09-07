@@ -21,6 +21,7 @@ class AuthorListResource(Resource):
 
     
     @api.doc('create_author')
+    @api.expect(author_model)
     @api.marshal_with(author_model, code=201)
     def post(self):
         """Crear un nuevo autor""" 
