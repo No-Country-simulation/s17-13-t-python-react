@@ -4,6 +4,9 @@ class ReviewSchema(Schema):
     rating = fields.Int()  
     comment = fields.Str()
 
+    user_id = fields.Int(required=True)
+    book_id = fields.Int(required=True)
+
     @validates('rating')
     def validate_rating(self, value):
 

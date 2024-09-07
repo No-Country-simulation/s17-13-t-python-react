@@ -9,4 +9,8 @@ class User(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=db.func.now(), server_default=db.func.now())
 
+    # Relacion uno a uno con UserProfile
     user_profile = db.relationship('UserProfile', back_populates='user', uselist=False)
+
+    # Relación uno a muchos con Review
+    reviews = db.relationship('Review', back_populates='user')

@@ -22,6 +22,7 @@ class BookListResource(Resource):
 
 
     @api.doc('create_book')
+    @api.expect(book_model)
     @api.marshal_with(book_model, code=201)
     def post(self):
         """Crear un nuevo libro"""

@@ -10,6 +10,9 @@ class Book(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=db.func.now(), server_default=db.func.now())
 
+    # Relación uno a muchos con Review
+    reviews = db.relationship('Review', back_populates='book')
+
     # Relación muchos a uno con Genre
     # genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), nullable=False)
     # genre = db.relationship('Genre', back_populates='books')

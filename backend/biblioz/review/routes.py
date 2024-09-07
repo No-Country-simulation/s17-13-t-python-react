@@ -2,6 +2,8 @@ from flask import request
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.review.models import Review
+from biblioz.user.models import User
+from biblioz.book.models import Book
 from biblioz.review.schemas import ReviewSchema
 from biblioz.review.swagger_models import api, review_model
 from marshmallow import ValidationError
@@ -16,6 +18,17 @@ class ReviewList(Resource):
         reviews = Review.query.all()
         if not reviews:
             api.abort(404,'No hay reseñas disponibles')
+            
+        reviews_data = [
+            {
+                "id": review.id,
+                "rating": review.rating,
+                "comment": review.comment,
+                "user": review.user,  
+                "book": review.book
+            }
+            for review in reviews
+        ]
 
         return reviews,200
 
@@ -29,16 +42,30 @@ class ReviewList(Resource):
         try:
             data = request.json
             review_data = review_schema.load(data)
+
+            user = User.query.get(review_data['user_id'])
+            book = Book.query.get(review_data['book_id'])
+
+            if not user:
+                api.abort(404, 'Usuario no encontrado')
+            if not book:
+                api.abort(404, 'Libro no encontrado')
+
+
             review = Review(
                 rating=review_data['rating'],
-                comment=review_data.get('comment')
+                comment=review_data.get('comment'),
+
+                user_id=review_data['user_id'],
+                book_id=review_data['book_id']
             )
             db.session.add(review)
             db.session.commit()
             return review, 201
+
         except ValidationError as err:
-            # return jsonify(err.messages), 400
             api.abort(400, str(err))
+
 
 @api.route('/<int:id>')
 class ReviewResource(Resource):
@@ -65,8 +92,20 @@ class ReviewResource(Resource):
             if not review:
                 api.abort(404,'Reseña no encontrada')
 
+            user = User.query.get(review_data.get('user_id'))
+            book = Book.query.get(review_data.get('book_id'))
+
+            if review_data.get('user_id') and not user:
+                api.abort(404, 'Usuario no encontrado')
+            if review_data.get('book_id') and not book:
+                api.abort(404, 'Libro no encontrado')
+
             review.rating = review_data['rating']
             review.comment = review_data.get('comment')
+
+            review.user_id = review_data.get('user_id', review.user_id)
+            review.book_id = review_data.get('book_id', review.book_id)
+
             db.session.commit()
             return review, 200
 
