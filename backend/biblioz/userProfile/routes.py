@@ -18,7 +18,7 @@ class UserProfileResource(Resource):
         user = User.query.get(user_id)
         if user is None:
             api.abort(404, 'Usuario no encontrado')
-            # return {'message': 'Usuario no encontrado.'},400
+            
         user_profile = user.user_profile
         if not user_profile:
             api.abort(404, 'Perfil de usuario no encontrado')
