@@ -17,12 +17,11 @@
     /* TODO implement dark mode */
     --primary-clr: #1e1e1e;
     --secondary-clr: #f1f1f1;
-
-    --main-clr: #62262e;
-    --accent-clr: #47242a;
-    --auxiliary-clr: #264e61;
-    --light-clr: #e7e0cf;
   }
+  
+body {
+  color: #1e1e1e;
+  background: #e7e0cf;
 }
 
 @layer utilities {
@@ -46,5 +45,6 @@
     &:active {
       transform: scale(1.2);
     }
+  }
   }
 }
