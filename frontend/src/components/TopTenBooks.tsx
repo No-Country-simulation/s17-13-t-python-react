@@ -8,7 +8,7 @@ export default async function TopTenBooks() {
   return (
     <section
       id="TopTen"
-      className="flex flex-col items-center justify-center gap-6 bg-[#E7E0CF] px-9 py-9 text-[#232020] lg:grid lg:grid-cols-2"
+      className="relative flex flex-col items-center justify-center gap-6 bg-[#E7E0CF] py-9 text-[#232020] after:absolute after:inset-0 after:left-2/4 after:-z-10 after:w-dvw after:-translate-x-2/4 after:bg-[#E7E0CF] lg:grid lg:grid-cols-2"
     >
       <div>
         <h2 className="mb-2 text-xl font-bold">Top 10</h2>

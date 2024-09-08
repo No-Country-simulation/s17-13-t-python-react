@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`grid-layout min-h-dvh bg-secondary text-primary ${roboto.className}`}>
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>
