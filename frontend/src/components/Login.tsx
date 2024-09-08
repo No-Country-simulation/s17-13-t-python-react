@@ -22,7 +22,7 @@ export default function Login() {
 
   return (
     <form
-      className="flex w-full max-w-[21.875rem] flex-col gap-6"
+      className="flex w-full max-w-[21.875rem] flex-col gap-6 pb-14"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
@@ -40,13 +40,13 @@ export default function Login() {
         control={control}
         error={errors.password}
       />
-      <div className="flex flex-col items-center justify-center gap-4 xs:flex-row xs:justify-between">
+      <div className="flex flex-col items-center justify-center gap-4 pb-10 pt-5 xs:flex-row xs:justify-between">
         <label
           htmlFor="saveData"
-          className="flex items-center gap-2 text-lg font-medium capitalize"
+          className="flex items-center gap-2 border-none text-lg font-medium capitalize text-[#E7E0CF]"
         >
           <input
-            className="size-[1.43rem] accent-current"
+            className="size-[1.43rem] border-none accent-current"
             type="checkbox"
             name="saveData"
             id="saveData"

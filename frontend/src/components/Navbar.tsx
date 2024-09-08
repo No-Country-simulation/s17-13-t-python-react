@@ -26,7 +26,7 @@ export default function Navbar() {
   //////////////////////////////
 
   return (
-    <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF]">
+    <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF] shadow-[0px_4px_4px_0px_#00000040]">
       <nav className="flex items-center justify-between">
         <Link href="/" className="font-semibold">
           Logo

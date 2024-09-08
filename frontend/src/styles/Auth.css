@@ -1,0 +1,5 @@
+.background-fondo {
+  background-image: url('../../public/bibliozAuth/bg-auth.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -3,9 +3,9 @@ export default function Loading() {
     <div
       aria-label="Loading..."
       role="status"
-      className="flex h-full content-center items-center justify-center space-x-2"
+      className="flex h-[calc(100dvh-4rem)] content-center items-center justify-center space-x-2"
     >
-      <svg className="h-20 w-20 animate-spin stroke-main" viewBox="0 0 256 256">
+      <svg className="h-20 w-20 animate-rotate-360 stroke-main" viewBox="0 0 256 256">
         <line
           x1="128"
           y1="32"
