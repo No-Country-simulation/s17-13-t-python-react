@@ -27,25 +27,37 @@ export default function Carousel({ books, carouselTitle }: Partial<Props>) {
   return (
     <section className="min-h-dvh">
       {carouselTitle && (
-        <h2 className="mx-auto max-w-[81.25rem] py-16 text-[2.1875rem] font-semibold">
+        <h2 className="mx-auto max-w-[81.25rem] p-12 text-[2.1875rem] font-semibold">
           {carouselTitle}
         </h2>
       )}
-      <Swiper {...SwiperConfig}>
-        {mockupBooks.map(({ name, url }) => (
-          <SwiperSlide className="w-fit" key={name}>
-            <img
-              className="mx-auto h-72 w-48 select-none object-cover md:h-[21.625rem] md:w-56"
-              title={name}
-              src={url}
-              alt={`cover book ${name}`}
-            />
-          </SwiperSlide>
-        ))}
-        {controls.map((control, i) => (
-          <div key={i} className={control}></div>
-        ))}
-      </Swiper>
+      {books && books.length === 1 ? (
+        <div className="flex justify-start px-[5rem]">
+          <img
+            className="h-72 w-48 object-cover md:h-[21.625rem] md:w-56"
+            title={books[0].name}
+            src={books[0].url}
+            alt={`cover book ${books[0].name}`}
+          />
+        </div>
+      ) : (
+        <Swiper {...SwiperConfig}>
+          {mockupBooks.map(({ name, url }) => (
+            <SwiperSlide className="w-fit" key={name}>
+              <img
+                className="mx-auto h-72 w-48 select-none object-cover md:h-[21.625rem] md:w-56"
+                title={name}
+                src={url}
+                alt={`cover book ${name}`}
+              />
+            </SwiperSlide>
+          ))}
+          {controls.map((control, i) => (
+            <div key={i} className={control}></div>
+          ))}
+        </Swiper>
+      )}
+      ;
     </section>
   );
 }
