@@ -1,16 +1,19 @@
 'use server';
 
 import { RegisterValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
+import axios from 'axios';
+import builderApiUrl from '@/utils/builderApiUrl';
+
 export interface ResponseStatus<T> {
   data: T | null;
   success: boolean;
   errorMessage: string | null;
 }
 
-import axios from 'axios';
-import builderApiUrl from '@/utils/builderApiUrl';
-
-export async function createUser<T>(formData: RegisterValues): Promise<ResponseStatus<T>> {
+export async function createUser<T>(
+  formData: RegisterValues,
+  pathname: string,
+): Promise<ResponseStatus<T>> {
   console.log(formData);
 
   try {
@@ -20,7 +23,7 @@ export async function createUser<T>(formData: RegisterValues): Promise<ResponseS
       email: revalidateForm.email,
       password: revalidateForm.password,
     };
-    const userRequest = await axios.post<T>(builderApiUrl('auth/register'), adapterForm, {
+    const userRequest = await axios.post<T>(builderApiUrl(pathname), adapterForm, {
       headers: { 'Content-Type': 'application/json' },
     });
 

@@ -7,6 +7,12 @@ import FeedbackButton from '@/components/FeedbackButton';
 import { AuthValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
 import PasswordInput from '@/components/PasswordInput';
 import { createUser } from '@/libs/createUser.action';
+import { useUserStore } from '@/app/store/userStore';
+interface User {
+  name: string;
+  email: string;
+  password: string;
+}
 
 export default function Register() {
   const {
@@ -17,16 +23,23 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
     mode: 'onSubmit',
   });
+  const { setBasicInfo } = useUserStore((state) => ({
+    setBasicInfo: state.setBasicInfo,
+  }));
 
-  const onSubmit: SubmitHandler<AuthValues> = async (data) => {
-    const response = await createUser(data);
+  const onSubmit: SubmitHandler<AuthValues> = async (formValue) => {
+    const { data, errorMessage, success } = await createUser<User>(formValue, 'auth/register');
 
     //  TODO lanza un toast de error o pinta el mensaje en el viewport
-    if (!response.success) {
-      return console.log(response.errorMessage);
+    if (!success || data === null) {
+      return console.log(errorMessage);
     }
 
-    console.log(response.data);
+    const { email, name } = data;
+    setBasicInfo({ name, email, isLogged: true, role: 'user' });
+    // const logger = await createUser({ name, email }, 'auth/login');
+
+    console.log(data);
   };
 
   return (
