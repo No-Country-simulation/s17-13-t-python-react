@@ -10,3 +10,11 @@ review_model = api.model('Review', {
     'book_id': fields.Integer(required=True)
 })
 
+get_review = api.model('ReviewGet', {
+    'id': fields.Integer(),
+    'rating': fields.Integer(required=True),
+    'comment': fields.String(),
+
+    'user_id': fields.Integer(required=True),
+    'book_id': fields.Integer(required=True)
+})

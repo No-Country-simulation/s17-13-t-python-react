@@ -2,7 +2,7 @@ from flask import current_app, request, url_for
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.author.models import Author
-from biblioz.author.swagger_models import api, author_model
+from biblioz.author.swagger_models import api, author_model, get_author
 from biblioz.author.schemas import AuthorSchema
 from werkzeug.utils import secure_filename
 import os
@@ -11,7 +11,7 @@ from marshmallow import ValidationError
 @api.route('/')
 class AuthorListResource(Resource):
     @api.doc('get_authors')
-    @api.marshal_list_with(author_model)
+    @api.marshal_list_with(get_author)
     def get(self):
         """Obtener todos los autores"""
         authors = Author.query.all()
@@ -84,7 +84,7 @@ class AuthorListResource(Resource):
 @api.route('/<int:id>')
 class AuthorResource(Resource):
     @api.doc('get_author')
-    @api.marshal_with(author_model)
+    @api.marshal_with(get_author)
     def get(self, id):
         """Obtener author por ID""" 
         author = Author.query.filter_by(id=id).first()

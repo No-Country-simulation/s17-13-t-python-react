@@ -4,11 +4,24 @@ from biblioz import db
 from biblioz.user.models import User
 from biblioz.userProfile.models import UserProfile
 from biblioz.user.schemas import UserSchema, UserLoginSchema
-from biblioz.user.swagger_models import api, user_register_model, user_login_model
+from biblioz.user.swagger_models import api, user_register_model, user_login_model, get_users
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-# Rutas
+
+@api.route('/')
+class UserListResource(Resource):
+    @api.doc('get_users')
+    @api.marshal_list_with(get_users)
+    def get(self):
+        """Obtener todos los generos"""
+        users = User.query.all()
+        if not users:
+            api.abort(404,'No hay usuarios creados')
+
+        return users
+
+
 @api.route('/register')
 class Register(Resource):
     @api.doc('register_user')

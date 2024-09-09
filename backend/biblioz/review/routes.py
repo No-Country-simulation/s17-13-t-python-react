@@ -5,14 +5,14 @@ from biblioz.review.models import Review
 from biblioz.user.models import User
 from biblioz.book.models import Book
 from biblioz.review.schemas import ReviewSchema
-from biblioz.review.swagger_models import api, review_model
+from biblioz.review.swagger_models import api, review_model, get_review
 from marshmallow import ValidationError
 
 @api.route('/')
 class ReviewList(Resource):
 
     @api.doc('get_reviews')
-    @api.marshal_list_with(review_model)
+    @api.marshal_list_with(get_review)
     def get(self):
         """Obtener todas las reseñas"""
         reviews = Review.query.all()
@@ -70,7 +70,7 @@ class ReviewList(Resource):
 @api.route('/<int:id>')
 class ReviewResource(Resource):
     @api.doc('get_review')
-    @api.marshal_with(review_model)
+    @api.marshal_with(get_review)
     def get(self, id):
         """Obtener una reseña por ID"""
         review = Review.query.filter_by(id=id).first()

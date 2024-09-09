@@ -14,3 +14,11 @@ user_login_model = api.model('UserLogin', {
     'email': fields.String(required=True),
     'password': fields.String(required=True)
 })
+
+get_users = api.model('UserGet', {
+
+    'id':fields.Integer(),
+    'name': fields.String(required=True),
+    'email': fields.String(required=True),
+    'password': fields.String(required=True)
+})
