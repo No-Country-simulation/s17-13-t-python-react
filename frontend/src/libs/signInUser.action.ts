@@ -1,22 +1,17 @@
 'use server';
 
-import { RegisterValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
+import { LoginValues, loginSchema } from '@/app/(auth)/_validations/authSchemas';
 import axios from 'axios';
 import builderApiUrl from '@/utils/builderApiUrl';
 import { ResponseStatus } from '@/interfaces/ResponseStatus.interface';
 
-export async function createUser<T>(
-  formData: RegisterValues,
+export async function signInUser<T>(
+  formData: LoginValues,
   pathname: string,
 ): Promise<ResponseStatus<T>> {
   try {
-    const revalidateForm = registerSchema.parse(formData);
-    const adapterForm = {
-      name: revalidateForm.name,
-      email: revalidateForm.email,
-      password: revalidateForm.password,
-    };
-    const userRequest = await axios.post<T>(builderApiUrl(pathname), adapterForm, {
+    const revalidateForm = loginSchema.parse(formData);
+    const userRequest = await axios.post<T>(builderApiUrl(pathname), revalidateForm, {
       headers: { 'Content-Type': 'application/json' },
     });
 

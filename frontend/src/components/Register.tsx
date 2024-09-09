@@ -4,10 +4,14 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import BaseInput from '@/components/BaseInput';
 import FeedbackButton from '@/components/FeedbackButton';
-import { AuthValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
+import { AuthValues, LoginValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
 import PasswordInput from '@/components/PasswordInput';
 import { createUser } from '@/libs/createUser.action';
 import { useUserStore } from '@/app/store/userStore';
+import { signInUser } from '@/libs/signInUser.action';
+import { useRouter } from 'next/navigation';
+import { useModalStore } from '@/app/store/modalStore';
+
 interface User {
   name: string;
   email: string;
@@ -15,6 +19,10 @@ interface User {
 }
 
 export default function Register() {
+  const router = useRouter();
+  const { toggleModal } = useModalStore((state) => ({
+    toggleModal: state.toggleModal,
+  }))
   const {
     handleSubmit,
     control,
@@ -35,11 +43,23 @@ export default function Register() {
       return console.log(errorMessage);
     }
 
-    const { email, name } = data;
-    setBasicInfo({ name, email, isLogged: true, role: 'user' });
-    // const logger = await createUser({ name, email }, 'auth/login');
+    const logger = await signInUser<LoginValues>(
+      { email: formValue.email, password: formValue.password },
+      'auth/login',
+    );
 
-    console.log(data);
+    if (!logger.success || logger.data === null) {
+      
+      return console.log(logger.errorMessage);
+    }
+    
+    const { email, password } = logger.data;
+
+    // TODO: cuando se hace el login, el Back devolverá la data del usuario
+
+    setBasicInfo({ name: data.name, email: email, isLogged: true, role: 'user' });
+    router.push('/')
+    toggleModal()
   };
 
   return (
