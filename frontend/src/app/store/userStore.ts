@@ -1,4 +1,4 @@
-import { Books } from "@/interfaces/BookSlice.interface";
+import { Books } from '@/interfaces/BookSlice.interface';
 import { create } from 'zustand';
 
 interface UserState {

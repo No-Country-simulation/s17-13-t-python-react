@@ -20,7 +20,7 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<AuthValues> = async (data) => {
     const response = await createUser(data);
-    
+
     //  TODO lanza un toast de error o pinta el mensaje en el viewport
     if (!response.success) {
       return console.log(response.errorMessage);
