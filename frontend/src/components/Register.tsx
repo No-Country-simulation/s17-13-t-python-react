@@ -1,10 +1,12 @@
 'use client';
+
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import BaseInput from '@/components/BaseInput';
 import FeedbackButton from '@/components/FeedbackButton';
 import { AuthValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
 import PasswordInput from '@/components/PasswordInput';
+import { createUser } from '@/libs/createUser.action';
 
 export default function Register() {
   const {
@@ -13,11 +15,18 @@ export default function Register() {
     formState: { errors, isSubmitting, isValid },
   } = useForm<AuthValues>({
     resolver: zodResolver(registerSchema),
-    mode: 'onChange',
+    mode: 'onSubmit',
   });
 
-  const onSubmit: SubmitHandler<AuthValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<AuthValues> = async (data) => {
+    const response = await createUser(data);
+    
+    //  TODO lanza un toast de error o pinta el mensaje en el viewport
+    if (!response.success) {
+      return console.log(response.errorMessage);
+    }
+
+    console.log(response.data);
   };
 
   return (
