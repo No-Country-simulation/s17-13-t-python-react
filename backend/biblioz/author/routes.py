@@ -1,4 +1,4 @@
-from flask import current_app, request
+from flask import current_app, request, url_for
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.author.models import Author
@@ -17,6 +17,13 @@ class AuthorListResource(Resource):
         authors = Author.query.all()
         if not authors:
             api.abort(404,'No hay autores disponibles')
+
+        for author in authors:
+            if author.img:
+                author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
+            else:
+                author.img_url = None
+
         return authors
 
     
@@ -66,6 +73,11 @@ class AuthorListResource(Resource):
             db.session.add(new_author)
             db.session.commit()
 
+            if new_author.img:
+                new_author.img_url = url_for('uploaded_file', filename=f'authors/{new_author.img}', _external=True)
+            else:
+                new_author.img_url = None
+
             return new_author, 201
 
 
@@ -78,6 +90,11 @@ class AuthorResource(Resource):
         author = Author.query.filter_by(id=id).first()
         if not author:
             api.abort(404, 'Author no encontrado')
+
+        if author.img:
+            author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
+        else:
+            author.img_url = None
 
         return author
 
@@ -137,5 +154,10 @@ class AuthorResource(Resource):
             abort(400, 'Archivo no permitido.')
 
         db.session.commit()
+
+        if author.img:
+            author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
+        else:
+            author.img_url = None
 
         return author
