@@ -5,8 +5,13 @@ import { useState } from 'react';
 import OptionModal from './OptionModal';
 import { options } from '@/utils/modal';
 import '../styles/Modal.css';
+import { useModalStore } from '@/app/store/modalStore';
 
-export default function Modal({ setOpenModal }: propModal) {
+export default function Modal({ setOpenModal }: Partial<propModal>) {
+  const { toggleModal, isView } = useModalStore((state) => ({
+    toggleModal: state.toggleModal,
+    isView: state.isView,
+  }));
   const [preference, setPreference] = useState<string[]>([]);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({});
 
@@ -26,8 +31,11 @@ export default function Modal({ setOpenModal }: propModal) {
   // Mostrar gustos por consola y cerrar modal
   const sendPreference = () => {
     console.log(preference); // ESTO SERIAN LOS DATOS A ENVIAR AL BACKEND
-    setOpenModal(false);
+    // setOpenModal(false);
+    toggleModal()
   };
+
+  if (!isView) return
 
   return (
     <>
@@ -35,7 +43,7 @@ export default function Modal({ setOpenModal }: propModal) {
         <div className="relative w-full gap-5 bg-[#EEE4F7] pb-4 pt-14 sm:flex sm:w-fit sm:flex-col sm:items-center sm:rounded-[25px] sm:pt-10">
           <button
             className="absolute right-5 top-3 text-2xl font-extrabold text-[#49454F]"
-            onClick={() => setOpenModal(false)}
+            onClick={() => toggleModal()}
           >
             ✕
           </button>
