@@ -14,7 +14,7 @@ class UserListResource(Resource):
     @api.doc('get_users')
     @api.marshal_list_with(get_users)
     def get(self):
-        """Obtener todos los generos"""
+        """Obtener todos los usuarios"""
         users = User.query.all()
         if not users:
             api.abort(404,'No hay usuarios creados')
@@ -38,8 +38,9 @@ class Register(Resource):
         if User.query.filter_by(email=data['email']).first():
             return {'message': 'El email ya está en uso'}, 400
 
-        hashed_password = generate_password_hash(data['password'])
-        new_user = User(name=data['name'], email=data['email'], password=hashed_password)
+        # hashed_password = generate_password_hash(data['password'])
+        # new_user = User(name=data['name'], email=data['email'], password=hashed_password)
+        new_user = User(name=data['name'], email=data['email'], password=data['password'])
         db.session.add(new_user)
         db.session.commit()
         
@@ -47,7 +48,8 @@ class Register(Resource):
         db.session.add(new_user_profile)
         db.session.commit()
 
-        return schema.dump(new_user), 201
+        # return schema.dump(new_user), 201
+        return {'message':'Registro exitoso'}, 201
 
 @api.route('/login')
 class Login(Resource):
@@ -66,4 +68,9 @@ class Login(Resource):
             return {'message': 'Credenciales inválidas'}, 401
 
         session['user_id'] = user.id
+        res = session['user_id']
         return {'message': 'Inicio de sesión exitoso'}, 200
+        # return {
+        #     'name': user.name,
+        #     'email': user.email
+        # },200
