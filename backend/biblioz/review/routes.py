@@ -52,6 +52,11 @@ class ReviewList(Resource):
                 api.abort(404, 'Libro no encontrado')
 
 
+            existing_review = Review.query.filter_by(user_id=review_data['user_id'], book_id=review_data['book_id']).first()
+            if existing_review:
+                api.abort(404, 'Ya has reseñado este libro')
+                # return {"message": "Ya has reseñado este libro"}
+
             review = Review(
                 rating=review_data['rating'],
                 comment=review_data.get('comment'),
@@ -100,11 +105,11 @@ class ReviewResource(Resource):
             if review_data.get('book_id') and not book:
                 api.abort(404, 'Libro no encontrado')
 
-            review.rating = review_data['rating']
+            # review.rating = review_data['rating']
             review.comment = review_data.get('comment')
 
-            review.user_id = review_data.get('user_id', review.user_id)
-            review.book_id = review_data.get('book_id', review.book_id)
+            # review.user_id = review_data.get('user_id', review.user_id)
+            # review.book_id = review_data.get('book_id', review.book_id)
 
             db.session.commit()
             return review, 200
