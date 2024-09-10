@@ -1,5 +1,6 @@
-import React from 'react';
+"use client"
 
+import React from 'react';
 import Star from '@/components/Star';
 import Image from 'next/image';
 
@@ -17,11 +18,12 @@ interface Book {
 
 interface BookOverviewProps {
   book: Book;
+  setOpenModal: (bool: boolean) => void
 }
 
 ////////////////////////////
 
-export default function BookOverview({ book }: BookOverviewProps) {
+export default function BookOverview({ book, setOpenModal }: BookOverviewProps) {
   return (
     <section className="grid grid-cols-[1fr] grid-rows-2 gap-9 lg:h-[600px] lg:grid-cols-[1fr_1.5fr] lg:grid-rows-1 lg:gap-0 lg:px-8 lg:py-4">
       <div className="relative h-full w-full">
@@ -38,7 +40,8 @@ export default function BookOverview({ book }: BookOverviewProps) {
             fill
             src={book.cover}
             alt={book.title}
-            className="block h-full w-full object-fill shadow-xl"
+            onClick={()=>setOpenModal(true)}
+            className="block h-full w-full object-fill shadow-xl cursor-pointer"
           />
         </div>
       </div>

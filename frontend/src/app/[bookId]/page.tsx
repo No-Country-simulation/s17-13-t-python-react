@@ -1,6 +1,8 @@
 import React from 'react';
 import BookOverview from '@/components/BookOverview';
 import { getBook } from '@/libs/actions';
+import CarouselBook from '@/components/CarouselBook/CarouselBook';
+import DetailBook from '@/components/DetailBook';
 
 ////////////////////////////
 
@@ -23,10 +25,9 @@ export default async function page({ params }: PageProps) {
       </section>
     );
   }
-
   return (
-    <section className="mt-8">
-      <BookOverview book={book} />
-    </section>
+    <>
+      <DetailBook book={book} />
+    </>
   );
 }
