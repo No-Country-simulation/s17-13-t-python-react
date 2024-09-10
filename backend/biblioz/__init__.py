@@ -43,6 +43,26 @@ def create_app():
         from biblioz.user.routes import api as user_api
         api.add_namespace(user_api)
 
+        from biblioz.userProfile.routes import api as userProfile_api
+        api.add_namespace(userProfile_api)
 
+        from biblioz.book.routes import api as book_api
+        api.add_namespace(book_api)
 
+        from biblioz.author.routes import api as author_api
+        api.add_namespace(author_api)
+
+        from biblioz.genre.routes import api as genre_api
+        api.add_namespace(genre_api)
+
+        from biblioz.review.routes import api as review_api
+        api.add_namespace(review_api)
+
+        from biblioz.userPrefs.routes import api as userPreferences_api
+        api.add_namespace(userPreferences_api)
+
+        # Servicios adicionales de los libros
+        from biblioz.book.services import api_services
+        api.add_namespace(api_services)
+        
     return app

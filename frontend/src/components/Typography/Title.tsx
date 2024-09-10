@@ -17,7 +17,7 @@ export default function Title({ level, customClass, title }: Props) {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
-    <Tag className={`${josefina.className} ${customClass || ''} text-3xl font-semibold`}>
+    <Tag className={`${josefina.className} ${customClass || ''} text-xl font-semibold xs:text-3xl`}>
       {title}
     </Tag>
   );

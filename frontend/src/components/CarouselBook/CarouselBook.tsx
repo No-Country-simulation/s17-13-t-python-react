@@ -24,7 +24,7 @@ export default function CarouselBook({setOpenModal}: propCarouselBook) {
   }
   return (
     <>
-      <section className='relative outline outline-1 outline-red-600 py-[70px]'>
+      <section className='relative py-[70px]'>
         <button 
           className='absolute right-6 top-6 text-4xl'
           onClick={handleModal}

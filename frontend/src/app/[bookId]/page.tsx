@@ -1,7 +1,5 @@
 import React from 'react';
-import BookOverview from '@/components/BookOverview';
 import { getBook } from '@/libs/actions';
-import CarouselBook from '@/components/CarouselBook/CarouselBook';
 import DetailBook from '@/components/DetailBook';
 
 ////////////////////////////
@@ -16,6 +14,8 @@ interface PageProps {
 
 export default async function page({ params }: PageProps) {
   const { bookId } = params || '';
+  console.log(bookId);
+
   const book = await getBook('OL45804W');
 
   if (!book) {
