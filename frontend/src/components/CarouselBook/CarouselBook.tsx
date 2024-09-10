@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,20 +15,17 @@ interface propCarouselBook {
   setOpenModal: (bool: boolean) => void;
 }
 
-export default function CarouselBook({setOpenModal}: propCarouselBook) {
+export default function CarouselBook({ setOpenModal }: propCarouselBook) {
   const [modal, setModal] = useState<boolean>(false);
 
   const handleModal = () => {
-    setModal(false)
-    setOpenModal(modal)
-  }
+    setModal(false);
+    setOpenModal(modal);
+  };
   return (
     <>
-      <section className='relative py-[70px]'>
-        <button 
-          className='absolute right-6 top-6 text-4xl'
-          onClick={handleModal}
-        >
+      <section className="relative py-[70px]">
+        <button className="absolute right-6 top-6 text-4xl" onClick={handleModal}>
           ❌
         </button>
         <Swiper
@@ -37,21 +34,13 @@ export default function CarouselBook({setOpenModal}: propCarouselBook) {
           className="mySwiper"
         >
           <SwiperSlide className="w-fit">
-            <img
-              title='front'
-              src="/bibliozDetailBook/book-front.png"
-              alt={`cover book front`}
-            />
+            <img title="front" src="/bibliozDetailBook/book-front.png" alt={'cover book front'} />
           </SwiperSlide>
           <SwiperSlide className="w-fit">
-            <img
-              title='front'
-              src="/bibliozDetailBook/book-back.png"
-              alt={`cover book front`}
-            />
+            <img title="front" src="/bibliozDetailBook/book-back.png" alt={'cover book front'} />
           </SwiperSlide>
         </Swiper>
       </section>
     </>
   );
-};
+}

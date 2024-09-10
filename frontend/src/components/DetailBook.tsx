@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import { useState } from "react";
-import CarouselBook from "./CarouselBook/CarouselBook";
-import BookOverview from "./BookOverview";
-import BookOptionsBar from "./BookOptionsBar";
-import BookReview from "./BookReview";
-import Carousel from "./Carousel/Carousel";
+import { useState } from 'react';
+import CarouselBook from './CarouselBook/CarouselBook';
+import BookOverview from './BookOverview';
+import BookOptionsBar from './BookOptionsBar';
+import BookReview from './BookReview';
+import Carousel from './Carousel/Carousel';
 
 export default function DetailBook({ book }: { book: any }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -17,7 +17,7 @@ export default function DetailBook({ book }: { book: any }) {
   return (
     <>
       {isModalOpen && (
-        <section className='bg-white outline-slate-800 w-full absolute z-40 top-30 left-0'>
+        <section className="top-30 absolute left-0 z-40 w-full bg-white outline-slate-800">
           <CarouselBook setOpenModal={(isOpen) => handleModal(isOpen)} />
         </section>
       )}
@@ -34,5 +34,5 @@ export default function DetailBook({ book }: { book: any }) {
         <Carousel carouselTitle="Porque también te puede interesar" />
       </section>
     </>
-  )
+  );
 }

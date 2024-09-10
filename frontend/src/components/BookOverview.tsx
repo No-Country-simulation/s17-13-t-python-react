@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React from 'react';
 import Star from '@/components/Star';
@@ -18,7 +18,7 @@ interface Book {
 
 interface BookOverviewProps {
   book: Book;
-  setOpenModal: (bool: boolean) => void
+  setOpenModal: (bool: boolean) => void;
 }
 
 ////////////////////////////
@@ -40,8 +40,8 @@ export default function BookOverview({ book, setOpenModal }: BookOverviewProps) 
             fill
             src={book.cover}
             alt={book.title}
-            onClick={()=>setOpenModal(true)}
-            className="block h-full w-full object-fill shadow-xl cursor-pointer"
+            onClick={() => setOpenModal(true)}
+            className="block h-full w-full cursor-pointer object-fill shadow-xl"
           />
         </div>
       </div>
