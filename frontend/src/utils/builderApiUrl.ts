@@ -1,5 +1,5 @@
 function builderApiUrl(params: string): string {
-  const baseUrl = process.env.BIBLIOZ_API;
+  const baseUrl = process.env.NEXT_PUBLIC_BIBLIOZ_API;
 
   console.log(baseUrl);
 
