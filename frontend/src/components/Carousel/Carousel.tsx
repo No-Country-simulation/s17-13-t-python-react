@@ -14,7 +14,7 @@ interface Props {
 }
 
 // TODO Eliminar Partial type cuando se tenga la data dinámica
-export default function Carousel({ books, carouselTitle }: Partial<Props>) {
+export default function Carousel({ books, carouselTitle }: Props) {
   const controls = ['swiper-button-next', 'swiper-button-prev'];
   const mockupBooks: Books[] = [
     { name: 'El secreto de  Matilda', url: '/bibliozBook/book-1.png' },

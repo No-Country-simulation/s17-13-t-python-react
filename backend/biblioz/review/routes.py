@@ -13,6 +13,7 @@ class ReviewList(Resource):
 
     @api.doc('get_reviews')
     @api.marshal_list_with(get_review)
+
     def get(self):
         """Obtener todas las reseñas"""
         reviews = Review.query.all()
@@ -51,11 +52,9 @@ class ReviewList(Resource):
             if not book:
                 api.abort(404, 'Libro no encontrado')
 
-
             existing_review = Review.query.filter_by(user_id=review_data['user_id'], book_id=review_data['book_id']).first()
             if existing_review:
                 api.abort(404, 'Ya has reseñado este libro')
-                # return {"message": "Ya has reseñado este libro"}
 
             review = Review(
                 rating=review_data['rating'],
@@ -105,11 +104,19 @@ class ReviewResource(Resource):
             if review_data.get('book_id') and not book:
                 api.abort(404, 'Libro no encontrado')
 
+<<<<<<< tasks_Joel
             # review.rating = review_data['rating']
             review.comment = review_data.get('comment')
 
             # review.user_id = review_data.get('user_id', review.user_id)
             # review.book_id = review_data.get('book_id', review.book_id)
+=======
+            review.rating = review_data['rating']
+            review.comment = review_data.get('comment')
+
+            review.user_id = review_data.get('user_id', review.user_id)
+            review.book_id = review_data.get('book_id', review.book_id)
+>>>>>>> develop
 
             db.session.commit()
             return review, 200

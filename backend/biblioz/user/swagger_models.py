@@ -13,6 +13,7 @@ user_register_model = api.model('UserRegister', {
 user_login_model = api.model('UserLogin', {
     'email': fields.String(required=True),
     'password': fields.String(required=True)
+<<<<<<< tasks_Joel
 })
 
 get_users = api.model('UserGet', {
@@ -21,4 +22,6 @@ get_users = api.model('UserGet', {
     'name': fields.String(required=True),
     'email': fields.String(required=True),
     'password': fields.String(required=True)
+=======
+>>>>>>> develop
 })

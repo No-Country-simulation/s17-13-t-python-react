@@ -1,8 +1,16 @@
+<<<<<<< tasks_Joel
 from flask import current_app, request, url_for
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.author.models import Author
 from biblioz.author.swagger_models import api, author_model, get_author
+=======
+from flask import current_app, request
+from flask_restx import Resource, Namespace, abort
+from biblioz import db
+from biblioz.author.models import Author
+from biblioz.author.swagger_models import api, author_model
+>>>>>>> develop
 from biblioz.author.schemas import AuthorSchema
 from werkzeug.utils import secure_filename
 import os
@@ -11,12 +19,17 @@ from marshmallow import ValidationError
 @api.route('/')
 class AuthorListResource(Resource):
     @api.doc('get_authors')
+<<<<<<< tasks_Joel
     @api.marshal_list_with(get_author)
+=======
+    @api.marshal_list_with(author_model)
+>>>>>>> develop
     def get(self):
         """Obtener todos los autores"""
         authors = Author.query.all()
         if not authors:
             api.abort(404,'No hay autores disponibles')
+<<<<<<< tasks_Joel
 
         for author in authors:
             if author.img:
@@ -24,6 +37,8 @@ class AuthorListResource(Resource):
             else:
                 author.img_url = None
 
+=======
+>>>>>>> develop
         return authors
 
     
@@ -73,29 +88,39 @@ class AuthorListResource(Resource):
             db.session.add(new_author)
             db.session.commit()
 
+<<<<<<< tasks_Joel
             if new_author.img:
                 new_author.img_url = url_for('uploaded_file', filename=f'authors/{new_author.img}', _external=True)
             else:
                 new_author.img_url = None
 
+=======
+>>>>>>> develop
             return new_author, 201
 
 
 @api.route('/<int:id>')
 class AuthorResource(Resource):
     @api.doc('get_author')
+<<<<<<< tasks_Joel
     @api.marshal_with(get_author)
+=======
+    @api.marshal_with(author_model)
+>>>>>>> develop
     def get(self, id):
         """Obtener author por ID""" 
         author = Author.query.filter_by(id=id).first()
         if not author:
             api.abort(404, 'Author no encontrado')
 
+<<<<<<< tasks_Joel
         if author.img:
             author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
         else:
             author.img_url = None
 
+=======
+>>>>>>> develop
         return author
 
     
@@ -155,9 +180,12 @@ class AuthorResource(Resource):
 
         db.session.commit()
 
+<<<<<<< tasks_Joel
         if author.img:
             author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
         else:
             author.img_url = None
 
+=======
+>>>>>>> develop
         return author

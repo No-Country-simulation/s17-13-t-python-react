@@ -45,6 +45,7 @@ class GenreListResource(Resource):
 class GenreResource(Resource):
     @api.doc('get_genre')
     @api.marshal_with(get_genre)
+
     def get(self, id):
         """Obtener genero por ID""" 
         genre = Genre.query.filter_by(id=id).first()

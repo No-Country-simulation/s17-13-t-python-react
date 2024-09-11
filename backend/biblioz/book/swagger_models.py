@@ -2,6 +2,10 @@ from flask_restx import fields, Namespace
 
 api = Namespace('book', description='Operaciones relacionadas con libros')
 
+<<<<<<< tasks_Joel
+=======
+# Modelo para Book
+>>>>>>> develop
 book_model = api.model('Book', {
     'title': fields.String(required=True),
     'description': fields.String(equired=True),
@@ -11,6 +15,7 @@ book_model = api.model('Book', {
     'author_id': fields.Integer(required=True)
 })
 
+<<<<<<< tasks_Joel
 get_book = api.model('BookGet', {
 
     'id': fields.Integer(),
@@ -21,3 +26,6 @@ get_book = api.model('BookGet', {
     'genre_id': fields.Integer(required=True),
     'author_id': fields.Integer(required=True)
 })
+=======
+
+>>>>>>> develop

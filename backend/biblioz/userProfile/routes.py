@@ -33,19 +33,25 @@ class UserProfileResource(Resource):
             }
         }
 
+<<<<<<< tasks_Joel
     @api.doc('update_profile')
     @api.expect(user_profile_model)
     @api.marshal_with(user_profile_model, 201)
+=======
+>>>>>>> develop
     def put(self, user_id):
         """Actualizar la información del perfil del usuario por ID"""
         def allowed_file(filename):
             ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
             return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+<<<<<<< tasks_Joel
         user = User.query.get(user_id)
         if user is None:
             api.abort(404, 'Usuario no encontrado.')
 
+=======
+>>>>>>> develop
         user_profile = UserProfile.query.filter_by(user_id=user_id).first()
         if user_profile is None:
             api.abort(404, 'Perfil de usuario no encontrado.')
@@ -78,6 +84,7 @@ class UserProfileResource(Resource):
                 user_profile.biography = biography
             except ValidationError as err:
                 errors.update(err.messages)
+<<<<<<< tasks_Joel
 
 
         name = request.form.get('name')
@@ -90,6 +97,8 @@ class UserProfileResource(Resource):
                 errors['email'] = ['El correo electrónico ya está en uso.']
             else:
                 user.email = email
+=======
+>>>>>>> develop
                 
         if errors:
             abort(400, errors)
