@@ -1,13 +1,11 @@
-import React from 'react';
-import BookOverview from '@/components/BookOverview';
+// import BookOverview from '@/components/BookOverview';
 import { getBook } from '@/libs/actions';
-import BookReview from '@/components/BookReview';
-import BookOptionsBar from '@/components/BookOptionsBar';
+import BookReview from './_components/BookReview';
+import BookOptionsBar from './_components/BookOptionsBar';
 import Carousel from '@/components/Carousel/Carousel';
-import book1 from '/public/bibliozBook/book-3.png';
-import book2 from '/public/bibliozBook/book-back.png';
-
-import { IoClose } from 'react-icons/io5';
+import { Book } from '@/interfaces/Book.interface';
+import BookOverview from './_containers/BookOverviewContainer';
+import BookOverviewContainer from './_containers/BookOverviewContainer';
 
 ////////////////////////////
 
@@ -21,9 +19,7 @@ interface PageProps {
 
 export default async function page({ params }: PageProps) {
   const { bookId } = params || '';
-  const mockupBook = [book1.src, book2.src];
-
-  const book = await getBook('OL45804W');
+  const book: Book | null = await getBook('OL45804W');
 
   if (!book) {
     return (
@@ -34,28 +30,12 @@ export default async function page({ params }: PageProps) {
   }
 
   return (
-    <section className="mt-8">
-      <div>
-        <button type="button">
-          <IoClose size={35} />
-        </button>
-        <figure className="flex items-center justify-center gap-12">
-          {mockupBook.map((book) => (
-            <img
-              className="h-[42rem] w-[28rem] shadow-[0px_6px_4px_0px_#00000040]"
-              key={book}
-              src={book}
-              alt=""
-            />
-          ))}
-          <figcaption className="sr-only">books</figcaption>
-        </figure>
-      </div>
-      <BookOverview book={book} />
-      <section className="p-12">
+    <section className="max-w-page mt-8 px-6 md:px-8">
+      <div className="flex flex-col gap-16">
+        <BookOverviewContainer book={book} />
         <BookOptionsBar />
-      </section>
-      <BookReview />
+        <BookReview />
+      </div>
       <Carousel
         carouselTitle="Del mismo autor"
         books={[{ name: 'Bodas de odio', url: '/bibliozBook/book-2.png' }]}
