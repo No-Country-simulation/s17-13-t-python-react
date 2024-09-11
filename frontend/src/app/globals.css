@@ -52,6 +52,11 @@
       background-size: 1000px 100%;
       animation: shimmer 1.5s infinite;
     }
+
+    .max-w-page {
+      max-width: 120rem;
+      margin-inline: auto;
+    }
   }
 }
 

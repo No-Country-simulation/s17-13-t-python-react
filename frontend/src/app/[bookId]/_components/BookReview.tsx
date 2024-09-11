@@ -1,6 +1,4 @@
-import React from 'react';
-import Title from './Typography/Title';
-
+import Title from '@/components/Typography/Title';
 import ReviewCard from './ReviewCard';
 
 interface Review {
@@ -25,10 +23,10 @@ const BookReview = () => {
 
   return (
     <section className="p-3">
-      <div className="m-12">
+      <div className="my-12">
         <Title level={2} title="Reseña" />
       </div>
-      <div className="m-12">
+      <div className="my-12">
         {reviews.map((review, index) => (
           <ReviewCard key={index} review={review} />
         ))}

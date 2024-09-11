@@ -1,7 +1,6 @@
-import React from 'react';
 import Image from 'next/image';
-import Star from './Star';
-import Avatar from '../../public/avatars/avatar-2.png';
+import Star from '@/components/Star';
+import Avatar from '/public/avatars/avatar-2.png';
 
 interface Review {
   name: string;
@@ -17,14 +16,14 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
-    <figure className="m-4 flex flex-col items-center rounded bg-[#E7E0CF] p-4 shadow-md lg:flex-row lg:items-start">
+    <figure className="flex flex-col items-center rounded bg-[#E7E0CF] p-4 shadow-md lg:flex-row lg:items-start">
       <div className="m-4 flex h-auto max-w-lg flex-col items-center lg:items-start">
         <Image src={Avatar} alt="Avatar" className="max-w-lg rounded-full sm:h-auto sm:w-32" />
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-start">
         <div className="flex flex-col gap-1 p-4 text-center lg:text-left">
           <figcaption className="mt-1">
-            <h4 className="font-bold">{review.name}</h4>
+            <div className="font-bold">{review.name}</div>
             <div className="flex justify-center lg:justify-start">
               <Star size={20} defaultRating={review.rating} color="#264E61" />
             </div>

@@ -26,16 +26,16 @@ export default function Carousel({ books, carouselTitle }: Props) {
   ];
 
   return (
-    <section className="py-28">
+    <section className="py-20">
       {carouselTitle && (
         <Title
           level={2}
           title={carouselTitle}
-          customClass="mx-auto max-w-[85rem] pb-16 px-12 text-[2.1875rem] font-semibold"
+          customClass="mx-auto max-w-page pb-16 text-[2.1875rem] font-semibold"
         />
       )}
       {books && books.length === 1 ? (
-        <div className="flex justify-start px-11">
+        <div className="flex justify-start">
           <img
             className="h-72 w-48 object-cover md:h-[21.625rem] md:w-56"
             title={books[0].name}

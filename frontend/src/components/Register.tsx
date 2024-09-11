@@ -22,7 +22,7 @@ export default function Register() {
   const router = useRouter();
   const { toggleModal } = useModalStore((state) => ({
     toggleModal: state.toggleModal,
-  }))
+  }));
   const {
     handleSubmit,
     control,
@@ -49,17 +49,16 @@ export default function Register() {
     );
 
     if (!logger.success || logger.data === null) {
-      
       return console.log(logger.errorMessage);
     }
-    
+
     const { email, password } = logger.data;
 
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
 
     setBasicInfo({ name: data.name, email: email, isLogged: true, role: 'user' });
-    router.push('/')
-    toggleModal()
+    router.push('/');
+    toggleModal();
   };
 
   return (
