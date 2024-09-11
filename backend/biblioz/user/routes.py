@@ -64,7 +64,8 @@ class Login(Resource):
             return {'errors': errors}, 400
 
         user = User.query.filter_by(email=data['email']).first()
-        if not user or not check_password_hash(user.password, data['password']):
+        # if not user or not check_password_hash(user.password, data['password']):
+        if not user.password == data['password']:
             return {'message': 'Credenciales inválidas'}, 401
 
         session['user_id'] = user.id
