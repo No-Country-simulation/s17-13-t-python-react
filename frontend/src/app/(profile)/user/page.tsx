@@ -15,6 +15,9 @@ export default function User() {
     recommendations: state.recommendations,
     favorites: state.favorites,
   }));
+
+
+  
   const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,
