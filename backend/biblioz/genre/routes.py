@@ -2,7 +2,7 @@ from flask import current_app, request
 from flask_restx import Resource, Namespace, abort
 from biblioz import db
 from biblioz.genre.models import Genre
-from biblioz.genre.swagger_models import api, genre_model
+from biblioz.genre.swagger_models import api, genre_model, get_genre
 from biblioz.genre.schemas import GenreSchema
 from werkzeug.utils import secure_filename
 import os
@@ -11,7 +11,7 @@ from marshmallow import ValidationError
 @api.route('/')
 class GenreListResource(Resource):
     @api.doc('get_genres')
-    @api.marshal_list_with(genre_model)
+    @api.marshal_list_with(get_genre)
     def get(self):
         """Obtener todos los generos"""
         genres = Genre.query.all()
@@ -44,7 +44,8 @@ class GenreListResource(Resource):
 @api.route('/<int:id>')
 class GenreResource(Resource):
     @api.doc('get_genre')
-    @api.marshal_with(genre_model)
+    @api.marshal_with(get_genre)
+
     def get(self, id):
         """Obtener genero por ID""" 
         genre = Genre.query.filter_by(id=id).first()

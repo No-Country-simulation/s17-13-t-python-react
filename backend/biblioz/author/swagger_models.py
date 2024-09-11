@@ -7,4 +7,17 @@ author_model = api.model('Author',{
     'biography': fields.String(required=True),
     'img': fields.String(required=False),
 
+<<<<<<< tasks_Joel
+    'img_url': fields.String(required=False)  # Este campo es solo para respuestas
+
+})
+
+get_author = api.model('AuthorGet', {
+    'id': fields.Integer(),
+    'name': fields.String(required=True),
+    'biography': fields.String(required=True),
+    'img': fields.String(required=False),
+    'img_url': fields.String(required=False)
+=======
+>>>>>>> develop
 })

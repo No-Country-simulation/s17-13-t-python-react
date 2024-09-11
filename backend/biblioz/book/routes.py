@@ -5,7 +5,11 @@ from biblioz.book.models import Book
 from biblioz.genre.models import Genre
 from biblioz.author.models import Author
 from biblioz.book.schemas import BookSchema
+<<<<<<< tasks_Joel
+from biblioz.book.swagger_models import api, book_model, get_book
+=======
 from biblioz.book.swagger_models import api, book_model
+>>>>>>> develop
 from werkzeug.utils import secure_filename
 import os
 from marshmallow import ValidationError
@@ -14,7 +18,11 @@ from marshmallow import ValidationError
 @api.route('/')
 class BookListResource(Resource):
     @api.doc('get_books')
+<<<<<<< tasks_Joel
+    @api.marshal_list_with(get_book)
+=======
     @api.marshal_list_with(book_model)
+>>>>>>> develop
     def get(self):
         """Obtener todos los libros"""
         books = Book.query.all()
@@ -101,7 +109,11 @@ class BookListResource(Resource):
 @api.route('/<int:id>')
 class BookResource(Resource):
     @api.doc('get_book')
+<<<<<<< tasks_Joel
+    @api.marshal_with(get_book)
+=======
     @api.marshal_with(book_model)
+>>>>>>> develop
     def get(self, id):
         """Obtener un libro por ID"""
         book = Book.query.filter_by(id=id).first()
