@@ -7,6 +7,8 @@ import UserProfileOverview from '@/components/UserProfileOverview';
 import Carousel from '@/components/Carousel/Carousel';
 import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function User() {
   const { name, email, favorites, recommendations } = useUserStore((state) => ({
@@ -16,8 +18,8 @@ export default function User() {
     favorites: state.favorites,
   }));
 
-
-  
+ 
+  console.log(useUserStore.getState());  
   const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,
@@ -29,6 +31,8 @@ export default function User() {
     },
   ];
   const userNameMockup = 'Clara Romero';
+
+
 
   return (
     <>

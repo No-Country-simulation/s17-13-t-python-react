@@ -43,7 +43,8 @@ export default function Login() {
     }
 
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
-    setBasicInfo({ name: '', email: email, isLogged: true, role: 'user' });
+    setBasicInfo({id:'', name: '', email: email, isLogged: true, role: 'user' });
+    //se agrego id como 
     router.push('/');
     toggleModal();
   };
