@@ -1,4 +1,4 @@
-from flask import Flask, current_app, send_from_directory
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
@@ -32,16 +32,6 @@ def create_app():
         description='Biblioz es un recomendador de libros que proporciona información detallada sobre libros y permite realizar operaciones CRUD en la base de datos de libros.',
         doc='/docs'  # Ruta para la documentación Swagger
     )
-
-    # Crear directorio para almacenar img de modelos si no existe
-    if not os.path.exists(app.config['UPLOAD_FOLDER']):
-        os.makedirs(app.config['UPLOAD_FOLDER'])
-
-    @app.route('/uploads/author/<filename>')
-    def uploaded_file(filename):
-        full_path = os.path.abspath(os.path.join(current_app.config['UPLOAD_FOLDER'], 'authors'))
-        # print(full_path)
-        return send_from_directory(full_path, filename)
 
     with app.app_context():
 

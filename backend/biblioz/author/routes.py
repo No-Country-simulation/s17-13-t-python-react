@@ -19,12 +19,6 @@ class AuthorListResource(Resource):
         if not authors:
             api.abort(404,'No hay autores disponibles')
 
-        # for author in authors:
-        #     if author.img:
-        #         author.img_url = url_for('uploaded_file', filename=f'authors/{author.img}', _external=True)
-        #     else:
-        #         author.img_url = None
-
         return authors
 
     
@@ -33,17 +27,6 @@ class AuthorListResource(Resource):
     @api.marshal_with(author_model, code=201)
     def post(self):
         """Crear un nuevo autor""" 
-        # def allowed_file(filename):
-        #     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-        #     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-        # data = {
-        #     'name': request.form.get('name'),
-        #     'biography': request.form.get('biography')
-        # }
-        
-        # author_schema = AuthorSchema()
-        # errors = author_schema.validate(data)
 
         data = request.json
         
@@ -64,21 +47,6 @@ class AuthorListResource(Resource):
                 biography = validated_data.get('biography'),
                 img=validated_data.get('img')
             )
-
-            # file = request.files.get('img')
-            # if file:
-            #     if not allowed_file(file.filename):
-            #         return {'message': 'Archivo no permitido.'}, 400
-
-            #     filename = secure_filename(file.filename)
-            #     authors_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], 'authors')
-
-            #     if not os.path.exists(authors_folder):
-            #         os.makedirs(authors_folder)
-
-            #     file_path = os.path.join(authors_folder, filename)
-            #     file.save(file_path)
-            #     new_author.img = filename
             
             db.session.add(new_author)
             db.session.commit()
@@ -117,21 +85,12 @@ class AuthorResource(Resource):
     @api.marshal_with(author_model)
     def put(self, id):
         """Actualizar datos de author por ID""" 
-        # def allowed_file(filename):
-        #     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-        #     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
         author = Author.query.filter_by(id=id).first()
         if not author:
             api.abort(404, 'Author no encontrado')
 
-        # data = request.form.to_dict()
-        # file = request.files.get('img')
-
         data = request.json
-
-        # if file:
-        #     data['img'] = file.filename
         
         if 'img' in data:
             data['img'] = changes_image_url(data['img'])
@@ -144,23 +103,10 @@ class AuthorResource(Resource):
 
         author.name = validated_data.get('name', author.name)
         author.biography = validated_data.get('biography', author.biography)
-        # author.img = validated_data.get('img', author.img)
+
         if 'img' in data:
             author.img = data['img']
 
-        # if file and allowed_file(file.filename):
-        #     filename = secure_filename(file.filename)
-        #     authors_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], 'authors')
-
-        #     if not os.path.exists(authors_folder):
-        #         os.makedirs(authors_folder)
-        #     file_path = os.path.join(authors_folder, filename)
-        #     file.save(file_path)
-        #     author.img = filename
-
-        # elif file:
-        #     abort(400, 'Archivo no permitido.')
-
         db.session.commit()
-
+        
         return author
