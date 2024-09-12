@@ -21,8 +21,3 @@ class Book(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
     author = db.relationship('Author', back_populates='books')
 
-# class BookImage(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     filename = db.Column(db.String(255), nullable=False)
-#     book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
-#     book = db.relationship('Book', backref=db.backref('images', lazy=True))

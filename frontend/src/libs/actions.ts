@@ -56,6 +56,10 @@ export async function getBook(bookId: string) {
       editorial: 'Puffin',
       rating: 3.9,
       pageNumber: 96,
+      images: [
+        'https://covers.openlibrary.org/b/id/12498647-M.jpg',
+        'https://covers.openlibrary.org/b/id/12498647-M.jpg',
+      ],
     };
 
     return book;

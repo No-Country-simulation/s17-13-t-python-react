@@ -1,5 +1,6 @@
 'use client';
-import ButtonBase from './ButtonBase';
+
+import ButtonBase from '@/components/ButtonBase';
 import { BiSolidLike, BiSolidDislike } from 'react-icons/bi';
 import { ActionType, ThumbButton } from '@/interfaces/ItemData.interface';
 import { useThumbsInteraction } from '@/hooks/useThumbsInteraction';

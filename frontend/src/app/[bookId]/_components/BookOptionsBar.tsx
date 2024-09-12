@@ -1,4 +1,4 @@
-import ButtonBase from './ButtonBase';
+import ButtonBase from '@/components/ButtonBase';
 import ThumbsUpDownButtons from './ThumbsUpDownButtons';
 import DropdownShare from './DropdownShare';
 import ButtonFavorite from './ButtonFavorite';
