@@ -1,12 +1,13 @@
-import { Control, FieldError } from 'react-hook-form';
-import { AuthValues } from '@/app/(auth)/_validations/authSchemas';
+import { Control, FieldError, FieldValues } from 'react-hook-form';
 
 export interface BaseInputProps {
   type: 'text' | 'number' | 'email';
-  name: keyof AuthValues;
+  name: keyof FieldValues;
   placeholder: string;
-  control: Control<AuthValues>;
+  control: Control<any>;
   error?: FieldError;
+  customClass: string;
+  errorColor?: string;
 }
 
 export interface PasswordInputProps extends Omit<BaseInputProps, 'type'> {}

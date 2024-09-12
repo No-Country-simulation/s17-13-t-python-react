@@ -1,9 +1,16 @@
 import { Controller } from 'react-hook-form';
 import { BaseInputProps } from '@/interfaces/InputProps.interface';
+import ErrorMessage from './ErrorMessage';
 
-export default function BaseInput({ placeholder, name, type, control, error }: BaseInputProps) {
-  const inputStyles = `shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
-
+export default function BaseInput({
+  placeholder,
+  name,
+  type,
+  control,
+  error,
+  customClass,
+  errorColor,
+}: BaseInputProps) {
   return (
     <div className="relative">
       <label htmlFor={`input-${name}`} className="sr-only">
@@ -15,19 +22,15 @@ export default function BaseInput({ placeholder, name, type, control, error }: B
         defaultValue=""
         render={({ field }) => (
           <input
+            className={`${customClass} ${error ? 'invalid' : ''}`}
             id={`input-${name}`}
-            className={inputStyles}
             {...field}
             type={type}
             placeholder={placeholder}
           />
         )}
       />
-      {error && (
-        <p className="absolute translate-y-1 pl-5 text-xs font-bold tracking-wide text-[#62262E]">
-          {error.message}
-        </p>
-      )}
+      {error && <ErrorMessage error={error.message!} color={errorColor} />}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 from flask_restx import Resource, abort
 from flask import request , current_app
 from biblioz import db
+from biblioz.utils import changes_image_url
 from biblioz.userProfile.models import UserProfile
 from biblioz.user.models import User
 from biblioz.userProfile.swagger_models import api, user_profile_model
@@ -38,10 +39,6 @@ class UserProfileResource(Resource):
     @api.marshal_with(user_profile_model, 201)
     def put(self, user_id):
         """Actualizar la información del perfil del usuario por ID"""
-        def allowed_file(filename):
-            ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-            return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
         user = User.query.get(user_id)
         if user is None:
             api.abort(404, 'Usuario no encontrado.')
@@ -50,49 +47,42 @@ class UserProfileResource(Resource):
         if user_profile is None:
             api.abort(404, 'Perfil de usuario no encontrado.')
 
-        user_profile_folder = os.path.join(current_app.config['UPLOAD_FOLDER'], 'userProfile')
-        if not os.path.exists(user_profile_folder):
-            os.makedirs(user_profile_folder)
-
         schema = UserProfileSchema()
         errors = {}
 
-        if 'img' in request.files:
-            file = request.files['img']
-            if file.filename == '':
-                abort(400, 'No se seleccionó ningún archivo.')
-            elif not allowed_file(file.filename):
-                abort(400, 'Archivo no permitido.')
-            else:
-                filename = secure_filename(file.filename)
-                file_path = os.path.join(user_profile_folder, filename)
-                file.save(file_path)
-                user_profile.img = filename
+        img_url = request.json.get('img')
+        biography = request.json.get('biography')
 
-        biography = request.form.get('biography')
+        user_data = request.json.get('user', {})
+        name = user_data.get('name')
+        email = user_data.get('email')
 
-        if biography is not None:
+        if img_url:
+            img_url = changes_image_url(img_url)
+            user_profile.img = img_url
+
+        if biography:
             try:
                 schema.load({'biography': biography})
                 user_profile.biography = biography
             except ValidationError as err:
                 errors.update(err.messages)
 
-        name = request.form.get('name')
-        email = request.form.get('email')
         if name:
             user.name = name
+
         if email:
             existing_user = User.query.filter_by(email=email).first()
             if existing_user and existing_user.id != user.id:
                 errors['email'] = ['El correo electrónico ya está en uso.']
             else:
                 user.email = email
-                
+
         if errors:
             abort(400, errors)
 
         db.session.commit()
+        
         return {
             'img': user_profile.img,
             'biography': user_profile.biography,

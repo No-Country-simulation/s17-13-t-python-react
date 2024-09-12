@@ -1,5 +1,5 @@
 import axios from 'axios';
-import sleep from './delay';
+import builderApiUrl from './builderApiUrl';
 
 async function fetcher<T>(url: string): Promise<T | string> {
   const errorMessage = {
@@ -9,7 +9,7 @@ async function fetcher<T>(url: string): Promise<T | string> {
   };
 
   try {
-    const response = await axios.get<T>(url);
+    const response = await axios.get<T>(builderApiUrl(url));
 
     if (response.status !== 200 || response.statusText !== 'OK') {
       throw new Error(errorMessage.fetchFailed);
