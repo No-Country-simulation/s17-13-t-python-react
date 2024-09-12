@@ -10,7 +10,6 @@ review_model = api.model('Review', {
     'book_id': fields.Integer(required=True)
 })
 
-<<<<<<< tasks_Joel
 get_review = api.model('ReviewGet', {
     'id': fields.Integer(),
     'rating': fields.Integer(required=True),
@@ -19,5 +18,3 @@ get_review = api.model('ReviewGet', {
     'user_id': fields.Integer(required=True),
     'book_id': fields.Integer(required=True)
 })
-=======
->>>>>>> develop
