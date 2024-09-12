@@ -104,19 +104,11 @@ class ReviewResource(Resource):
             if review_data.get('book_id') and not book:
                 api.abort(404, 'Libro no encontrado')
 
-<<<<<<< tasks_Joel
             # review.rating = review_data['rating']
             review.comment = review_data.get('comment')
 
             # review.user_id = review_data.get('user_id', review.user_id)
             # review.book_id = review_data.get('book_id', review.book_id)
-=======
-            review.rating = review_data['rating']
-            review.comment = review_data.get('comment')
-
-            review.user_id = review_data.get('user_id', review.user_id)
-            review.book_id = review_data.get('book_id', review.book_id)
->>>>>>> develop
 
             db.session.commit()
             return review, 200
