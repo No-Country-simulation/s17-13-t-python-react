@@ -7,36 +7,51 @@ import UserProfileOverview from '@/components/UserProfileOverview';
 import Carousel from '@/components/Carousel/Carousel';
 import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
-import { useEffect } from 'react';
-import axios, { Axios } from 'axios';
-import fetcher from '@/utils/fetcher';
+import { useEffect, useState } from 'react';
 import builderApiUrl from '@/utils/builderApiUrl';
-import { url } from 'inspector';
+
+interface UserResponse {
+  img: string | null;
+  biography: string | null;
+  user: {
+    name: string;
+    email: string;
+  };
+}
 
 export default function User() {
+  const [user, setUser] = useState<UserResponse | null>(null);
 
-  const {id, name, email, favorites, recommendations } = useUserStore((state) => ({
+  const { id, name, email, favorites, recommendations, setBasicInfo } = useUserStore((state) => ({
     id: state.id,
     name: state.name,
     email: state.email,
     recommendations: state.recommendations,
     favorites: state.favorites,
+    setBasicInfo: state.setBasicInfo,
   }));
 
+  const url = builderApiUrl(`profile/${id}`);
 
-  
-const Url=builderApiUrl(`profile/${id}`);
-fetch(Url).then((res) => {console.log(res)})
-// useEffect (() =>{
-  
-//   const getUser=fetcher(Url).then((response) => {console.log(response);});
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data: UserResponse = await response.json();
+        setUser(data);
 
-//   // console.log(getUser)
-// },[])
+      } else {
+        console.error('Error en la respuesta', response.status);
+      }
+    } catch (error) {
+      console.error('Error al hacer la solicitud', error);
+    }
+  };
 
+  useEffect(() => {
+    fetchUserProfile();
+  }, []); 
 
-
-  
   const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,
@@ -44,18 +59,18 @@ fetch(Url).then((res) => {console.log(res)})
     },
     {
       icon: <FaUserLarge size={22} />,
-      text: '@Ana_torrez',
+      text: user ? `@${user.user.name}` : '@Ana_torrez', 
     },
   ];
-  const userNameMockup = 'Clara Romero';
 
+  const userNameMockup = user ? user.user.name : 'Clara Romero'; 
 
 
   return (
     <>
       <UserProfileOverview
         dataUser={profileInfoMockup}
-        image={userImage.src}
+        image={user && user.img ? user.img : userImage.src} 
         userName={userNameMockup}
       />
       <Carousel books={recommendations} carouselTitle="Mis recomendaciones" />
