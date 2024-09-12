@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface Book {
   cover: any;
   rating: number | undefined;
