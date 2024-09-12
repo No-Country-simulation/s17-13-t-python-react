@@ -8,18 +8,35 @@ import Carousel from '@/components/Carousel/Carousel';
 import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
 import { useEffect } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
+import fetcher from '@/utils/fetcher';
+import builderApiUrl from '@/utils/builderApiUrl';
+import { url } from 'inspector';
 
 export default function User() {
-  const { name, email, favorites, recommendations } = useUserStore((state) => ({
+
+  const {id, name, email, favorites, recommendations } = useUserStore((state) => ({
+    id: state.id,
     name: state.name,
     email: state.email,
     recommendations: state.recommendations,
     favorites: state.favorites,
   }));
 
- 
-  console.log(useUserStore.getState());  
+
+  
+const Url=builderApiUrl(`profile/${id}`);
+fetch(Url).then((res) => {console.log(res)})
+// useEffect (() =>{
+  
+//   const getUser=fetcher(Url).then((response) => {console.log(response);});
+
+//   // console.log(getUser)
+// },[])
+
+
+
+  
   const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,

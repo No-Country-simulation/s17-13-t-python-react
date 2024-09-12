@@ -12,7 +12,10 @@ import { useModalStore } from '@/app/store/modalStore';
 import { useUserStore } from '@/app/store/userStore';
 
 interface LoginResponse {
-  message: string;
+  id:string,
+  email: string,
+  name: string,
+
 }
 
 export default function Login() {
@@ -42,10 +45,13 @@ export default function Login() {
       return console.log(logger.errorMessage);
     }
 
+
+
+
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
-    setBasicInfo({id:'', name: '', email: email, isLogged: true, role: 'user' });
+    setBasicInfo({id:logger.data.id, name: logger.data.name, email: email, isLogged: true, role: 'user' });
     //se agrego id como 
-    router.push('/');
+    router.push('/user');
     toggleModal();
   };
 

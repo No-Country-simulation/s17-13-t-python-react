@@ -7,8 +7,6 @@ async function fetcher<T>(url: string): Promise<T | string> {
     fetchFailed: 'Error al obtener la data',
     unknown: 'Error desconocido vuelva a intentarlo mas tarde',
   };
-  // TODO remover cuando ya se pueda traer data valida
-  await sleep(2000);
 
   try {
     const response = await axios.get<T>(url);
