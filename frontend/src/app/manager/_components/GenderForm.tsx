@@ -1,46 +1,67 @@
-'use client'
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
-import { BookValues, bookSchema } from "../_validators/bookSchema";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
+import FeedbackButton from '@/components/FeedbackButton';
+import { genreSchema, GenreValues } from '../_validators/genreSchema';
+import BaseInput from '@/components/BaseInput';
+import { createGenre } from '@/libs/createGenre.action';
+
+interface GenderPostResponse {
+  name: string;
+}
 
 export default function GenderForm() {
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<BookValues>({
-    resolver: zodResolver(bookSchema),
+  } = useForm<GenreValues>({
+    resolver: zodResolver(genreSchema),
     mode: 'onChange',
   });
+  const inputStyles =
+    'focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 dark:placeholder-gray-400';
 
-  const onSubmit: SubmitHandler<BookValues> = async (bookData) => {
-    toast('My first toast');
-    console.log(bookData);
+  const onSubmit: SubmitHandler<GenreValues> = async (formValue) => {
+    const { data, errorMessage, success } = await createGenre<GenderPostResponse>(
+      formValue,
+      '/genre/',
+    );
+
+    if (!success || data === null) {
+      return toast.error(`Fallo al crear el género ${errorMessage}`);
+    }
+
+    toast.success(`Género nuevo creado: ${data.name.toUpperCase()} `);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autoComplete={'off'}>
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+    <form className="grid gap-8" onSubmit={handleSubmit(onSubmit)} autoComplete={'off'}>
+      <div className="grid gap-4 sm:grid-cols-1 sm:gap-6">
         <div className="w-full">
-          <label htmlFor="title" className="mb-2 block text-sm font-medium">
-            Titulo
+          <label htmlFor="genre" className="block pb-2 text-sm font-medium">
+            Genero
           </label>
-          <input
+          <BaseInput
+            control={control}
+            error={errors.name}
+            name={'name'}
+            customClass={inputStyles}
+            placeholder=""
+            errorColor="var(--main-clr)"
             type="text"
-            name="description"
-            id="title"
-            className="focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 dark:placeholder-gray-400"
           />
         </div>
       </div>
-      <button
+      <FeedbackButton
+        feedback="Completa todos los campos"
+        isValid={isValid}
+        isSubmitting={isSubmitting}
         type="submit"
-        className="bg-primary-700 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 ml-auto mt-4 block items-center rounded-lg bg-main px-8 py-2.5 text-center text-sm font-medium text-white focus:ring-4 sm:mt-6"
-      >
-        Add product
-      </button>
+        text="Crear genero"
+      />
     </form>
   );
 }

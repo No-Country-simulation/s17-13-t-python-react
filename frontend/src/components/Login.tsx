@@ -31,6 +31,8 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
+  const inputStyles =
+    'shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current';
 
   const onSubmit: SubmitHandler<AuthValues> = async ({ email, password }) => {
     const logger = await signInUser<LoginResponse>(
@@ -61,12 +63,14 @@ export default function Login() {
         control={control}
         type="email"
         error={errors.email}
+        customClass={inputStyles}
       />
       <PasswordInput
         name="password"
         placeholder="password"
         control={control}
         error={errors.password}
+        customClass={inputStyles}
       />
       <div className="flex flex-col items-center justify-center gap-4 pb-10 pt-5 xs:flex-row xs:justify-between">
         <label
