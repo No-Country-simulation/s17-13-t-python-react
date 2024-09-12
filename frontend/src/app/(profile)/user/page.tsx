@@ -9,7 +9,7 @@ import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
 import { useEffect, useState } from 'react';
 import builderApiUrl from '@/utils/builderApiUrl';
-
+import { CgProfile } from "react-icons/cg";
 interface UserResponse {
   img: string | null;
   biography: string | null;
@@ -65,12 +65,12 @@ export default function User() {
 
   const userNameMockup = user ? user.user.name : 'Clara Romero'; 
 
-
+const image=<CgProfile />;
   return (
     <>
       <UserProfileOverview
         dataUser={profileInfoMockup}
-        image={user && user.img ? user.img : userImage.src} 
+        image={user!.img} 
         userName={userNameMockup}
       />
       <Carousel books={recommendations} carouselTitle="Mis recomendaciones" />
