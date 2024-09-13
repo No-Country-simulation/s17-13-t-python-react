@@ -1,3 +1,11 @@
+import Title from '@/components/Typography/Title';
+import Credentials from './_components/Credentials';
+
 export default function ManagerPage() {
-  return <div className="h-[calc(100dvh-14rem)]">page</div>;
+  return (
+    <>
+      <Title level={2} title="BibliOz Manager" customClass="py-4 mx-auto w-fit" />
+      <Credentials />
+    </>
+  );
 }

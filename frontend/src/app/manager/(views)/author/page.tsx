@@ -1,5 +1,5 @@
 import Title from '@/components/Typography/Title';
-import AuthorForm from '../_components/AuthorForm';
+import AuthorForm from '../../_components/AuthorForm';
 
 export default function AuthorManagerPage() {
   return (

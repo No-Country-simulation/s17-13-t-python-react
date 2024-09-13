@@ -1,8 +1,8 @@
 import Title from '@/components/Typography/Title';
-import BookForm from '../_components/BookForm';
+import BookForm from '../../_components/BookForm';
 import fetcher from '@/utils/fetcher';
-import { GetAuthorResponse } from '../_validators/authorScema';
-import { GetGenreResponse } from '../_validators/genreSchema';
+import { GetAuthorResponse } from '../../_validators/authorSchema';
+import { GetGenreResponse } from '../../_validators/genreSchema';
 
 export default async function BookManager() {
   const data: (string | GetGenreResponse[] | GetAuthorResponse[])[] = await Promise.all([

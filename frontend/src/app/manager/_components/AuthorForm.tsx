@@ -5,8 +5,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'sonner';
 import BaseInput from '@/components/BaseInput';
-import { authorSchema, AuthorValues } from '../_validators/authorScema';
+import { authorSchema, AuthorValues } from '../_validators/authorSchema';
 import { createAuthor } from '@/libs/createAuthor.action';
+import Anchor from './Anchor';
 
 interface AuthorPostResponse extends AuthorValues {}
 
@@ -81,13 +82,18 @@ export default function AuthorForm() {
           />
         </div>
       </div>
-      <FeedbackButton
-        feedback="Completa todos los campos"
-        isValid={isValid}
-        isSubmitting={isSubmitting}
-        type="submit"
-        text="Crear autor"
-      />
+
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <FeedbackButton
+          feedback="Completa todos los campos"
+          isValid={isValid}
+          isSubmitting={isSubmitting}
+          type="submit"
+          text="Crear autor"
+          feedBackColor="var(--main-clr)"
+        />
+        <Anchor href="/manager/author/content" text="ver autores" />
+      </div>
     </form>
   );
 }
