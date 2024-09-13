@@ -38,7 +38,9 @@ export default function Select({
               {placeholder}
             </option>
             {content.map(({ author, id }) => (
-              <option value={id} key={id}>{author}</option>
+              <option value={id} key={id}>
+                {author}
+              </option>
             ))}
           </select>
         )}

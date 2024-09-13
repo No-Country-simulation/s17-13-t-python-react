@@ -7,14 +7,50 @@ import UserProfileOverview from '@/components/UserProfileOverview';
 import Carousel from '@/components/Carousel/Carousel';
 import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
+import { useEffect, useState } from 'react';
+import builderApiUrl from '@/utils/builderApiUrl';
+
+interface UserResponse {
+  img: string | null;
+  biography: string | null;
+  user: {
+    name: string;
+    email: string;
+  };
+}
 
 export default function User() {
-  const { name, email, favorites, recommendations } = useUserStore((state) => ({
+  const [user, setUser] = useState<UserResponse | null>(null);
+
+  const { id, name, email, favorites, recommendations, setBasicInfo } = useUserStore((state) => ({
+    id: state.id,
     name: state.name,
     email: state.email,
     recommendations: state.recommendations,
     favorites: state.favorites,
+    setBasicInfo: state.setBasicInfo,
   }));
+
+  const url = builderApiUrl(`profile/${id}`);
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data: UserResponse = await response.json();
+        setUser(data);
+      } else {
+        console.error('Error en la respuesta', response.status);
+      }
+    } catch (error) {
+      console.error('Error al hacer la solicitud', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
+
   const profileInfoMockup: ItemInfo[] = [
     {
       icon: <HiLocationMarker size={25} />,
@@ -22,17 +58,16 @@ export default function User() {
     },
     {
       icon: <FaUserLarge size={22} />,
-      text: '@Ana_torrez',
+      text: user ? `@${user.user.name}` : '@Unknow user',
     },
   ];
-  const userNameMockup = 'Clara Romero';
 
   return (
     <>
       <UserProfileOverview
         dataUser={profileInfoMockup}
-        image={userImage.src}
-        userName={userNameMockup}
+        image={user && user.img}
+        userName={user ? user.user.name : 'Unknown User'}
       />
       <Carousel books={recommendations} carouselTitle="Mis recomendaciones" />
       <Carousel books={favorites} carouselTitle="Mis favoritos" />

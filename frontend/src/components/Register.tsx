@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/app/store/modalStore';
 
 interface User {
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -58,8 +59,8 @@ export default function Register() {
 
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
 
-    setBasicInfo({ name: data.name, email: email, isLogged: true, role: 'user' });
-    router.push('/');
+    setBasicInfo({ id: data.id, name: data.name, email: email, isLogged: true, role: 'user' });
+    router.push('/user');
     toggleModal();
   };
 
