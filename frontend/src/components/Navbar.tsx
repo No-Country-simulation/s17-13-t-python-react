@@ -92,7 +92,7 @@ export default function Navbar() {
       </nav>
 
       {isOpenMenu && (
-        <ul className="flex flex-col items-center gap-4 bg-[#62262E] py-4 md:hidden">
+        <ul className="absolute left-0 top-16 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
           <li onClick={() => setShowCategory((show) => !show)}>
             <a className={stylesLink}>Categoría</a>
           </li>
