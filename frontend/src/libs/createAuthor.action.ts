@@ -1,7 +1,7 @@
 'use server';
 
 import axios from 'axios';
-import { AuthorValues, authorSchema } from '@/app/manager/_validators/authorScema';
+import { AuthorValues, authorSchema } from '@/app/manager/_validators/authorSchema';
 import builderApiUrl from '@/utils/builderApiUrl';
 import { ResponseStatus } from '@/interfaces/ResponseStatus.interface';
 

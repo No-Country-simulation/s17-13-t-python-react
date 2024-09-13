@@ -1,4 +1,3 @@
-import React from 'react';
 import { Controller } from 'react-hook-form';
 import ErrorMessage from '@/components/ErrorMessage';
 import { BaseInputProps } from '@/interfaces/InputProps.interface';
@@ -38,7 +37,9 @@ export default function Select({
               {placeholder}
             </option>
             {content.map(({ author, id }) => (
-              <option value={id} key={id}>{author}</option>
+              <option value={id} key={id}>
+                {author}
+              </option>
             ))}
           </select>
         )}
