@@ -4,8 +4,7 @@ import ButtonBase from './ButtonBase';
 import ProfileSummaryList from './ProfileSummaryList';
 import Title from './Typography/Title';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
-import { CgProfile } from 'react-icons/cg';
-import { FaBookOpenReader } from "react-icons/fa6";
+
 interface Props {
   userName: string;
   dataUser: ItemInfo[];
@@ -13,20 +12,20 @@ interface Props {
 }
 
 export default function UserProfileOverview({ image, dataUser, userName }: Props) {
-  const defaultImage = <CgProfile size={100} />; 
   return (
     <div className="mx-auto grid max-w-[85rem] grid-cols-1 pb-8 md:grid-cols-[auto_1fr] md:gap-x-16">
-       {image != null ?    <Avatar
-            alt="imagen no encontrada"
-            img={image}
-            customClass="-translate-y-16"
-            containerClass="mx-auto size-40 xs:size-64 row-[1/2] col-[1/3] md:size-52 md:col-[1/2]"
-          />
-       : 
-       <div className="grid  m-2 size-28 shadow-xl bg-light rounded-full place-items-center text-5xl font-bold">
-       {userName.charAt(0).toUpperCase()} {/* Muestra la inicial del nombre */}
-     </div>
-      }
+      {image != null ? (
+        <Avatar
+          alt="imagen no encontrada"
+          img={image}
+          customClass="-translate-y-16"
+          containerClass="mx-auto size-40 xs:size-64 row-[1/2] col-[1/3] md:size-52 md:col-[1/2]"
+        />
+      ) : (
+        <div className="m-2 grid size-28 place-items-center rounded-full bg-light text-5xl font-bold shadow-xl">
+          {userName.charAt(0).toUpperCase()}
+        </div>
+      )}
 
       <ProfileSummaryList dataList={dataUser} customClass="row-[3/4] md:row-[2/3]" />
       <div className="row-[2/3] flex justify-between pb-8 md:col-[2/3] md:row-[1/2] md:py-8">

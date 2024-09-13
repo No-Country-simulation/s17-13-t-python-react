@@ -39,7 +39,6 @@ export default function User() {
       if (response.ok) {
         const data: UserResponse = await response.json();
         setUser(data);
-
       } else {
         console.error('Error en la respuesta', response.status);
       }
@@ -50,7 +49,7 @@ export default function User() {
 
   useEffect(() => {
     fetchUserProfile();
-  }, []); 
+  }, []);
 
   const profileInfoMockup: ItemInfo[] = [
     {
@@ -59,19 +58,16 @@ export default function User() {
     },
     {
       icon: <FaUserLarge size={22} />,
-      text: user ? `@${user.user.name}` : '@Ana_torrez', 
+      text: user ? `@${user.user.name}` : '@Unknow user',
     },
   ];
-
-  const userNameMockup = user ? user.user.name : 'Clara Romero'; 
-
 
   return (
     <>
       <UserProfileOverview
         dataUser={profileInfoMockup}
-    image={user && user.img } 
-        userName={userNameMockup}
+        image={user && user.img}
+        userName={user ? user.user.name : 'Unknown User'}
       />
       <Carousel books={recommendations} carouselTitle="Mis recomendaciones" />
       <Carousel books={favorites} carouselTitle="Mis favoritos" />

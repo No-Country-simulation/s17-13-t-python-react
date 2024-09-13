@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/app/store/modalStore';
 
 interface User {
-  id:string,
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -40,7 +40,7 @@ export default function Register() {
 
   const onSubmit: SubmitHandler<AuthValues> = async (formValue) => {
     const { data, errorMessage, success } = await createUser<User>(formValue, 'auth/register');
-    
+
     //  TODO lanza un toast de error o pinta el mensaje en el viewport
     if (!success || data === null) {
       return console.log(errorMessage);
@@ -59,7 +59,7 @@ export default function Register() {
 
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
 
-    setBasicInfo({id:data.id, name: data.name, email: email, isLogged: true, role: 'user' });
+    setBasicInfo({ id: data.id, name: data.name, email: email, isLogged: true, role: 'user' });
     router.push('/user');
     toggleModal();
   };
