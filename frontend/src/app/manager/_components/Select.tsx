@@ -1,4 +1,3 @@
-import React from 'react';
 import { Controller } from 'react-hook-form';
 import ErrorMessage from '@/components/ErrorMessage';
 import { BaseInputProps } from '@/interfaces/InputProps.interface';
