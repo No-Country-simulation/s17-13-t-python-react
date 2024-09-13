@@ -6,10 +6,11 @@ import { toast } from 'sonner';
 import { BookValues, bookSchema } from '../_validators/bookSchema';
 import FeedbackButton from '@/components/FeedbackButton';
 import BaseInput from '@/components/BaseInput';
-import { GetAuthorResponse } from '../_validators/authorScema';
+import { GetAuthorResponse } from '../_validators/authorSchema';
 import { GetGenreResponse } from '../_validators/genreSchema';
 import Select from './Select';
 import { createBook } from '@/libs/createBook.action';
+import Anchor from './Anchor';
 
 interface Props {
   authors: GetAuthorResponse[];
@@ -29,8 +30,6 @@ export default function BookForm({ authors, genders }: Props) {
     'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600';
 
   const onSubmit: SubmitHandler<BookValues> = async (formValue) => {
-    console.log(formValue);
-
     const { data, errorMessage, success } = await createBook<BookValues>(formValue, '/book/');
 
     if (!success || data === null) {
@@ -80,7 +79,7 @@ export default function BookForm({ authors, genders }: Props) {
             error={errors.genre_id}
             name={'genre_id'}
             customClass={inputStyles}
-            placeholder=""
+            placeholder="-- Selecciona un género --"
             errorColor="var(--main-clr)"
             content={genders.map(({ id, name }) => ({ id, author: name }))}
           />
@@ -94,7 +93,7 @@ export default function BookForm({ authors, genders }: Props) {
             error={errors.author_id}
             name={'author_id'}
             customClass={inputStyles}
-            placeholder=""
+            placeholder="-- Selecciona un autor --"
             errorColor="var(--main-clr)"
             content={authors.map(({ id, name }) => ({ id, author: name }))}
           />
@@ -114,13 +113,17 @@ export default function BookForm({ authors, genders }: Props) {
           />
         </div>
       </div>
-      <FeedbackButton
-        feedback="Completa todos los campos"
-        isValid={isValid}
-        isSubmitting={isSubmitting}
-        type="submit"
-        text="Crear libro"
-      />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <FeedbackButton
+          feedback="Completa todos los campos"
+          isValid={isValid}
+          isSubmitting={isSubmitting}
+          type="submit"
+          text="Crear libro"
+          feedBackColor="var(--main-clr)"
+        />
+        <Anchor href="/manager/book/content" text="ver libros" />
+      </div>
     </form>
   );
 }

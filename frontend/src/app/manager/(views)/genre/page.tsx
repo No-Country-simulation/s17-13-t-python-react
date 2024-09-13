@@ -1,5 +1,5 @@
 import Title from '@/components/Typography/Title';
-import GenderForm from '../_components/GenderForm';
+import GenderForm from '../../_components/GenderForm';
 
 export default function GenrePage() {
   return (

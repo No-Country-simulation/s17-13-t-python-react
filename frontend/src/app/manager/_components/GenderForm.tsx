@@ -7,6 +7,7 @@ import FeedbackButton from '@/components/FeedbackButton';
 import { genreSchema, GenreValues } from '../_validators/genreSchema';
 import BaseInput from '@/components/BaseInput';
 import { createGenre } from '@/libs/createGenre.action';
+import Anchor from './Anchor';
 
 interface GenderPostResponse {
   name: string;
@@ -55,13 +56,17 @@ export default function GenderForm() {
           />
         </div>
       </div>
-      <FeedbackButton
-        feedback="Completa todos los campos"
-        isValid={isValid}
-        isSubmitting={isSubmitting}
-        type="submit"
-        text="Crear genero"
-      />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <FeedbackButton
+          feedback="Completa todos los campos"
+          isValid={isValid}
+          isSubmitting={isSubmitting}
+          type="submit"
+          text="Crear genero"
+          feedBackColor="var(--main-clr)"
+        />
+        <Anchor href="/manager/genre/content" text="ver géneros" />
+      </div>
     </form>
   );
 }

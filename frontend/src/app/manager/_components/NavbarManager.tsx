@@ -9,8 +9,6 @@ export default function NavbarManager() {
   const anchorStyle =
     'inline-flex items-center text-gray-400 text-sm font-medium hover:text-auxiliary';
 
-  console.log(currentPath);
-
   return (
     <nav
       className="flex rounded-lg border-gray-200 px-5 py-3 dark:border-gray-700"

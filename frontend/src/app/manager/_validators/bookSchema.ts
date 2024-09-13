@@ -8,4 +8,9 @@ export const bookSchema = z.object({
   author_id: z.string().min(1, 'Requerido'),
 });
 
+export interface GetBookResponse extends BookValues {
+  id: number;
+}
+
+export type KeyBookTye = keyof GetBookResponse;
 export type BookValues = z.infer<typeof bookSchema>;

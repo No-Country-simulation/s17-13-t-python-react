@@ -9,4 +9,5 @@ export const authorSchema = z.object({
 export interface GetAuthorResponse extends AuthorValues {
   id: number;
 }
+export type KeyAuthorTye = keyof GetAuthorResponse;
 export type AuthorValues = z.infer<typeof authorSchema>;
