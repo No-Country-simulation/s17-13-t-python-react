@@ -16,7 +16,3 @@ class Review(db.Model):
     # Relación muchos a uno con Book
     book_id = db.Column(db.Integer, ForeignKey('book.id'))
     book = db.relationship('Book', back_populates='reviews')
-
-    # Relacion de muchos a uno con el libro
-    # book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
-    # book = relationship('Book', back_populates='reviews')

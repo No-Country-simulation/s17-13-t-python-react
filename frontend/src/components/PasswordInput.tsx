@@ -2,10 +2,16 @@ import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { PasswordInputProps } from '@/interfaces/InputProps.interface';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
+import ErrorMessage from './ErrorMessage';
 
-export default function PasswordInput({ name, placeholder, control, error }: PasswordInputProps) {
+export default function PasswordInput({
+  name,
+  placeholder,
+  control,
+  error,
+  customClass,
+}: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const inputStyles = `shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl bg-[#E7E0CF22] backdrop-blur-[50px] px-5 pr-10 text-lg font-medium placeholder:font-medium placeholder:capitalize placeholder:text-current ${error ? 'invalid' : ''}`;
 
   function togglePasswordVisibility(): void {
     setShowPassword(!showPassword);
@@ -22,7 +28,7 @@ export default function PasswordInput({ name, placeholder, control, error }: Pas
             {...field}
             type={showPassword ? 'text' : 'password'}
             placeholder={placeholder}
-            className={inputStyles}
+            className={`${customClass} ${error ? 'invalid' : ''}`}
           />
           <button
             type="button"
@@ -35,11 +41,7 @@ export default function PasswordInput({ name, placeholder, control, error }: Pas
               <IoEye size={25} className="text-[#E7E0CF]" />
             )}
           </button>
-          {error && (
-            <p className="absolute translate-y-1 pl-5 text-xs font-bold tracking-wide text-[#62262E]">
-              {error.message}
-            </p>
-          )}
+          {error && <ErrorMessage error={error.message!} />}
         </div>
       )}
     />

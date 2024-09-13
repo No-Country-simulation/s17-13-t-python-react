@@ -32,10 +32,10 @@ export default function Modal({ setOpenModal }: Partial<propModal>) {
   const sendPreference = () => {
     console.log(preference); // ESTO SERIAN LOS DATOS A ENVIAR AL BACKEND
     // setOpenModal(false);
-    toggleModal()
+    toggleModal();
   };
 
-  if (!isView) return
+  if (!isView) return;
 
   return (
     <>

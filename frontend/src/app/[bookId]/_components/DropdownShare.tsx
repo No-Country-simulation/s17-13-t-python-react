@@ -1,6 +1,7 @@
 'use client';
+
 import { useState } from 'react';
-import ButtonBase from './ButtonBase';
+import ButtonBase from '@/components/ButtonBase';
 import { IoShareSocialSharp } from 'react-icons/io5';
 import { LiaFacebookF } from 'react-icons/lia';
 import { FaWhatsapp } from 'react-icons/fa';

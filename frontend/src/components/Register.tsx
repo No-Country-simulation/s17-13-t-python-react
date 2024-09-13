@@ -22,18 +22,20 @@ export default function Register() {
   const router = useRouter();
   const { toggleModal } = useModalStore((state) => ({
     toggleModal: state.toggleModal,
-  }))
+  }));
   const {
     handleSubmit,
     control,
     formState: { errors, isSubmitting, isValid },
   } = useForm<AuthValues>({
     resolver: zodResolver(registerSchema),
-    mode: 'onSubmit',
+    mode: 'onChange',
   });
   const { setBasicInfo } = useUserStore((state) => ({
     setBasicInfo: state.setBasicInfo,
   }));
+  const inputStyles =
+    'shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current';
 
   const onSubmit: SubmitHandler<AuthValues> = async (formValue) => {
     const { data, errorMessage, success } = await createUser<User>(formValue, 'auth/register');
@@ -49,17 +51,16 @@ export default function Register() {
     );
 
     if (!logger.success || logger.data === null) {
-      
       return console.log(logger.errorMessage);
     }
-    
+
     const { email, password } = logger.data;
 
     // TODO: cuando se hace el login, el Back devolverá la data del usuario
 
     setBasicInfo({ name: data.name, email: email, isLogged: true, role: 'user' });
-    router.push('/')
-    toggleModal()
+    router.push('/');
+    toggleModal();
   };
 
   return (
@@ -75,6 +76,7 @@ export default function Register() {
         control={control}
         type="text"
         error={errors.name}
+        customClass={inputStyles}
       />
       <BaseInput
         name="email"
@@ -82,18 +84,21 @@ export default function Register() {
         control={control}
         type="email"
         error={errors.email}
+        customClass={inputStyles}
       />
       <PasswordInput
         name="password"
         placeholder="contraseña"
         control={control}
         error={errors.password}
+        customClass={inputStyles}
       />
       <PasswordInput
         name="confirmedPassword"
         placeholder="Repetir contraseña"
         control={control}
         error={errors.confirmedPassword}
+        customClass={inputStyles}
       />
 
       <div className="flex flex-col items-center justify-center gap-4 pb-[76px] xs:flex-row xs:justify-between">

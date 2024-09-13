@@ -5,14 +5,15 @@ from biblioz.review.models import Review
 from biblioz.user.models import User
 from biblioz.book.models import Book
 from biblioz.review.schemas import ReviewSchema
-from biblioz.review.swagger_models import api, review_model
+from biblioz.review.swagger_models import api, review_model, get_review
 from marshmallow import ValidationError
 
 @api.route('/')
 class ReviewList(Resource):
 
     @api.doc('get_reviews')
-    @api.marshal_list_with(review_model)
+    @api.marshal_list_with(get_review)
+
     def get(self):
         """Obtener todas las reseñas"""
         reviews = Review.query.all()
@@ -51,6 +52,9 @@ class ReviewList(Resource):
             if not book:
                 api.abort(404, 'Libro no encontrado')
 
+            existing_review = Review.query.filter_by(user_id=review_data['user_id'], book_id=review_data['book_id']).first()
+            if existing_review:
+                api.abort(404, 'Ya has reseñado este libro')
 
             review = Review(
                 rating=review_data['rating'],
@@ -70,7 +74,7 @@ class ReviewList(Resource):
 @api.route('/<int:id>')
 class ReviewResource(Resource):
     @api.doc('get_review')
-    @api.marshal_with(review_model)
+    @api.marshal_with(get_review)
     def get(self, id):
         """Obtener una reseña por ID"""
         review = Review.query.filter_by(id=id).first()
@@ -100,11 +104,11 @@ class ReviewResource(Resource):
             if review_data.get('book_id') and not book:
                 api.abort(404, 'Libro no encontrado')
 
-            review.rating = review_data['rating']
+            # review.rating = review_data['rating']
             review.comment = review_data.get('comment')
 
-            review.user_id = review_data.get('user_id', review.user_id)
-            review.book_id = review_data.get('book_id', review.book_id)
+            # review.user_id = review_data.get('user_id', review.user_id)
+            # review.book_id = review_data.get('book_id', review.book_id)
 
             db.session.commit()
             return review, 200

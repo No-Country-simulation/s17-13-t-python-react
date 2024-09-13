@@ -1,5 +1,6 @@
 'use client';
-import ButtonBase from './ButtonBase';
+
+import ButtonBase from '@/components/ButtonBase';
 import { useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoMdHeart } from 'react-icons/io';

@@ -33,10 +33,6 @@ def create_app():
         doc='/docs'  # Ruta para la documentación Swagger
     )
 
-    # Crear directorio para almacenar img de modelos si no existe
-    if not os.path.exists(app.config['UPLOAD_FOLDER']):
-        os.makedirs(app.config['UPLOAD_FOLDER'])
-
     with app.app_context():
 
         # Importar y registrar la ruta de resources de Flask-RESTx
