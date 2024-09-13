@@ -3,6 +3,7 @@ import Carousel from '@/components/Carousel/Carousel';
 import AuthorProfileOverview from '@/components/AuthorProfileOverview';
 import { Suspense } from 'react';
 import AuthorSkeleton from '@/components/Skeleton/AuthorSkeleton';
+import { useAuthorStore } from '@/app/store/authorStore';
 
 export default async function Author() {
   const bio =

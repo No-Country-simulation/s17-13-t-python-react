@@ -11,11 +11,12 @@ interface Props {
 }
 
 export default async function AuthorProfileOverview({ bio, image, name }: Props) {
+
   const author = await fetcher(builderApiUrl('author/1'));
   return (
     <div className="mx-auto grid max-w-[85rem] grid-cols-1 pb-8 md:grid-cols-[auto_1fr] md:gap-16">
       <Avatar
-        alt="Emily"
+        alt="Imagen del autor"
         img={image}
         customClass="-translate-y-16"
         containerClass="mx-auto size-64 md:size-52"
