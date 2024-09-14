@@ -14,10 +14,12 @@ class Book(db.Model):
     reviews = db.relationship('Review', back_populates='book')
 
     # Relación muchos a uno con Genre
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), nullable=False)
+    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id', ondelete='SET NULL'), nullable=False)
     genre = db.relationship('Genre', back_populates='books')
 
     # # Relación muchos a uno con Author
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id', ondelete='SET NULL'), nullable=False)
     author = db.relationship('Author', back_populates='books')
 
+    # Relación uno a muchos con SearchHistory
+    searches = db.relationship('SearchHistory', back_populates='book')
