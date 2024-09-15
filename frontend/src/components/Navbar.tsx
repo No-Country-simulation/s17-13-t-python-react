@@ -36,7 +36,7 @@ export default function Navbar() {
     <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF] shadow-[0px_4px_4px_0px_#00000040]">
       <nav className="flex items-center justify-between">
         <Link href="/" className="font-semibold">
-          Logo
+          <img src="" alt="BibliOz logo" />
         </Link>
 
         <div className="md:hidden">
@@ -92,7 +92,7 @@ export default function Navbar() {
       </nav>
 
       {isOpenMenu && (
-        <ul className="absolute left-0 top-16 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
+        <ul className="absolute left-14 top-16 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
           <li onClick={() => setShowCategory((show) => !show)}>
             <a className={stylesLink}>Categoría</a>
           </li>
