@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Category from './Category';
 import { IoIosClose, IoIosMenu } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { useAuthStore } from '@/app/store/authStore';
 
 const stylesLink = 'cursor-pointer rounded-2xl px-3 py-2 transition-all hover:bg-[#47242A]';
 
@@ -12,6 +13,8 @@ export default function Navbar() {
   const [showCategory, setShowCategory] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const timerRef = useRef<number | null>(null);
+
+  const { isLogged } = useAuthStore();
 
   //////////////////////////////
 
@@ -36,7 +39,7 @@ export default function Navbar() {
     <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF] shadow-[0px_4px_4px_0px_#00000040]">
       <nav className="flex items-center justify-between">
         <Link href="/" className="font-semibold">
-          <img src="" alt="BibliOz logo" />
+          <img src="/logo.svg" alt="BibliOz logo" className="px-5" />
         </Link>
 
         <div className="md:hidden">
@@ -84,15 +87,21 @@ export default function Navbar() {
           </li>
 
           <li>
-            <Link href="/login" className={stylesLink}>
-              Iniciar sesión
-            </Link>
+            {isLogged ? (
+              <Link href="/profile" className={stylesLink}>
+                Mi perfil
+              </Link>
+            ) : (
+              <Link href="/login" className={stylesLink}>
+                Iniciar sesión
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
 
       {isOpenMenu && (
-        <ul className="absolute left-14 top-16 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
+        <ul className="absolute left-14 top-24 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
           <li onClick={() => setShowCategory((show) => !show)}>
             <a className={stylesLink}>Categoría</a>
           </li>
@@ -122,9 +131,15 @@ export default function Navbar() {
           </li>
 
           <li>
-            <Link href="/login" className={stylesLink}>
-              Iniciar sesión
-            </Link>
+            {isLogged ? (
+              <Link href="/profile" className={stylesLink}>
+                Mi perfil
+              </Link>
+            ) : (
+              <Link href="/login" className={stylesLink}>
+                Iniciar sesión
+              </Link>
+            )}
           </li>
         </ul>
       )}
