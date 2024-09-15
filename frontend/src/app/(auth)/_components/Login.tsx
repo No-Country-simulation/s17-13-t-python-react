@@ -2,26 +2,16 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import PasswordInput from '@/components/PasswordInput';
+import PasswordInput from './PasswordInput';
 import BaseInput from '@/components/BaseInput';
 import FeedbackButton from '@/components/FeedbackButton';
 import { AuthValues, loginSchema } from '@/app/(auth)/_validations/authSchemas';
 import { signInUser } from '@/libs/signInUser.action';
 import { useRouter } from 'next/navigation';
-import { useModalStore } from '@/app/store/modalStore';
-import { useUserStore } from '@/app/store/userStore';
-
-interface LoginResponse {
-  id: string;
-  email: string;
-  name: string;
-}
+import { LoginUserResponse, useUserStore } from '@/app/store/userStore';
 
 export default function Login() {
   const router = useRouter();
-  const { toggleModal } = useModalStore((state) => ({
-    toggleModal: state.toggleModal,
-  }));
   const { setBasicInfo } = useUserStore((state) => ({
     setBasicInfo: state.setBasicInfo,
   }));
@@ -37,7 +27,7 @@ export default function Login() {
     'shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current';
 
   const onSubmit: SubmitHandler<AuthValues> = async ({ email, password }) => {
-    const logger = await signInUser<LoginResponse>(
+    const logger = await signInUser<LoginUserResponse>(
       { email: email, password: password },
       'auth/login',
     );
@@ -46,7 +36,6 @@ export default function Login() {
       return console.log(logger.errorMessage);
     }
 
-    // TODO: cuando se hace el login, el Back devolverá la data del usuario
     setBasicInfo({
       id: logger.data.id,
       name: logger.data.name,
@@ -54,9 +43,8 @@ export default function Login() {
       isLogged: true,
       role: 'user',
     });
-    //se agrego id como
+
     router.push('/user');
-    toggleModal();
   };
 
   return (

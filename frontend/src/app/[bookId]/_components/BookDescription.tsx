@@ -1,4 +1,4 @@
-import Star from '@/components/Star';
+import Star from '@/app/[bookId]/_components/Star';
 import { Book } from '@/interfaces/Book.interface';
 import Image from 'next/image';
 

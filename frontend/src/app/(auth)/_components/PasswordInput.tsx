@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { PasswordInputProps } from '@/interfaces/InputProps.interface';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default function PasswordInput({
   name,

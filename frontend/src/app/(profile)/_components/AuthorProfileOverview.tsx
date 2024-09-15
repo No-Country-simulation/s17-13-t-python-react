@@ -1,7 +1,7 @@
 import fetcher from '@/utils/fetcher';
-import Avatar from './Avatar';
-import Paragraph from './Typography/Paragraph';
-import Title from './Typography/Title';
+import Avatar from '@/components/Avatar';
+import Paragraph from '@/components/Typography/Paragraph';
+import Title from '@/components/Typography/Title';
 import builderApiUrl from '@/utils/builderApiUrl';
 
 interface Props {

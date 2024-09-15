@@ -1,4 +1,4 @@
-import Register from '@/components/Register';
+import Register from '@/app/(auth)/_components/Register';
 import Link from 'next/link';
 
 export default function page() {

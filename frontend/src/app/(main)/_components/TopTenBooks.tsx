@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import  { Suspense } from 'react';
 import { getTopTenBooks } from '@/libs/actions';
 import TopTenBooksList from './TopTenBooksList';
 

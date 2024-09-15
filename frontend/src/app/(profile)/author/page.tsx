@@ -1,10 +1,9 @@
 'use client';
 import authorImage from '/public/avatars/avatar-1.png';
 import Carousel from '@/components/Carousel/Carousel';
-import AuthorProfileOverview from '@/components/AuthorProfileOverview';
-import { Suspense, useState, useEffect } from 'react';
+import AuthorProfileOverview from '../_components/AuthorProfileOverview';
+import { useState, useEffect } from 'react';
 import AuthorSkeleton from '@/components/Skeleton/AuthorSkeleton';
-import { useAuthorStore } from '@/app/store/authorStore';
 import builderApiUrl from '@/utils/builderApiUrl';
 
 interface AuthorResponse {

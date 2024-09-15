@@ -1,8 +1,8 @@
-import Avatar from './Avatar';
+import Avatar from '../../../components/Avatar';
 import { FaRegEdit } from 'react-icons/fa';
-import ButtonBase from './ButtonBase';
+import ButtonBase from '../../../components/ButtonBase';
 import ProfileSummaryList from './ProfileSummaryList';
-import Title from './Typography/Title';
+import Title from '../../../components/Typography/Title';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
 
 interface Props {

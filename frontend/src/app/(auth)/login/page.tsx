@@ -1,5 +1,5 @@
-import ButtonMedia from '@/components/ButtonMedia';
-import Login from '@/components/Login';
+import ButtonMedia from '../_components/ButtonMedia';
+import Login from '../_components/Login';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
 import { FaApple } from 'react-icons/fa6';

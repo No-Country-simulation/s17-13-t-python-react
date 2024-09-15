@@ -1,14 +1,21 @@
 import Carousel from '@/components/Carousel/Carousel';
 import SearchBar from '@/components/SearchBar';
-import TopTenBooks from '@/components/TopTenBooks';
-import Modal from '@/components/Modal';
+import TopTenBooks from '@/app/(main)/_components/TopTenBooks';
 
-export default function Home() {
+interface HomeProps {
+  modal: React.ReactNode; 
+}
+// query params
+interface HomeProps {
+  
+}
+
+export default function Home({ modal }: HomeProps) {
   return (
     <div className="max-w-page px-6 md:px-8">
       <SearchBar />
       <Carousel books={[]} carouselTitle="Tus recomendados" />
-      <Modal />
+      {modal}
       <TopTenBooks />
       <Carousel books={[]} carouselTitle="Agregados recientemente" />
       <Carousel books={[]} carouselTitle="Los más buscados" />

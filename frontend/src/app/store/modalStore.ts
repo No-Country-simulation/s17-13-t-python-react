@@ -6,7 +6,7 @@ interface ModalState {
 }
 
 export const useModalStore = create<ModalState>((set) => ({
-  isView: false,
+  isView: true,
   toggleModal: () =>
     set(({ isView }) => ({
       isView: !isView,

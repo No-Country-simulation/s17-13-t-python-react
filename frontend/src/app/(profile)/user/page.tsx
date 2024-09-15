@@ -3,9 +3,8 @@
 import { HiLocationMarker } from 'react-icons/hi';
 import { FaUserLarge } from 'react-icons/fa6';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
-import UserProfileOverview from '@/components/UserProfileOverview';
+import UserProfileOverview from '../_components/UserProfileOverview';
 import Carousel from '@/components/Carousel/Carousel';
-import userImage from '/public/avatars/avatar-2.png';
 import { useUserStore } from '@/app/store/userStore';
 import { useEffect, useState } from 'react';
 import builderApiUrl from '@/utils/builderApiUrl';

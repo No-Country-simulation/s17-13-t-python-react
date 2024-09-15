@@ -4,29 +4,21 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import BaseInput from '@/components/BaseInput';
 import FeedbackButton from '@/components/FeedbackButton';
-import { AuthValues, LoginValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
-import PasswordInput from '@/components/PasswordInput';
+import { AuthValues, registerSchema } from '@/app/(auth)/_validations/authSchemas';
+import PasswordInput from './PasswordInput';
 import { createUser } from '@/libs/createUser.action';
-import { useUserStore } from '@/app/store/userStore';
+import { LoginUserResponse, useUserStore } from '@/app/store/userStore';
 import { signInUser } from '@/libs/signInUser.action';
 import { useRouter } from 'next/navigation';
-import { useModalStore } from '@/app/store/modalStore';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
+import { ButtonFakeUser } from './ButtonFakeUser';
+import { randomUser } from '@/utils/randomUser';
 
 export default function Register() {
   const router = useRouter();
-  const { toggleModal } = useModalStore((state) => ({
-    toggleModal: state.toggleModal,
-  }));
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<AuthValues>({
     resolver: zodResolver(registerSchema),
@@ -38,15 +30,25 @@ export default function Register() {
   const inputStyles =
     'shadow-btn h-[46px] w-full md:w-[343px] outline-1 outline outline-[#E7E0CF] text-[#E7E0CF] rounded-3xl px-5 text-lg font-medium bg-[#E7E0CF22] backdrop-blur-[50px] placeholder:font-medium placeholder:capitalize placeholder:text-current';
 
-  const onSubmit: SubmitHandler<AuthValues> = async (formValue) => {
-    const { data, errorMessage, success } = await createUser<User>(formValue, 'auth/register');
+  const generateRandomUser = (): void => {
+    const user = randomUser();
 
-    //  TODO lanza un toast de error o pinta el mensaje en el viewport
+    reset({
+      email: user.email,
+      password: user.password,
+      name: user.name,
+      confirmedPassword: user.password,
+    });
+  };
+
+  const onSubmit: SubmitHandler<AuthValues> = async (formValue) => {
+    const { data, errorMessage, success } = await createUser(formValue, 'auth/register');
+
     if (!success || data === null) {
       return console.log(errorMessage);
     }
 
-    const logger = await signInUser<LoginValues>(
+    const logger = await signInUser<LoginUserResponse>(
       { email: formValue.email, password: formValue.password },
       'auth/login',
     );
@@ -55,13 +57,10 @@ export default function Register() {
       return console.log(logger.errorMessage);
     }
 
-    const { email, password } = logger.data;
+    const { email, id, name } = logger.data;
 
-    // TODO: cuando se hace el login, el Back devolverá la data del usuario
-
-    setBasicInfo({ id: data.id, name: data.name, email: email, isLogged: true, role: 'user' });
-    router.push('/user');
-    toggleModal();
+    setBasicInfo({ id, name, email, isLogged: true, role: 'user' });
+    router.push('/');
   };
 
   return (
@@ -123,6 +122,7 @@ export default function Register() {
           text="Iniciar sesión"
         />
       </div>
+      <ButtonFakeUser handleClick={generateRandomUser} />
     </form>
   );
 }

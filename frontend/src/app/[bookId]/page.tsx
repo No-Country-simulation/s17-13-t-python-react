@@ -1,10 +1,8 @@
-// import BookOverview from '@/components/BookOverview';
 import { getBook } from '@/libs/actions';
 import BookReview from './_components/BookReview';
 import BookOptionsBar from './_components/BookOptionsBar';
 import Carousel from '@/components/Carousel/Carousel';
 import { Book } from '@/interfaces/Book.interface';
-import BookOverview from './_containers/BookOverviewContainer';
 import BookOverviewContainer from './_containers/BookOverviewContainer';
 
 ////////////////////////////
@@ -38,7 +36,7 @@ export default async function page({ params }: PageProps) {
       </div>
       <Carousel
         carouselTitle="Del mismo autor"
-        books={[{ name: 'Bodas de odio', url: '/bibliozBook/book-2.png' }]}
+        books={[]}
       />
       <Carousel carouselTitle="Porque también te puede interesar" books={[]} />
     </section>
