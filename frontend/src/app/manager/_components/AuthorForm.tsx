@@ -21,7 +21,7 @@ export default function AuthorForm() {
     mode: 'onChange',
   });
   const inputStyles =
-    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600';
+    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 text-black';
 
   const onSubmit: SubmitHandler<AuthorValues> = async (formValue) => {
     const { data, errorMessage, success } = await createAuthor<AuthorPostResponse>(
@@ -49,7 +49,7 @@ export default function AuthorForm() {
             name={'name'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -63,7 +63,7 @@ export default function AuthorForm() {
             name={'img'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -77,7 +77,7 @@ export default function AuthorForm() {
             name={'biography'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -90,9 +90,9 @@ export default function AuthorForm() {
           isSubmitting={isSubmitting}
           type="submit"
           text="Crear autor"
-          feedBackColor="var(--main-clr)"
+          feedBackColor="white"
         />
-        <Anchor href="/manager/author/content" text="ver autores" />
+        <Anchor customClass='text-white' href="/manager/author/content" text="ver autores" />
       </div>
     </form>
   );

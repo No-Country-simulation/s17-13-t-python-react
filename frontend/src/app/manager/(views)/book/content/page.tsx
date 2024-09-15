@@ -15,7 +15,11 @@ export default async function BookContent() {
 
   return (
     <>
-      <Anchor href="/manager/genre" text="volver" customClass="my-4 ml-auto" orientation="back" />
+       <div className='flex items-center justify-between'>
+
+       <Title customClass='text-stroke' level={2} title="Libros" />
+      <Anchor href="/manager/genre" text="volver" customClass="my-4 ml-auto text-secondary" orientation="back" />
+       </div>
       <SimpleTable headers={tableHeads}>
         {data.reverse().map((book) => (
           <RowBook book={book} key={book.id} />

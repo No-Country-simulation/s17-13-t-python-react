@@ -23,7 +23,7 @@ export default function GenderForm() {
     mode: 'onChange',
   });
   const inputStyles =
-    'focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 dark:placeholder-gray-400';
+    'focus:ring-primary-600 focus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 dark:placeholder-gray-400 text-black';
 
   const onSubmit: SubmitHandler<GenreValues> = async (formValue) => {
     const { data, errorMessage, success } = await createGenre<GenderPostResponse>(
@@ -51,7 +51,7 @@ export default function GenderForm() {
             name={'name'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -63,9 +63,9 @@ export default function GenderForm() {
           isSubmitting={isSubmitting}
           type="submit"
           text="Crear genero"
-          feedBackColor="var(--main-clr)"
+          feedBackColor="white"
         />
-        <Anchor href="/manager/genre/content" text="ver géneros" />
+        <Anchor customClass='text-white' href="/manager/genre/content" text="ver géneros" />
       </div>
     </form>
   );

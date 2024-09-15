@@ -19,9 +19,11 @@
     --secondary-clr: #f1f1f1;
   }
 
-  body {
-    color: #1e1e1e;
-    background: #e7e0cf;
+  @layer base {
+    body {
+      color: var(--primary-clr);
+      background: var(--secondary-clr);
+    }
   }
 
   @layer utilities {
@@ -56,6 +58,10 @@
     .max-w-page {
       max-width: 120rem;
       margin-inline: auto;
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px #a8a8a8;
     }
   }
 }
