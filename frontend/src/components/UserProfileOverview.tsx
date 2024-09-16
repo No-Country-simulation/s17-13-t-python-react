@@ -1,9 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Avatar from './Avatar';
 import { FaRegEdit } from 'react-icons/fa';
 import ButtonBase from './ButtonBase';
 import ProfileSummaryList from './ProfileSummaryList';
 import Title from './Typography/Title';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
+import EditUserProfile from './EditUserProfile';
 
 interface Props {
   userName: string;
@@ -12,6 +16,8 @@ interface Props {
 }
 
 export default function UserProfileOverview({ image, dataUser, userName }: Props) {
+  const [isEditProfile, setEditProfile] = useState<boolean>(false);
+
   return (
     <div className="mx-auto grid max-w-[85rem] grid-cols-1 pb-8 md:grid-cols-[auto_1fr] md:gap-x-16">
       {image != null ? (
@@ -33,8 +39,15 @@ export default function UserProfileOverview({ image, dataUser, userName }: Props
           <Title level={2} title={userName} />
           <span className="text-xl font-normal">Lector</span>
         </header>
-        <ButtonBase text="Editar perfil" icon={<FaRegEdit />} alt="Editar perfil" />
+        <ButtonBase
+          text="Editar perfil"
+          icon={<FaRegEdit />}
+          alt="Editar perfil"
+          handleCLick={() => setEditProfile(true)}
+        />
       </div>
+
+      {isEditProfile && <EditUserProfile image={image} setEditProfile={setEditProfile} />}
     </div>
   );
 }
