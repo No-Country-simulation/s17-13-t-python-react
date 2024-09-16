@@ -8,6 +8,7 @@ interface Props {
   isSubmitting?: boolean;
   feedback: string;
   feedBackColor?: string;
+  customClass?: string;
 }
 
 export default function FeedbackButton({
@@ -18,6 +19,7 @@ export default function FeedbackButton({
   submittingText,
   feedback,
   feedBackColor,
+  customClass,
 }: Props) {
   const styles = `
     relative h-9 w-40 rounded-3xl font-medium text-white shadow-btn 
@@ -32,7 +34,11 @@ export default function FeedbackButton({
 
   return (
     <div className="group relative inline-block w-fit">
-      <button className={styles} disabled={!isValid || isSubmitting} type={type}>
+      <button
+        className={`${styles} ${customClass}`}
+        disabled={!isValid || isSubmitting}
+        type={type}
+      >
         {isSubmitting ? (submittingText ?? 'Enviando...') : text}
       </button>
       <span className={feedbackStyles} style={{ color: feedBackColor || '' }}>

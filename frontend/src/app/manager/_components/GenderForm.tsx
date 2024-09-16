@@ -65,7 +65,7 @@ export default function GenderForm() {
           text="Crear genero"
           feedBackColor="white"
         />
-        <Anchor customClass='text-white' href="/manager/genre/content" text="ver géneros" />
+        <Anchor customClass="text-white" href="/manager/genre/content" text="ver géneros" />
       </div>
     </form>
   );

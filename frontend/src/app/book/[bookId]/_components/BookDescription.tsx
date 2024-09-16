@@ -1,9 +1,9 @@
-import Star from '@/app/[bookId]/_components/Star';
-import { Book } from '@/interfaces/Book.interface';
 import Image from 'next/image';
+import Star from './Star';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
 interface Props {
-  book: Book;
+  book: GetBookResponse;
   handlerViewer: () => void;
 }
 
@@ -12,7 +12,7 @@ export default function BookDescription({ book, handlerViewer }: Props) {
     <section className="grid grid-cols-[1fr] grid-rows-2 gap-9 lg:h-[600px] lg:grid-cols-[1fr_1.5fr] lg:grid-rows-1 lg:gap-0 lg:px-8 lg:py-4">
       <div className="relative h-full w-full">
         <Image
-          src={book.cover}
+          src={book.img}
           quality={80}
           fill
           alt={book.title}
@@ -24,7 +24,7 @@ export default function BookDescription({ book, handlerViewer }: Props) {
             onClick={handlerViewer}
             title="ver portadas y contraportada del libro"
             fill
-            src={book.cover}
+            src={book.img}
             alt={book.title}
             className="block h-full w-full cursor-pointer object-fill shadow-xl"
           />
@@ -35,14 +35,14 @@ export default function BookDescription({ book, handlerViewer }: Props) {
         <div className="mb-2 flex items-center gap-5">
           <h2 className="text-3xl font-semibold">{book.title}</h2>
           <div className="flex gap-1">
-            <Star size={21} defaultRating={book.rating} color="#264E61" />
+            <Star size={21} defaultRating={3} color="#264E61" />
           </div>
         </div>
 
         <div className="mb-7">
-          <p className="text-base">Autor: {book.author}</p>
-          <p className="text-base">Editorial: {book.editorial}</p>
-          <p className="text-base">Páginas: {book.pageNumber}</p>
+          <p className="text-base">Autor: empty</p>
+          <p className="text-base">Editorial: empty</p>
+          <p className="text-base">Páginas: empty</p>
         </div>
 
         <p className="text-base leading-7">{book.description}</p>

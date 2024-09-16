@@ -4,7 +4,6 @@ import { HiLocationMarker } from 'react-icons/hi';
 import { FaUserLarge } from 'react-icons/fa6';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
 import UserProfileOverview from '../_components/UserProfileOverview';
-import Carousel from '@/components/Carousel/Carousel';
 import { useUserStore } from '@/app/store/userStore';
 import { useEffect, useState } from 'react';
 import builderApiUrl from '@/utils/builderApiUrl';
@@ -68,8 +67,6 @@ export default function User() {
         image={user && user.img}
         userName={user ? user.user.name : 'Unknown User'}
       />
-      <Carousel books={recommendations} carouselTitle="Mis recomendaciones" />
-      <Carousel books={favorites} carouselTitle="Mis favoritos" />
     </>
   );
 }

@@ -2,23 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SiGoogletagmanager } from "react-icons/si";
+import { SiGoogletagmanager } from 'react-icons/si';
 
 export default function NavbarManager() {
   const currentPath = usePathname();
   const activeLink = (path: string) => (currentPath === path ? 'text-auxiliary' : '');
-  const anchorStyle =
-    'inline-flex items-center text-lg hover:text-light hover:font-semibold';
+  const anchorStyle = 'inline-flex items-center text-lg hover:text-light hover:font-semibold';
 
   return (
-    <nav
-      className="flex rounded-lg border-gray-200  dark:border-gray-700"
-      aria-label="Breadcrumb"
-    >
+    <nav className="flex rounded-lg border-gray-200 dark:border-gray-700" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li className="inline-flex items-center">
           <Link href="/manager/genre" className={`${anchorStyle} ${activeLink('/bookManager')}`}>
-            <SiGoogletagmanager className='mr-2' size={18} />
+            <SiGoogletagmanager className="mr-2" size={18} />
             Genero
           </Link>
         </li>

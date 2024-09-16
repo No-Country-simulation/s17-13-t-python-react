@@ -1,7 +1,7 @@
 'use client';
 import authorImage from '/public/avatars/avatar-1.png';
 import Carousel from '@/components/Carousel/Carousel';
-import AuthorProfileOverview from '../_components/AuthorProfileOverview';
+import AuthorProfileOverview from '../../_components/AuthorProfileOverview';
 import { useState, useEffect } from 'react';
 import AuthorSkeleton from '@/components/Skeleton/AuthorSkeleton';
 import builderApiUrl from '@/utils/builderApiUrl';
@@ -23,7 +23,7 @@ export default function Author({ params }: PageProps) {
 
   const [loading, setLoading] = useState(true);
 
-  const url = builderApiUrl(`author/${2}`);
+  const url = builderApiUrl(`author/${params.authorId}`);
 
   const fetchUserProfile = async () => {
     try {
@@ -57,9 +57,6 @@ export default function Author({ params }: PageProps) {
         image={authorData?.img || 'imagen no encontrada'}
         name={authorData?.name || 'Autor Desconocido'}
       />
-      <div className="py-8">
-        <Carousel books={[]} carouselTitle="Sus libros" />
-      </div>
     </>
   );
 }

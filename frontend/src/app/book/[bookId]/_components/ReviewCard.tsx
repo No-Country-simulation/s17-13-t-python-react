@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Star from '@/app/[bookId]/_components/Star';
+import Star from './Star';
 import Avatar from '/public/avatars/avatar-2.png';
 
 interface Review {

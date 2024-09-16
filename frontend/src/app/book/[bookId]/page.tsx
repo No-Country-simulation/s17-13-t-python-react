@@ -1,9 +1,9 @@
-import { getBook } from '@/libs/actions';
 import BookReview from './_components/BookReview';
 import BookOptionsBar from './_components/BookOptionsBar';
-import Carousel from '@/components/Carousel/Carousel';
-import { Book } from '@/interfaces/Book.interface';
 import BookOverviewContainer from './_containers/BookOverviewContainer';
+import fetcher from '@/utils/fetcher';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
+import ErrorMessage from '@/components/ErrorMessage';
 
 ////////////////////////////
 
@@ -17,12 +17,12 @@ interface PageProps {
 
 export default async function page({ params }: PageProps) {
   const { bookId } = params || '';
-  const book: Book | null = await getBook('OL45804W');
+  const book = await fetcher<GetBookResponse>(`book/${bookId}`);
 
-  if (!book) {
+  if (typeof book === 'string') {
     return (
-      <section className="mt-8">
-        <p>Book not found</p>
+      <section className="min-h-[calc(100dvh-4rem)] content-center">
+        <ErrorMessage error={`Book not found: ${book}`} color="red" />
       </section>
     );
   }
@@ -31,14 +31,9 @@ export default async function page({ params }: PageProps) {
     <section className="max-w-page mt-8 px-6 md:px-8">
       <div className="flex flex-col gap-16">
         <BookOverviewContainer book={book} />
-        <BookOptionsBar />
+        <BookOptionsBar bookId={Number(book.author_id)} />
         <BookReview />
       </div>
-      <Carousel
-        carouselTitle="Del mismo autor"
-        books={[]}
-      />
-      <Carousel carouselTitle="Porque también te puede interesar" books={[]} />
     </section>
   );
 }

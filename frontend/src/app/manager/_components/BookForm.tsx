@@ -121,7 +121,7 @@ export default function BookForm({ authors, genders }: Props) {
           type="submit"
           text="Crear libro"
         />
-        <Anchor customClass='text-white' href="/manager/book/content" text="ver libros" />
+        <Anchor customClass="text-white" href="/manager/book/content" text="ver libros" />
       </div>
     </form>
   );

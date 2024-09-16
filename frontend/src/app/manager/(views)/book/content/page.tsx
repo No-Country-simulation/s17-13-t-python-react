@@ -7,7 +7,7 @@ import RowBook from '@/app/manager/_components/Table/RowBook';
 
 export default async function BookContent() {
   const data = await fetcher<GetBookResponse[]>('/book/');
-  const tableHeads: KeyBookTye[] = ['id', 'img', 'title', 'description', 'genre_id', 'author_id'];
+  const tableHeads: KeyBookTye[] = ['img', 'id', 'title', 'description', 'genre_id', 'author_id'];
 
   if (typeof data === 'string') {
     return <Title level={2} title={data} />;
@@ -15,11 +15,15 @@ export default async function BookContent() {
 
   return (
     <>
-       <div className='flex items-center justify-between'>
-
-       <Title customClass='text-stroke' level={2} title="Libros" />
-      <Anchor href="/manager/genre" text="volver" customClass="my-4 ml-auto text-secondary" orientation="back" />
-       </div>
+      <div className="flex items-center justify-between">
+        <Title customClass="text-stroke" level={2} title="Libros" />
+        <Anchor
+          href="/manager/genre"
+          text="volver"
+          customClass="my-4 ml-auto text-secondary"
+          orientation="back"
+        />
+      </div>
       <SimpleTable headers={tableHeads}>
         {data.reverse().map((book) => (
           <RowBook book={book} key={book.id} />

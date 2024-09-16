@@ -2,11 +2,11 @@
 
 import BookViewer from '../_components/BookViewer';
 import BookDescription from '../_components/BookDescription';
-import { Book } from '@/interfaces/Book.interface';
 import { useState } from 'react';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
 interface Props {
-  book: Book;
+  book: GetBookResponse;
 }
 
 export default function BookOverviewContainer({ book }: Props) {
@@ -19,6 +19,6 @@ export default function BookOverviewContainer({ book }: Props) {
   return !isViewViewer ? (
     <BookDescription book={book} handlerViewer={toggleViewer} />
   ) : (
-    <BookViewer handlerViewer={toggleViewer} />
+    <BookViewer images={[book.img, book.img]} title={book.title} handlerViewer={toggleViewer} />
   );
 }

@@ -92,7 +92,7 @@ export default function AuthorForm() {
           text="Crear autor"
           feedBackColor="white"
         />
-        <Anchor customClass='text-white' href="/manager/author/content" text="ver autores" />
+        <Anchor customClass="text-white" href="/manager/author/content" text="ver autores" />
       </div>
     </form>
   );

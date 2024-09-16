@@ -10,6 +10,7 @@
   --accent-clr: #47242a;
   --auxiliary-clr: #264e61;
   --light-clr: #e7e0cf;
+  --gray-linear-gradient: linear-gradient(90deg, #e0e0e0 25%, #cfcfcf 50%, #e0e0e0 75%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +24,9 @@
     body {
       color: var(--primary-clr);
       background: var(--secondary-clr);
+    }
+    img {
+      background-color: var(--gray-linear-gradient);
     }
   }
 

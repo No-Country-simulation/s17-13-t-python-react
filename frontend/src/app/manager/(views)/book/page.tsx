@@ -23,7 +23,7 @@ export default async function BookManager() {
 
   return (
     <>
-      <Title customClass='text-stroke' level={2} title="Creador de libros" />
+      <Title customClass="text-stroke" level={2} title="Creador de libros" />
       <BookForm authors={authors} genders={genders} />
     </>
   );

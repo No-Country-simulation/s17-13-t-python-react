@@ -50,7 +50,10 @@ export default function page() {
       </header>
       <Login />
       <div className="pb-10 text-center md:pb-0">
-        <Link href="/register" className="text-center text-sm text-[#E7E0CF] sm:text-base hover:underline">
+        <Link
+          href="/register"
+          className="text-center text-sm text-[#E7E0CF] hover:underline sm:text-base"
+        >
           Aún no tengo cuenta, <b>registrarme</b>
         </Link>
       </div>

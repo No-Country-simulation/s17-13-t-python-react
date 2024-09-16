@@ -53,6 +53,7 @@
 
 .book-figure {
   position: relative;
+  width: fit-content;
 }
 
 .book-link {
@@ -72,10 +73,15 @@
   bottom: 0;
   left: 50%;
   width: 100%;
-  transform: translateX(-50%) translateY(3.5rem);
+  transform: translateX(-50%) translateY(2.5rem);
   text-align: center;
   font-size: 0.75rem;
   padding: 0 0.5rem;
+
+  @media (width > 768px) {
+  transform: translateX(-50%) translateY(3.5rem);
+
+  }
 }
 
 @media (min-width: 768px) {

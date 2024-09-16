@@ -8,7 +8,7 @@ interface ButtonFakeUserProps {
 export function ButtonFakeUser({ handleClick }: ButtonFakeUserProps) {
   return (
     <ButtonBase
-      customClass='absolute top-12 right-12'
+      customClass="absolute top-12 right-12"
       icon={<FaChalkboardUser />}
       alt="Crear usuario"
       handleCLick={handleClick}
