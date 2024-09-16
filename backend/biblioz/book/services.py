@@ -2,6 +2,7 @@ from biblioz import db
 from flask_restx import Resource, abort, Namespace
 from biblioz.book.models import Book
 from biblioz.review.models import Review
+from biblioz.search.models import SearchHistory
 from biblioz.book.swagger_models import api, book_model
 
 api_services = Namespace('servicesBook', description='Servicios adicionales para libros')
@@ -38,3 +39,15 @@ class TopTenBooksResource(Resource):
             api.abort(404, 'No hay libros con suficientes ratings')
 
         return [book for book, avg_rtgs in top_books]
+
+
+@api_services.route('/wantedBooks')
+class SearchedBooksResource(Resource):
+    @api.doc('get_search_books')
+    @api.marshal_list_with(book_model)
+    def get(self):
+        """Obtener los libros más buscados"""
+        books = Book.query.join(SearchHistory).order_by(SearchHistory.search_count.desc()).limit(10).all()
+        if not books:
+            api.abort(404,'No hay busquedas realizadas')
+        return books
