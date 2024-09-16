@@ -44,7 +44,11 @@ export default function Navbar() {
 
         <div className="md:hidden">
           <button onClick={toggleMenu} className="flex items-center justify-center">
-            {isOpenMenu ? <IoIosClose className="h-[2rem] w-[1.8rem]" /> : <GiHamburgerMenu />}
+            {isOpenMenu ? (
+              <IoIosClose className="h-[3rem] w-[2.9rem]" />
+            ) : (
+              <GiHamburgerMenu className="h-[1.8rem] w-[1.6rem]" />
+            )}
           </button>
         </div>
 
