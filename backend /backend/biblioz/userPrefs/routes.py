@@ -7,14 +7,14 @@ from biblioz.book.models import Book
 from biblioz.userPrefs.models import UserFavoriteGenre
 from biblioz.userPrefs.schemas import UserFavoriteGenreSchema
 from biblioz.userPrefs.swagger_models import api , user_preferences_model
-from biblioz.book.swagger_models import book_model
+from biblioz.book.swagger_models import get_book
 
 
 @api.route('/books/recommended')
 class RecommendedBooksResource(Resource):
     @api.doc('get_recommended_books')
     @api.param('user_id', 'Id del user', type=int, required=True)  
-    @api.marshal_list_with(book_model)
+    @api.marshal_list_with(get_book)
     def get(self):
         """Obtener libros recomendados basados en los géneros seleccionados"""
         user_id = request.args.get('user_id', type=int)

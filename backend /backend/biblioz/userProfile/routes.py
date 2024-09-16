@@ -26,7 +26,7 @@ class UserProfileResource(Resource):
 
         return {
             'img': user_profile.img,
-            'biography': user_profile.biography,
+            'city': user_profile.city,
             'user': {
                 'id': user.id,
                 'name': user.name,
@@ -51,7 +51,7 @@ class UserProfileResource(Resource):
         errors = {}
 
         img_url = request.json.get('img')
-        biography = request.json.get('biography')
+        city = request.json.get('city')
 
         user_data = request.json.get('user', {})
         name = user_data.get('name')
@@ -61,10 +61,10 @@ class UserProfileResource(Resource):
             img_url = changes_image_url(img_url)
             user_profile.img = img_url
 
-        if biography:
+        if city:
             try:
-                schema.load({'biography': biography})
-                user_profile.biography = biography
+                schema.load({'city': city})
+                user_profile.city = city
             except ValidationError as err:
                 errors.update(err.messages)
 
@@ -85,7 +85,7 @@ class UserProfileResource(Resource):
         
         return {
             'img': user_profile.img,
-            'biography': user_profile.biography,
+            'city': user_profile.city,
             'user': {
                 'id': user_profile.user.id,
                 'name': user_profile.user.name,
