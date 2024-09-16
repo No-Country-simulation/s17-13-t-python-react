@@ -4,7 +4,7 @@ import GenderForm from '../../_components/GenderForm';
 export default function GenrePage() {
   return (
     <>
-      <Title level={2} title="Creador de géneros" />
+      <Title customClass="text-stroke" level={2} title="Creador de géneros" />
       <GenderForm />
     </>
   );

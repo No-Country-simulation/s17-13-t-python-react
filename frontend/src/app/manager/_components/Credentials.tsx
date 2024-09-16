@@ -26,7 +26,7 @@ export default function Credentials() {
   };
 
   const inputStyles =
-    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 tracking-wider font-medium col-[1/2] row-[1/2] pr-16';
+    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 tracking-wider font-medium col-[1/2] row-[1/2] pr-16 text-black';
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

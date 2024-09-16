@@ -1,66 +1,32 @@
 'use client';
 
+import Book from '../Book';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperConfig } from './swipperConfig';
-import Title from '../Typography/Title';
-import { Books } from '@/interfaces/BookSlice.interface';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import './swiper.styles.css';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
 interface Props {
-  carouselTitle: string;
-  books: Books[];
+  books: GetBookResponse[];
 }
 
-// TODO Eliminar Partial type cuando se tenga la data dinámica
-export default function Carousel({ books, carouselTitle }: Props) {
+export default function Carousel({ books }: Props) {
   const controls = ['swiper-button-next', 'swiper-button-prev'];
-  const mockupBooks: Books[] = [
-    { name: 'El secreto de  Matilda', url: '/bibliozBook/book-1.png' },
-    { name: 'Bodas de odio', url: '/bibliozBook/book-2.png' },
-    { name: 'Amor entre páginas', url: '/bibliozBook/book-3.png' },
-    { name: 'Donde se encuentra lo que perdimos', url: '/bibliozBook/book-4.png' },
-    { name: 'El vuelo de la libélula', url: '/bibliozBook/book-5.png' },
-    { name: 'Fuego la sed', url: '/bibliozBook/book-6.png' },
-  ];
 
   return (
-    <section className="py-20">
-      {carouselTitle && (
-        <Title
-          level={2}
-          title={carouselTitle}
-          customClass="mx-auto max-w-page pb-16 text-[2.1875rem] font-semibold"
-        />
-      )}
-      {books && books.length === 1 ? (
-        <div className="flex justify-start">
-          <img
-            className="h-72 w-48 object-cover md:h-[21.625rem] md:w-56"
-            title={books[0].name}
-            src={books[0].url}
-            alt={`cover book ${books[0].name}`}
-          />
-        </div>
-      ) : (
-        <Swiper {...SwiperConfig}>
-          {mockupBooks.map(({ name, url }) => (
-            <SwiperSlide className="w-fit" key={name}>
-              <img
-                className="mx-auto h-72 w-48 select-none object-cover md:h-[21.625rem] md:w-56"
-                title={name}
-                src={url}
-                alt={`cover book ${name}`}
-              />
-            </SwiperSlide>
-          ))}
-          {controls.map((control, i) => (
-            <div key={i} className={control}></div>
-          ))}
-        </Swiper>
-      )}
-      ;
-    </section>
+    <div className="book-slider-container">
+      <Swiper {...SwiperConfig}>
+        {books.map(({ title, img, id }) => (
+          <SwiperSlide className="book-slide" key={id}>
+            <Book bookId={id} name={title} url={img} />
+          </SwiperSlide>
+        ))}
+        {controls.map((control, i) => (
+          <div key={i} className={control}></div>
+        ))}
+      </Swiper>
+    </div>
   );
 }
