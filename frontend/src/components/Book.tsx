@@ -7,8 +7,6 @@ interface Props {
 }
 
 export default function Book({ name, url, bookId }: Props) {
-  console.log(bookId);
-  
   return (
     <figure className="book-figure">
       <Link className="book-link w-fit" href={`/book/${bookId}`}>
