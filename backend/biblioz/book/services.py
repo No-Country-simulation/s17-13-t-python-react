@@ -1,8 +1,10 @@
 from biblioz import db
+from sqlalchemy import func
 from flask_restx import Resource, abort, Namespace
 from biblioz.book.models import Book
 from biblioz.review.models import Review
 from biblioz.search.models import SearchHistory
+from biblioz.author.models import Author
 from biblioz.book.swagger_models import api, book_model, get_book
 
 api_services = Namespace('servicesBook', description='Servicios adicionales para libros')
@@ -50,4 +52,31 @@ class SearchedBooksResource(Resource):
         books = Book.query.join(SearchHistory).order_by(SearchHistory.search_count.desc()).limit(10).all()
         if not books:
             api.abort(404,'No hay busquedas realizadas')
+        return books
+
+
+@api_services.route('/booksOfAuthor/<int:author_id>')
+class BooksAuthorResource(Resource):
+    @api.doc('get_books_author')
+    @api.marshal_list_with(get_book)
+    def get(self, author_id):
+        """Obtener los libros que tiene el author"""
+        author = Author.query.get(author_id)
+        if not author:
+            api.abort(404, 'Author no encontrado')
+
+        books = author.books
+        if not books:
+            api.abort(404,'El autor no tiene libros aun')
+
+        return books
+
+
+@api_services.route('/randomBooks')
+class BooksRandomsResource(Resource):
+    @api.doc('get_books_randoms')
+    @api.marshal_list_with(get_book)
+    def get(self):
+        """Obtener libros randoms recomendados por biblioz"""
+        books = Book.query.order_by(func.random()).limit(10).all()
         return books
