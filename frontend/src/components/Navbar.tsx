@@ -39,11 +39,10 @@ export default function Navbar() {
     <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF] shadow-[0px_4px_4px_0px_#00000040]">
       <nav className="flex items-center justify-between">
         <h1>
-          <span className="sr-only">
-            <Link href="/" className="font-semibold">
-              <img src="/logo.svg" alt="BibliOz logo" className="px-5" />
-            </Link>
-          </span>
+          <span className="sr-only">BibliOz</span>
+          <Link href="/" className="font-semibold">
+            <img src="/logo.svg" alt="BibliOz logo" className="px-5" />
+          </Link>
         </h1>
 
         <div className="md:hidden">
