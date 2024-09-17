@@ -6,7 +6,7 @@ export default function ProfileLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="grid h-full grid-cols-1 grid-rows-[10.3rem_1fr]">
+    <section className="relative grid h-full grid-cols-1 grid-rows-[10.3rem_1fr]">
       <img
         className="h-full w-full object-cover"
         src={backgroundImage.src}
