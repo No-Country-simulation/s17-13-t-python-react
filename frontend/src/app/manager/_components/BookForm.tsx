@@ -27,7 +27,7 @@ export default function BookForm({ authors, genders }: Props) {
     mode: 'onChange',
   });
   const inputStyles =
-    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600';
+    'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full resize-none rounded-lg border border-gray-300 bg-light p-2.5 text-sm dark:border-gray-600 text-black';
 
   const onSubmit: SubmitHandler<BookValues> = async (formValue) => {
     const { data, errorMessage, success } = await createBook<BookValues>(formValue, '/book/');
@@ -52,7 +52,7 @@ export default function BookForm({ authors, genders }: Props) {
             name={'title'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -66,7 +66,7 @@ export default function BookForm({ authors, genders }: Props) {
             name={'img'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -80,7 +80,7 @@ export default function BookForm({ authors, genders }: Props) {
             name={'genre_id'}
             customClass={inputStyles}
             placeholder="-- Selecciona un género --"
-            errorColor="var(--main-clr)"
+            errorColor="white"
             content={genders.map(({ id, name }) => ({ id, author: name }))}
           />
         </div>
@@ -94,7 +94,7 @@ export default function BookForm({ authors, genders }: Props) {
             name={'author_id'}
             customClass={inputStyles}
             placeholder="-- Selecciona un autor --"
-            errorColor="var(--main-clr)"
+            errorColor="white"
             content={authors.map(({ id, name }) => ({ id, author: name }))}
           />
         </div>
@@ -108,7 +108,7 @@ export default function BookForm({ authors, genders }: Props) {
             name={'description'}
             customClass={inputStyles}
             placeholder=""
-            errorColor="var(--main-clr)"
+            errorColor="white"
             type="text"
           />
         </div>
@@ -120,9 +120,8 @@ export default function BookForm({ authors, genders }: Props) {
           isSubmitting={isSubmitting}
           type="submit"
           text="Crear libro"
-          feedBackColor="var(--main-clr)"
         />
-        <Anchor href="/manager/book/content" text="ver libros" />
+        <Anchor customClass="text-white" href="/manager/book/content" text="ver libros" />
       </div>
     </form>
   );

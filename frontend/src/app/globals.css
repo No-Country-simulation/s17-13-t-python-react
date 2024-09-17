@@ -10,6 +10,7 @@
   --accent-clr: #47242a;
   --auxiliary-clr: #264e61;
   --light-clr: #e7e0cf;
+  --gray-linear-gradient: linear-gradient(90deg, #e0e0e0 25%, #cfcfcf 50%, #e0e0e0 75%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,9 +20,14 @@
     --secondary-clr: #f1f1f1;
   }
 
-  body {
-    color: #1e1e1e;
-    background: #e7e0cf;
+  @layer base {
+    body {
+      color: var(--primary-clr);
+      background: var(--secondary-clr);
+    }
+    img {
+      background-color: var(--gray-linear-gradient);
+    }
   }
 
   @layer utilities {
@@ -56,6 +62,10 @@
     .max-w-page {
       max-width: 120rem;
       margin-inline: auto;
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px #a8a8a8;
     }
   }
 }
