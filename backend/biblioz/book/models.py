@@ -7,6 +7,8 @@ class Book(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
     img = db.Column(db.String(200))
+    pages = db.Column(db.Integer, nullable=True)
+    publisher = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=db.func.now(), server_default=db.func.now())
 
