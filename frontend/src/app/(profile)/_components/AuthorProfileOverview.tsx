@@ -1,8 +1,6 @@
-import fetcher from '@/utils/fetcher';
 import Avatar from '@/components/Avatar';
 import Paragraph from '@/components/Typography/Paragraph';
 import Title from '@/components/Typography/Title';
-import builderApiUrl from '@/utils/builderApiUrl';
 
 interface Props {
   bio: string;
@@ -11,7 +9,6 @@ interface Props {
 }
 
 export default async function AuthorProfileOverview({ bio, image, name }: Props) {
-  const author = await fetcher(builderApiUrl('author/1'));
   return (
     <div className="mx-auto grid max-w-[85rem] grid-cols-1 pb-8 md:grid-cols-[auto_1fr] md:gap-16">
       <Avatar

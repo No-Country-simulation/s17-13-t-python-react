@@ -5,26 +5,33 @@ interface UserState {
   id: string | null;
   name: string | null;
   email: string | null;
+  city: string | null;
+  img: string | null;
   recommendations: Books[];
   favorites: Books[];
   isLogged: boolean;
   role: UserRoleType;
-  setBasicInfo: (info: BasicInfoUserType) => void;
+  setBasicInfo: (info: Partial<BasicInfoUserType>) => void;
 }
 
 export type UserRoleType = 'admin' | 'user' | 'visitor';
-export type BasicInfoUserType = Pick<UserState, 'id' | 'email' | 'name' | 'isLogged' | 'role'>;
+export type BasicInfoUserType = Pick<
+  UserState,
+  'id' | 'email' | 'name' | 'isLogged' | 'role' | 'city' | 'img'
+>;
 export type LoginUserResponse = Pick<UserState, 'id' | 'name' | 'email'>;
 
 export const useUserStore = create<UserState>((set) => ({
   id: null,
   name: null,
   email: null,
+  city: null,
+  img: null,
   recommendations: [],
   favorites: [],
   isLogged: false,
   role: 'visitor',
-  setBasicInfo: ({ id, email, isLogged, name, role }) =>
+  setBasicInfo: ({ id, email, isLogged, name, role, city, img }) =>
     set((state) => ({
       ...state,
       id,
@@ -32,5 +39,7 @@ export const useUserStore = create<UserState>((set) => ({
       isLogged,
       name,
       role,
+      city,
+      img,
     })),
 }));

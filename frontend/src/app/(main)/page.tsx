@@ -6,13 +6,7 @@ import { GetBookResponse } from '../manager/_validators/bookSchema';
 import { Suspense } from 'react';
 import ListBookSkeleton from '@/components/Skeleton/ListBookSkeleton';
 
-interface HomeProps {
-  modal: React.ReactNode;
-}
-// query params
-interface HomeProps {}
-
-export default async function Home({ modal }: HomeProps) {
+export default async function Home() {
   const books = await fetcher<GetBookResponse[]>('/servicesBook/newBook');
 
   if (typeof books === 'string') {
@@ -23,11 +17,9 @@ export default async function Home({ modal }: HomeProps) {
     <div className="max-w-page px-6 md:px-8">
       <SearchBar />
 
-      <Suspense fallback={<ListBookSkeleton />}>
-        <DynamicGallery books={books} carouselTitle="Tus recomendados" />
-      </Suspense>
+      {/* {bookRecommended} */}
 
-      <TopTenBooks />
+      {/* <TopTenBooks />
 
       <Suspense fallback={<ListBookSkeleton />}>
         <DynamicGallery books={books} carouselTitle="Agregados recientemente" />
@@ -35,7 +27,7 @@ export default async function Home({ modal }: HomeProps) {
 
       <Suspense fallback={<ListBookSkeleton />}>
         <DynamicGallery books={books} carouselTitle="Los más buscados" />
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }

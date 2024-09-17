@@ -7,7 +7,8 @@ import ButtonBase from '../../../components/ButtonBase';
 import ProfileSummaryList from './ProfileSummaryList';
 import Title from '../../../components/Typography/Title';
 import { ItemInfo } from '@/interfaces/ItemData.interface';
-import EditUserProfile from '@/components/EditUserProfile';
+import EditUserProfile from '@/app/(profile)/_components/EditUserProfile';
+import defaultUserImage from '/public/avatars/no-user.webp';
 
 interface Props {
   userName: string;
@@ -47,7 +48,9 @@ export default function UserProfileOverview({ image, dataUser, userName }: Props
         />
       </div>
 
-      {isEditProfile && <EditUserProfile image={image} setEditProfile={setEditProfile} />}
+      {isEditProfile && (
+        <EditUserProfile image={image || defaultUserImage.src} setEditProfile={setEditProfile} />
+      )}
     </div>
   );
 }

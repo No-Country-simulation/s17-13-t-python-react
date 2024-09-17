@@ -30,7 +30,7 @@ export default function TopTenBooksList({ books }: any) {
 
   //////////////////////////
   return (
-    <div className="h-[350px] w-full rounded-[35px] md:w-[350px] overflow-hidden md:rounded-2xl bg-[#264E61] text-[#E7E0CF] py-4 lg:h-[403.88px] lg:w-full">
+    <div className="h-[350px] w-full overflow-hidden rounded-[35px] bg-[#264E61] py-4 text-[#E7E0CF] md:w-[350px] md:rounded-2xl lg:h-[403.88px] lg:w-full">
       {/* Books */}
       <ul
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
