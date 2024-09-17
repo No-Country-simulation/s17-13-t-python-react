@@ -6,23 +6,27 @@ export const breakpoints = {
     slidesPerView: 1,
     spaceBetween: 10,
   },
-  400: {
+  200: {
     slidesPerView: 2,
     spaceBetween: 10,
   },
-  500: {
+  400: {
     slidesPerView: 3,
-    spaceBetween: 20,
+    spaceBetween: 10,
   },
-  800: {
-    slidesPerView: 3,
-    spaceBetween: 15,
-  },
-  1000: {
+  600: {
     slidesPerView: 4,
     spaceBetween: 15,
   },
-  1200: {
+  768: {
+    slidesPerView: 3,
+    spaceBetween: 15,
+  },
+  900: {
+    slidesPerView: 4,
+    spaceBetween: 15,
+  },
+  1400: {
     slidesPerView: 5,
     spaceBetween: 20,
   },

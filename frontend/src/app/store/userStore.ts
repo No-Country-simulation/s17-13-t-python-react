@@ -12,8 +12,9 @@ interface UserState {
   setBasicInfo: (info: BasicInfoUserType) => void;
 }
 
-type UserRoleType = 'admin' | 'user' | 'visitor';
-type BasicInfoUserType = Pick<UserState, 'id' | 'email' | 'name' | 'isLogged' | 'role'>;
+export type UserRoleType = 'admin' | 'user' | 'visitor';
+export type BasicInfoUserType = Pick<UserState, 'id' | 'email' | 'name' | 'isLogged' | 'role'>;
+export type LoginUserResponse = Pick<UserState, 'id' | 'name' | 'email'>;
 
 export const useUserStore = create<UserState>((set) => ({
   id: null,

@@ -3,7 +3,7 @@ from flask_restx import Resource, abort, Namespace
 from biblioz.book.models import Book
 from biblioz.review.models import Review
 from biblioz.search.models import SearchHistory
-from biblioz.book.swagger_models import api, book_model
+from biblioz.book.swagger_models import api, book_model, get_book
 
 api_services = Namespace('servicesBook', description='Servicios adicionales para libros')
 
@@ -11,10 +11,10 @@ api_services = Namespace('servicesBook', description='Servicios adicionales para
 @api_services.route('/newBook')
 class NewBooksResource(Resource):
     @api.doc('get_new_books')
-    @api.marshal_list_with(book_model)
+    @api.marshal_list_with(get_book)
     def get(self):
         """Obtener los libros más nuevos"""
-        books = Book.query.order_by(Book.created_at.desc()).limit(5).all()
+        books = Book.query.order_by(Book.created_at.desc()).limit(7).all()
 
         if not books:
             api.abort(404, 'No hay libros nuevos disponibles')
@@ -25,7 +25,7 @@ class NewBooksResource(Resource):
 @api_services.route('/topRated')
 class TopTenBooksResource(Resource):
     @api.doc('get_top_books')
-    @api.marshal_list_with(book_model)
+    @api.marshal_list_with(get_book)
     def get(self):
         """Obtener el Top 10 de libros mejor calificados"""
         top_books = db.session.query(
@@ -44,7 +44,7 @@ class TopTenBooksResource(Resource):
 @api_services.route('/wantedBooks')
 class SearchedBooksResource(Resource):
     @api.doc('get_search_books')
-    @api.marshal_list_with(book_model)
+    @api.marshal_list_with(get_book)
     def get(self):
         """Obtener los libros más buscados"""
         books = Book.query.join(SearchHistory).order_by(SearchHistory.search_count.desc()).limit(10).all()
