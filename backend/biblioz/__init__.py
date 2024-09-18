@@ -60,6 +60,9 @@ def create_app():
         from biblioz.search.routes import api as searchBook_api
         api.add_namespace(searchBook_api)
 
+        from biblioz.userFavs.routes import api as userFavs_api
+        api.add_namespace(userFavs_api)
+
         # Servicios adicionales de los libros
         from biblioz.book.services import api_services
         api.add_namespace(api_services)

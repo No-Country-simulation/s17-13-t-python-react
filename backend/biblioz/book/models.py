@@ -1,6 +1,7 @@
 from biblioz import db
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from biblioz.userFavs.models import UserFavoriteBook
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +26,6 @@ class Book(db.Model):
 
     # Relación uno a muchos con SearchHistory
     searches = db.relationship('SearchHistory', back_populates='book')
+
+    # Relación muchos a muchos con User
+    users = db.relationship('User', secondary=UserFavoriteBook.__tablename__ , back_populates='books')
