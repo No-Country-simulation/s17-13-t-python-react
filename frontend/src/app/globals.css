@@ -3,26 +3,78 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-clr: #1e1e1e;
+  --secondary-clr: #f1f1f1;
+
+  --main-clr: #62262e;
+  --accent-clr: #47242a;
+  --auxiliary-clr: #264e61;
+  --light-clr: #e7e0cf;
+  --gray-linear-gradient: linear-gradient(90deg, #e0e0e0 25%, #cfcfcf 50%, #e0e0e0 75%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* TODO implement dark mode */
+    --primary-clr: #1e1e1e;
+    --secondary-clr: #f1f1f1;
+  }
+
+  @layer base {
+    body {
+      color: var(--primary-clr);
+      background: var(--secondary-clr);
+    }
+    img {
+      background-color: var(--gray-linear-gradient);
+    }
+  }
+
+  @layer utilities {
+    .text-balance {
+      text-wrap: balance;
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .interactive-btn {
+      transform-origin: center;
+      transition: transform 0.2s linear;
+
+      &:hover {
+        transform: scale(0.9);
+      }
+      &:active {
+        transform: scale(1.2);
+      }
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, #e0e0e0 25%, #cfcfcf 50%, #e0e0e0 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    .max-w-page {
+      max-width: 120rem;
+      margin-inline: auto;
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 1px #a8a8a8;
+    }
   }
 }
 
-body {
-  color: #1e1e1e;
-  background: #e7e0cf;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
   }
 }
