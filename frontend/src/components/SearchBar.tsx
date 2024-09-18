@@ -38,7 +38,7 @@ const SearchBar = () => {
 
   const searchBooks = async (searchTerm: string) => {
     try {
-      const response = await fetch("http://localhost:5000/search/", {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
