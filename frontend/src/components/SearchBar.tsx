@@ -1,8 +1,9 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { create } from 'zustand';
-
+import builderApiUrl from '@/utils/builderApiUrl';
+import Link from 'next/link';
 interface Book {
   id: number;
   title: string;
@@ -19,6 +20,7 @@ interface SearchState {
   setMessage: (message: string) => void;
 }
 
+
 const useSearchStore = create<SearchState>((set) => ({
   books: [],
   filteredBooks: [],
@@ -29,82 +31,87 @@ const useSearchStore = create<SearchState>((set) => ({
 }));
 
 const SearchBar = () => {
-  const { books, filteredBooks, message, setBooks, setFilteredBooks, setMessage } =
-    useSearchStore();
+  const { filteredBooks, message, setFilteredBooks, setMessage } = useSearchStore();
   const [inputValue, setInputValue] = useState<string>('');
+  
+  const url = builderApiUrl(`search/`);
 
-  useEffect(() => {
-    // Datos hardcodeados
-    const hardcodedBooks: Book[] = [
-      { id: 1, title: 'El Señor de los Anillos', genre: 'Fantasía', author: 'J.R.R. Tolkien' },
-      {
-        id: 2,
-        title: 'Cien Años de Soledad',
-        genre: 'Realismo Mágico',
-        author: 'Gabriel García Márquez',
-      },
-      { id: 3, title: '1984', genre: 'Distopía', author: 'George Orwell' },
-      {
-        id: 4,
-        title: 'Harry Potter y la Piedra Filosofal',
-        genre: 'Fantasía',
-        author: 'J.K. Rowling',
-      },
-      { id: 5, title: 'El Quijote', genre: 'Clásico', author: 'Miguel de Cervantes' },
-    ];
-    setBooks(hardcodedBooks);
-  }, [setBooks]);
+  const searchBooks = async (searchTerm: string) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: searchTerm
+        }),
+      });
 
-  const handleSearch = () => {
-    const query = inputValue.toLowerCase();
-    const results = books.filter(
-      (book) =>
-        book.title.toLowerCase().includes(query) ||
-        book.genre.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query),
-    );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
 
-    if (results.length === 0) {
-      setMessage('No se encontraron resultados');
-    } else {
+      const data = await response.json();
+      setFilteredBooks(data); 
       setMessage('');
+    } catch (error) {
+      console.error('Error al realizar la solicitud:', error);
+      setMessage('Error al buscar libros');
     }
-
-    setFilteredBooks(results);
   };
 
+  const handleSearch = () => {
+    if (inputValue.trim() === '') {
+      setMessage('Por favor, introduce un término de búsqueda');
+      return;
+    }
+    searchBooks(inputValue);
+  };
   return (
     <>
-      <div className="flex items-center justify-end rounded-lg p-5">
+      <div className=" flex items-end flex-col justify-end rounded-lg pt-5">
         <div
+          className="relative flex h-9 w-96 items-center overflow-hidden rounded-full bg-blue-600"
           style={{ backgroundColor: '#264E61' }}
-          className="flex h-9 w-96 items-center overflow-hidden rounded-full bg-blue-600"
         >
           <input
             type="text"
             placeholder="Título, autor o género"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            className="w-full bg-blue-600 pl-14 pr-14 text-xl text-white placeholder-gray-300 focus:outline-none"
             style={{ backgroundColor: '#264E61' }}
-            className="bg-blue-600 pl-14 pr-14 text-xl text-white placeholder-gray-300 focus:outline-none"
           />
           <button
             onClick={handleSearch}
-            style={{ backgroundColor: '#264E61' }}
             className="p-4 text-xl text-white sm:p-3 md:p-4"
+            style={{ backgroundColor: '#264E61' }}
           >
             <FaSearch />
           </button>
         </div>
-      </div>
-      {message && <p>{message}</p>}
-      <div>
-        {filteredBooks.map((book) => (
-          <div key={book.id}>
-            <h2>{book.title}</h2>
+
+        {/* Contenedor de resultados */}
+        {filteredBooks.length > 0 && (
+          <div className=" w-96 bg-slate-200 z-10">
+            {filteredBooks.map((book) => (
+              <div
+                key={book.id}
+                className="p-4 hover:bg-gray-100 cursor-pointer"
+              > 
+             <Link key={book.id} href={`/book/${book.id}`}>
+    {book.title}
+
+  </Link>
+              </div>  
+            ))}
           </div>
-        ))}
+        )}
       </div>
+
+      {message && <p>{message}</p>}
     </>
   );
 };
