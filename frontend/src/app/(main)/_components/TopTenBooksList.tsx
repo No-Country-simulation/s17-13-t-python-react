@@ -2,10 +2,14 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import TopTenBooksItem from './TopTenBooksItem';
-
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 const delay = 5000;
 
-export default function TopTenBooksList({ books }: any) {
+interface Props {
+  books: GetBookResponse[];
+}
+
+export default function TopTenBooksList({ books }: Props) {
   const [index, setIndex] = useState<number>(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -30,13 +34,13 @@ export default function TopTenBooksList({ books }: any) {
 
   //////////////////////////
   return (
-    <div className="h-[350px] w-full rounded-[35px] md:w-[350px] overflow-hidden md:rounded-2xl bg-[#264E61] text-[#E7E0CF] py-4 lg:h-[403.88px] lg:w-full">
+    <div className="h-[350px] w-full overflow-hidden rounded-[35px] bg-[#264E61] py-4 text-[#E7E0CF] md:w-[350px] md:rounded-2xl lg:h-[403.88px] lg:w-full">
       {/* Books */}
       <ul
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="ease h-[300px] w-full flex-grow whitespace-nowrap transition duration-[1000ms] lg:h-[360px]"
       >
-        {books.map((book: any, idx: any) => (
+        {books.map((book: GetBookResponse, idx: number) => (
           <TopTenBooksItem key={book.title} book={book} index={idx + 1} />
         ))}
       </ul>

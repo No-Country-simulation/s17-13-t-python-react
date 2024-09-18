@@ -15,6 +15,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: 'BiblioZ',
   description: 'Aplicativo para recomendar libros',
+  openGraph: {
+    images: '/logo-metadata.svg',
+  },
 };
 
 export default function RootLayout({

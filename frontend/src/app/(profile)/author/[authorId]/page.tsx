@@ -1,6 +1,4 @@
 'use client';
-import authorImage from '/public/avatars/avatar-1.png';
-import Carousel from '@/components/Carousel/Carousel';
 import AuthorProfileOverview from '../../_components/AuthorProfileOverview';
 import { useState, useEffect } from 'react';
 import AuthorSkeleton from '@/components/Skeleton/AuthorSkeleton';
@@ -30,7 +28,6 @@ export default function Author({ params }: PageProps) {
       const response = await fetch(url);
       if (response.ok) {
         const data: AuthorResponse = await response.json();
-        console.log(data);
         SetAuthorData(data);
       } else {
         console.error('Error en la respuesta', response.status);

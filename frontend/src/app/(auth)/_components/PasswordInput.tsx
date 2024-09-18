@@ -41,7 +41,7 @@ export default function PasswordInput({
               <IoEye size={25} className="text-[#E7E0CF]" />
             )}
           </button>
-          {error && <ErrorMessage error={error.message!} />}
+          {error && <ErrorMessage customClass='absolute translate-y-1 left-4' error={error.message!} />}
         </div>
       )}
     />

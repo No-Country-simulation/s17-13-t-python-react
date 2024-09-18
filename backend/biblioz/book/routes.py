@@ -6,7 +6,7 @@ from biblioz.book.models import Book
 from biblioz.genre.models import Genre
 from biblioz.author.models import Author
 from biblioz.book.schemas import BookSchema
-from biblioz.book.swagger_models import api, book_model, get_book
+from biblioz.book.swagger_models import api, book_model, get_book, get_book_id
 from werkzeug.utils import secure_filename
 import os
 from marshmallow import ValidationError
@@ -21,16 +21,6 @@ class BookListResource(Resource):
         books = Book.query.all()
         if not books:
             api.abort(404, 'No hay libros disponibles')
-        books_data = [
-            {
-                "id": book.id,
-                "title": book.title,
-                "description": book.description,
-                "author": book.author,
-                "genre": book.genre
-            }
-            for book in books
-        ]
 
         return books
 
@@ -65,6 +55,8 @@ class BookListResource(Resource):
                 title=validated_data.get('title'),
                 description=validated_data.get('description'),
                 img=validated_data.get('img'),
+                pages=validated_data.get('pages'), 
+                publisher=validated_data.get('publisher'),
 
                 genre_id=validated_data.get('genre_id'),
                 author_id=validated_data.get('author_id')
@@ -79,13 +71,14 @@ class BookListResource(Resource):
 @api.route('/<int:id>')
 class BookResource(Resource):
     @api.doc('get_book')
-    @api.marshal_with(get_book)
+    @api.marshal_with(get_book_id)
     def get(self, id):
         """Obtener un libro por ID"""
         book = Book.query.filter_by(id=id).first()
         if not book:
             api.abort(404, 'No existe el libro')
 
+        book.author_name = book.author.name
         return book
 
 
@@ -127,6 +120,9 @@ class BookResource(Resource):
 
         if 'img' in data:
             book.img = data['img']
+
+        book.pages = validated_data.get('pages', book.pages)
+        book.publisher = validated_data.get('publisher', book.publisher) 
 
         genre_id = validated_data.get('genre_id', book.genre_id)
         author_id = validated_data.get('author_id', book.author_id)

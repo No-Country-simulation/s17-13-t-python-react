@@ -21,6 +21,7 @@ export default function BookForm({ authors, genders }: Props) {
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<BookValues>({
     resolver: zodResolver(bookSchema),
@@ -37,6 +38,7 @@ export default function BookForm({ authors, genders }: Props) {
     }
 
     toast.success(`Libro nuevo creado: ${data.title.toUpperCase()} `);
+    reset();
   };
 
   return (

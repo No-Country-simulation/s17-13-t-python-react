@@ -65,7 +65,9 @@
   width: 6.5rem;
   height: 10rem;
   object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .book-caption {
@@ -79,8 +81,7 @@
   padding: 0 0.5rem;
 
   @media (width > 768px) {
-  transform: translateX(-50%) translateY(3.5rem);
-
+    transform: translateX(-50%) translateY(3.5rem);
   }
 }
 

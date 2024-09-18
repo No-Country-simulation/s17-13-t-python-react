@@ -30,7 +30,7 @@ export default function BaseInput({
           />
         )}
       />
-      {error && <ErrorMessage error={error.message!} color={errorColor} />}
+      {error && <ErrorMessage customClass='absolute translate-y-1 left-4' error={error.message!} color={errorColor} />}
     </div>
   );
 }
