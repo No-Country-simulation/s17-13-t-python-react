@@ -12,8 +12,12 @@ import { signInUser } from '@/libs/signInUser.action';
 import { useRouter } from 'next/navigation';
 import { ButtonFakeUser } from './ButtonFakeUser';
 import { randomUser } from '@/utils/randomUser';
+import { useModalStore } from '@/app/store/modalStore';
 
 export default function Register() {
+  const { toggleModal } = useModalStore((state) => ({
+    toggleModal: state.toggleModal,
+  }));
   const router = useRouter();
   const {
     handleSubmit,
@@ -60,6 +64,7 @@ export default function Register() {
     const { email, id, name } = logger.data;
 
     setBasicInfo({ id, name, email, isLogged: true, role: 'user' });
+    toggleModal();
     router.push('/');
   };
 

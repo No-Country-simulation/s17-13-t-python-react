@@ -1,10 +1,12 @@
-import { Suspense } from 'react';
-import { getTopTenBooks } from '@/libs/actions';
+import ErrorMessage from '@/components/ErrorMessage';
 import TopTenBooksList from './TopTenBooksList';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
-export default async function TopTenBooks() {
-  const books = await getTopTenBooks();
+interface Props {
+  books: GetBookResponse[];
+}
 
+export default async function TopTenBooks({ books }: Props) {
   return (
     <section
       id="TopTen"
@@ -19,10 +21,7 @@ export default async function TopTenBooks() {
           Sumérgete en nuestra lista y encuentra tu próxima lectura favorita.
         </p>
       </div>
-
-      <Suspense fallback={<p>Loading...</p>}>
-        <TopTenBooksList books={books} />
-      </Suspense>
+      {<TopTenBooksList books={books} />}
     </section>
   );
 }

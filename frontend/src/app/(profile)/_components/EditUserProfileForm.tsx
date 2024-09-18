@@ -7,7 +7,7 @@ import ButtonBase from '../../../components/ButtonBase';
 import { editUser, UserEdit } from '@/libs/editUser.action';
 import { useUserStore } from '@/app/store/userStore';
 import { toast } from 'sonner';
-import { uploadImage } from '@/libs/uploadimage';
+import { uploadImage } from '@/libs/upload.imageaction';
 import { UploadApiResponse } from 'cloudinary';
 
 interface EditUserProfileFormProps {
@@ -33,9 +33,9 @@ export default function EditUserProfileForm({ photo, setEditProfile }: EditUserP
     const imageData = new FormData();
 
     imageData.append('file', photo!);
-    // const revalidateImage = (await uploadImage(imageData)) as UploadApiResponse;
+    const revalidateImage = (await uploadImage(imageData)) as UploadApiResponse;
     const response = await editUser<UserEdit>({
-      img: '',
+      img: revalidateImage.secure_url,
       city: updatedData.location,
       user: {
         id: id!,
@@ -49,7 +49,6 @@ export default function EditUserProfileForm({ photo, setEditProfile }: EditUserP
 
     setUser({
       city: response.data.city,
-      id: response.data.user.id,
       name: response.data.user.name,
       img: response.data.img,
     });

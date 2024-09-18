@@ -31,15 +31,11 @@ export const useUserStore = create<UserState>((set) => ({
   favorites: [],
   isLogged: false,
   role: 'visitor',
-  setBasicInfo: ({ id, email, isLogged, name, role, city, img }) =>
+  setBasicInfo: (info) =>
     set((state) => ({
       ...state,
-      id,
-      email,
-      isLogged,
-      name,
-      role,
-      city,
-      img,
+      ...Object.fromEntries(
+        Object.entries(info).filter(([_, value]) => value !== undefined)
+      )
     })),
 }));

@@ -2,7 +2,7 @@
 
 import { GetGenreResponse } from '@/app/manager/_validators/genreSchema';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { PreferencesSchema, PreferencesValues } from '../@modal/_validators/modalSchemas';
+import { PreferencesSchema, PreferencesValues } from '../_validators/modalSchemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorMessage from '@/components/ErrorMessage';
 import FeedbackButton from '@/components/FeedbackButton';

@@ -8,7 +8,7 @@ interface Props {
   name: string;
 }
 
-export default async function AuthorProfileOverview({ bio, image, name }: Props) {
+export default function AuthorProfileOverview({ bio, image, name }: Props) {
   return (
     <div className="mx-auto grid max-w-[85rem] grid-cols-1 pb-8 md:grid-cols-[auto_1fr] md:gap-16">
       <Avatar

@@ -2,10 +2,14 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import TopTenBooksItem from './TopTenBooksItem';
-
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 const delay = 5000;
 
-export default function TopTenBooksList({ books }: any) {
+interface Props {
+  books: GetBookResponse[];
+}
+
+export default function TopTenBooksList({ books }: Props) {
   const [index, setIndex] = useState<number>(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -36,7 +40,7 @@ export default function TopTenBooksList({ books }: any) {
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="ease h-[300px] w-full flex-grow whitespace-nowrap transition duration-[1000ms] lg:h-[360px]"
       >
-        {books.map((book: any, idx: any) => (
+        {books.map((book: GetBookResponse, idx: number) => (
           <TopTenBooksItem key={book.title} book={book} index={idx + 1} />
         ))}
       </ul>
