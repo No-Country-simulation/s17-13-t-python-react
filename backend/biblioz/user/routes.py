@@ -69,11 +69,14 @@ class Login(Resource):
             return {'message': 'Credenciales inválidas'}, 401
 
         session['user_id'] = user.id
+        preferences_completed = len(user.genres) > 0
 
         return {
             'id':user.id,
             'name': user.name,
-            'email': user.email
+            'email': user.email,
+            'preferences': preferences_completed
+
         },200
 
 

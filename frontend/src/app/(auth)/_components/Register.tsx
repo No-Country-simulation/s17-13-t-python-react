@@ -63,8 +63,16 @@ export default function Register() {
 
     const { email, id, name } = logger.data;
 
+    
     setBasicInfo({ id, name, email, isLogged: true, role: 'user' });
-    toggleModal();
+
+    console.log(logger.data.preferences)
+    
+
+    if (!logger.data.preferences) {
+      toggleModal();
+    }
+
     router.push('/');
   };
 

@@ -16,7 +16,7 @@ class RecommendedBooksResource(Resource):
     @api.param('user_id', 'Id del user', type=int, required=True)  
     @api.marshal_list_with(get_book)
     def get(self):
-        """Obtener libros recomendados basados en los géneros seleccionados"""
+        """Obtener libros recomendados segun los géneros seleccionados por el usuario"""
         user_id = request.args.get('user_id', type=int)
 
         if not user_id:

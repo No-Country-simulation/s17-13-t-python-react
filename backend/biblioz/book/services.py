@@ -80,3 +80,32 @@ class BooksRandomsResource(Resource):
         """Obtener libros randoms recomendados por biblioz"""
         books = Book.query.order_by(func.random()).limit(10).all()
         return books
+
+
+
+@api_services.route('/book/<int:book_id>')
+class BookRatingIDResource(Resource):
+    @api.doc('get_book')
+    # @api.marshal_with(get_book)
+    def get(self, book_id):
+        """Obtener info del libro con todos los campos"""
+        book = Book.query.get(book_id)
+        if not book:
+            return{"message":"Libro no encontrado"}, 400
+        
+        avg_rating = db.session.query(
+            db.func.avg(Review.rating).label('avg_rating')
+        ).filter(Review.book_id == book_id).scalar()
+
+        if avg_rating is None:
+            avg_rating = 0 
+
+        return {
+            'id': book.id,
+            'title': book.title,
+            'description': book.description,
+            'img': book.img,
+            'pages': book.pages,
+            'publisher': book.publisher,
+            'avg_rating': avg_rating
+        }
