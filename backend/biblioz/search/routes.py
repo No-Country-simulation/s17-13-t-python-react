@@ -6,13 +6,13 @@ from biblioz.book.models import Book
 from biblioz.genre.models import Genre
 from biblioz.author.models import Author
 from biblioz.search.swagger_models import api, search_model
-from biblioz.book.swagger_models import book_model
+from biblioz.book.swagger_models import book_model, get_book
 
 
 @api.route('/')
 class BookSearchResource(Resource):
     @api.expect(search_model)
-    @api.marshal_list_with(book_model)
+    @api.marshal_list_with(get_book)
     def post(self):
         """Buscar libros por género, autor y título"""
         search_data = request.json

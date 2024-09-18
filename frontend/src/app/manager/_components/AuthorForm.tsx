@@ -15,6 +15,7 @@ export default function AuthorForm() {
   const {
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting, isValid },
   } = useForm<AuthorValues>({
     resolver: zodResolver(authorSchema),
@@ -34,6 +35,7 @@ export default function AuthorForm() {
     }
 
     toast.success(`Nuevo autor creado : ${data.name.toUpperCase()} `);
+    reset();
   };
 
   return (
