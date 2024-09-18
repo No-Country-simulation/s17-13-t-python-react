@@ -3,9 +3,9 @@
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import Category from './Category';
-import { IoIosClose, IoIosMenu } from 'react-icons/io';
+import { IoIosClose } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useAuthStore } from '@/app/store/authStore';
+import { useUserStore } from '@/app/store/userStore';
 
 const stylesLink = 'cursor-pointer rounded-2xl px-3 py-2 transition-all hover:bg-[#47242A]';
 
@@ -14,7 +14,9 @@ export default function Navbar() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const timerRef = useRef<number | null>(null);
 
-  const { isLogged } = useAuthStore();
+  const { isLogged } = useUserStore((state) => ({
+    isLogged: state.isLogged,
+  }));
 
   //////////////////////////////
 
@@ -92,7 +94,7 @@ export default function Navbar() {
 
           <li>
             {isLogged ? (
-              <Link href="/profile" className={stylesLink}>
+              <Link href="/user" className={stylesLink}>
                 Mi perfil
               </Link>
             ) : (
@@ -136,7 +138,7 @@ export default function Navbar() {
 
           <li>
             {isLogged ? (
-              <Link href="/profile" className={stylesLink}>
+              <Link href="/user" className={stylesLink}>
                 Mi perfil
               </Link>
             ) : (

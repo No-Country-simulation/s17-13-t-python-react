@@ -2,8 +2,13 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import BaseInput from './BaseInput';
-import ButtonBase from './ButtonBase';
+import BaseInput from '../../../components/BaseInput';
+import ButtonBase from '../../../components/ButtonBase';
+import { editUser, UserEdit } from '@/libs/editUser.action';
+import { useUserStore } from '@/app/store/userStore';
+import { toast } from 'sonner';
+import { uploadImage } from '@/libs/upload.imageaction';
+import { UploadApiResponse } from 'cloudinary';
 
 interface EditUserProfileFormProps {
   photo: string | null;
@@ -21,11 +26,33 @@ const inputStyles =
 
 export default function EditUserProfileForm({ photo, setEditProfile }: EditUserProfileFormProps) {
   const { handleSubmit, reset, control } = useForm<FormData>();
+  const { id, setUser } = useUserStore((state) => ({ id: state.id, setUser: state.setBasicInfo }));
 
   async function onSubmit(data: FormData) {
     const updatedData = { ...data, photo };
-    console.log(updatedData);
+    const imageData = new FormData();
 
+    imageData.append('file', photo!);
+    const revalidateImage = (await uploadImage(imageData)) as UploadApiResponse;
+    const response = await editUser<UserEdit>({
+      img: revalidateImage.secure_url,
+      city: updatedData.location,
+      user: {
+        id: id!,
+        name: updatedData.name,
+      },
+    });
+
+    if (!response.success || !response.data) {
+      return toast.error(`Fallo al editar el perfil ${response.errorMessage}`);
+    }
+
+    setUser({
+      city: response.data.city,
+      name: response.data.user.name,
+      img: response.data.img,
+    });
+    setEditProfile(false);
     reset();
   }
 
@@ -80,8 +107,8 @@ export default function EditUserProfileForm({ photo, setEditProfile }: EditUserP
 
       <div className="flex items-end justify-center gap-4 md:justify-end">
         <ButtonBase
-          text="Cerrar sesíon"
-          alt="Cerrar sesíon"
+          text="Cerrar sesión"
+          alt="Cerrar sesión"
           type="button"
           handleCLick={() => setEditProfile(false)}
           customClass="!bg-transparent border-[1px] border-[#E7E0CF] text-[#E7E0CF]"
