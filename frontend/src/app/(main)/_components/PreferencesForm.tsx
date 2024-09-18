@@ -20,6 +20,7 @@ export default function PreferencesForm({ genders }: Props) {
   } = useForm<PreferencesValues>({
     resolver: zodResolver(PreferencesSchema),
     mode: 'onSubmit',
+    defaultValues: { genders: [] },
   });
 
   const onSubmit: SubmitHandler<PreferencesValues> = async (formData) => {
@@ -49,7 +50,7 @@ export default function PreferencesForm({ genders }: Props) {
       <div className="flex items-center justify-between">
         <div>
           {errors.genders && (
-            <ErrorMessage customClass="text-base" error={errors.genders.message!} />
+            <ErrorMessage customClass="text-base text-red-500 md:text-lg" error={errors.genders.message!} />
           )}
         </div>
 

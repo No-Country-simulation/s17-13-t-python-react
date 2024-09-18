@@ -6,7 +6,7 @@ interface Props {
 export default function ErrorMessage({ error, color, customClass }: Props) {
   return (
     <p
-      className={`text-center text-xl font-semibold text-red-500 ${customClass || ''}`}
+      className={`text-xs text-white font-semibold ${customClass || ''}`}
       style={{ color }}
     >
       {error}

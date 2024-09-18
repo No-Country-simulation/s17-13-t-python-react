@@ -8,6 +8,7 @@ interface Props {
   customClass?: string;
 }
 
+
 interface CheckBoxChange {
   e: ChangeEvent<HTMLInputElement>;
   field: ControllerRenderProps;
@@ -28,7 +29,6 @@ export default function CheckBoxInput({ gender, index, control, customClass }: P
 
   return (
     <Controller
-      key={gender}
       name="genders"
       control={control}
       render={({ field }) => (
@@ -43,6 +43,7 @@ export default function CheckBoxInput({ gender, index, control, customClass }: P
             id={`${gender}-${index}`}
             {...field}
             onChange={(e) => onCheckboxChange({ e, field })}
+            checked={field.value.includes(gender)}
           />
         </label>
       )}
