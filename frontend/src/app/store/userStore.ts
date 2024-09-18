@@ -19,7 +19,10 @@ export type BasicInfoUserType = Pick<
   UserState,
   'id' | 'email' | 'name' | 'isLogged' | 'role' | 'city' | 'img'
 >;
-export type LoginUserResponse = Pick<UserState, 'id' | 'name' | 'email'>;
+
+export type LoginUserResponse = Pick<UserState, 'id' | 'name' | 'email'> & {
+  preferences: boolean;
+};
 
 export const useUserStore = create<UserState>((set) => ({
   id: null,
