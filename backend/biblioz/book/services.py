@@ -109,3 +109,4 @@ class BookRatingIDResource(Resource):
             'publisher': book.publisher,
             'avg_rating': avg_rating
         }
+

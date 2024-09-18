@@ -66,9 +66,6 @@ export default function Register() {
     
     setBasicInfo({ id, name, email, isLogged: true, role: 'user' });
 
-    console.log(logger.data.preferences)
-    
-
     if (!logger.data.preferences) {
       toggleModal();
     }
