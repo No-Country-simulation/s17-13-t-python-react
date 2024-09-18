@@ -8,6 +8,8 @@
         "singleQuote": true
       }
     ],
+    "@next/next/no-img-element": "off",
+    "react-hooks/exhaustive-deps": "off",
     "quotes": ["error", "single"]
   }
 }

@@ -1,0 +1,112 @@
+.swiper {
+  overflow: visible;
+}
+
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+  --swiper-navigation-size: 1.5rem;
+
+  display: none;
+  color: var(--secondary-clr);
+  height: 100%;
+  padding: 2rem;
+  margin: auto;
+  transform: translateY(-50%);
+  background-color: #1e1e1e80;
+
+  &::after {
+    font-weight: bold;
+    -webkit-text-stroke: 4px;
+    margin-inline: auto;
+    transform: translateX(-20%);
+  }
+
+  @media (width > 1042px) {
+    --swiper-navigation-size: 2.5rem;
+    display: grid;
+  }
+}
+
+.swiper .swiper-button-prev {
+  left: 0;
+
+  &::after {
+    transform: translateX(-20%);
+  }
+}
+
+.swiper .swiper-button-next {
+  right: 0;
+
+  &::after {
+    transform: translateX(20%);
+  }
+}
+
+.book-slider-container {
+  position: relative;
+}
+
+.book-slide {
+  transition: all 0.3s ease;
+}
+
+.book-figure {
+  position: relative;
+  width: fit-content;
+}
+
+.book-link {
+  display: block;
+  overflow: hidden;
+}
+
+.book-image {
+  width: 6.5rem;
+  height: 10rem;
+  object-fit: cover;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.book-caption {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%) translateY(2.5rem);
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+
+  @media (width > 768px) {
+    transform: translateX(-50%) translateY(3.5rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .book-image {
+    height: 13.5rem;
+    width: 10rem;
+  }
+  .book-caption {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-image {
+    height: 21.625rem;
+    width: 14rem;
+  }
+}
+
+.swiper-wrapper:hover .book-image {
+  filter: grayscale(100%);
+}
+
+.book-image:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%) !important;
+}
