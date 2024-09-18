@@ -40,9 +40,9 @@ export default function BookDescription({ book, handlerViewer }: Props) {
         </div>
 
         <div className="mb-7">
-          <p className="text-base">Autor: empty</p>
-          <p className="text-base">Editorial: empty</p>
-          <p className="text-base">Páginas: empty</p>
+          <p className="text-base">Autor: {book.author_id}</p>
+          <p className="text-base">Editorial: {book.publisher}</p>
+          <p className="text-base">Páginas: {book.pages}</p>
         </div>
 
         <p className="text-base leading-7">{book.description}</p>
