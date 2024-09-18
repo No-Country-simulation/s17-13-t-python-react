@@ -20,6 +20,7 @@ interface SearchState {
   setMessage: (message: string) => void;
 }
 
+
 const useSearchStore = create<SearchState>((set) => ({
   books: [],
   filteredBooks: [],
@@ -54,7 +55,6 @@ const SearchBar = () => {
 
       const data = await response.json();
       setFilteredBooks(data); 
-      console.log(data);// Ajusta según el formato de respuesta
       setMessage('');
     } catch (error) {
       console.error('Error al realizar la solicitud:', error);
@@ -101,10 +101,11 @@ const SearchBar = () => {
                 key={book.id}
                 className="p-4 hover:bg-gray-100 cursor-pointer"
               > 
-              <a className="text-gray-800" href={`/book/${book.id}`}>
-                  {book.title}
-                </a>
-              </div>
+             <Link key={book.id} href={`/book/${book.id}`}>
+    {book.title}
+
+  </Link>
+              </div>  
             ))}
           </div>
         )}
