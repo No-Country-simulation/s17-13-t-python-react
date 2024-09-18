@@ -72,6 +72,35 @@ export default function BookForm({ authors, genders }: Props) {
             type="text"
           />
         </div>
+
+        <div className="w-full">
+          <label htmlFor="pages" className="mb-2 block text-sm font-medium">
+            Páginas
+          </label>
+          <BaseInput
+            control={control}
+            error={errors.pages}
+            name={'pages'}
+            customClass={inputStyles}
+            placeholder=""
+            errorColor="white"
+            type="number"
+          />
+        </div>
+        <div className="w-full">
+          <label htmlFor="publisher" className="mb-2 block text-sm font-medium">
+            Editorial
+          </label>
+          <BaseInput
+            control={control}
+            error={errors.publisher}
+            name={'publisher'}
+            customClass={inputStyles}
+            placeholder=""
+            errorColor="white"
+            type="text"
+          />
+        </div>
         <div>
           <label htmlFor="category" className="mb-2 block text-sm font-medium">
             Género
