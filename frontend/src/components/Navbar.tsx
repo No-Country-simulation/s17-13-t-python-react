@@ -40,9 +40,12 @@ export default function Navbar() {
   return (
     <header className="relative w-full bg-[#62262E] px-8 py-5 text-[#FDF8FF] shadow-[0px_4px_4px_0px_#00000040]">
       <nav className="flex items-center justify-between">
-        <Link href="/" className="font-semibold">
-          <img src="/logo.svg" alt="BibliOz logo" className="px-5" />
-        </Link>
+        <h1>
+          <span className="sr-only">BibliOz</span>
+          <Link href="/" className="font-semibold">
+            <img src="/logo.svg" alt="BibliOz logo" className="px-5" />
+          </Link>
+        </h1>
 
         <div className="md:hidden">
           <button onClick={toggleMenu} className="flex items-center justify-center">
