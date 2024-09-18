@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import PreferencesForm from './PreferencesForm';
 
-
 export default function Modal() {
   const [genders, setGenders] = useState<GetGenreResponse[]>([]);
   const { isView, toggleModal } = useModalStore((state) => ({
@@ -15,7 +14,6 @@ export default function Modal() {
     toggleModal: state.toggleModal,
   }));
 
-  
   useEffect(() => {
     fetcher<GetGenreResponse[]>('/genre/').then((response) => {
       if (typeof response === 'string') {
@@ -25,7 +23,6 @@ export default function Modal() {
       }
     });
   }, []);
-  
   if (isView) return null;
 
   return (
@@ -45,9 +42,7 @@ export default function Modal() {
         <figcaption className="mx-auto max-w-md text-center text-xl font-semibold">
           Para conocerte mejor, seleccioná algunas categorias que te gustaría ver
         </figcaption>
-        {
-          genders.length > 0 && <PreferencesForm genders={genders} />
-        }
+        {genders.length > 0 && <PreferencesForm genders={genders} />}
       </dialog>
     </div>
   );
