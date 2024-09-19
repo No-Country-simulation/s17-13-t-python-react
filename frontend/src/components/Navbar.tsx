@@ -3,7 +3,6 @@
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import Category from './Category';
-
 import { IoIosClose } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useUserStore } from '@/app/store/userStore';
@@ -64,7 +63,6 @@ export default function Navbar() {
             isOpenMenu ? 'block' : 'hidden'
           }`}
         >
-
           <li
             onClick={() => setShowCategory((show) => !show)}
             onMouseEnter={handleMouseEnter}
@@ -107,12 +105,21 @@ export default function Navbar() {
                 Iniciar sesión
               </Link>
             )}
+            {isLogged ? (
+              <Link href="/user" className={stylesLink}>
+                Mi perfil
+              </Link>
+            ) : (
+              <Link href="/login" className={stylesLink}>
+                Iniciar sesión
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
 
       {isOpenMenu && (
-        <ul className="absolute left-14 top-24 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
+        <ul className="absolute left-14 top-24 z-40 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
           <li onClick={() => setShowCategory((show) => !show)}>
             <a className={stylesLink}>Categoría</a>
           </li>
@@ -154,8 +161,6 @@ export default function Navbar() {
           </li>
         </ul>
       )}
-
-
       {showCategory && (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Category />
