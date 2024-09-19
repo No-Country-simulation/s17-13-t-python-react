@@ -3,7 +3,6 @@
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import Category from './Category';
-
 import { IoIosClose } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useUserStore } from '@/app/store/userStore';
@@ -97,6 +96,15 @@ export default function Navbar() {
           </li>
 
           <li>
+            {isLogged ? (
+              <Link href="/user" className={stylesLink}>
+                Mi perfil
+              </Link>
+            ) : (
+              <Link href="/login" className={stylesLink}>
+                Iniciar sesión
+              </Link>
+            )}
             {isLogged ? (
               <Link href="/user" className={stylesLink}>
                 Mi perfil
