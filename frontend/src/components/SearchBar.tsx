@@ -20,7 +20,6 @@ interface SearchState {
   setMessage: (message: string) => void;
 }
 
-
 const useSearchStore = create<SearchState>((set) => ({
   books: [],
   filteredBooks: [],
@@ -33,19 +32,19 @@ const useSearchStore = create<SearchState>((set) => ({
 const SearchBar = () => {
   const { filteredBooks, message, setFilteredBooks, setMessage } = useSearchStore();
   const [inputValue, setInputValue] = useState<string>('');
-  
-  const url = builderApiUrl(`search/`);
+
+  const url = builderApiUrl('search/');
 
   const searchBooks = async (searchTerm: string) => {
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title: searchTerm
+          title: searchTerm,
         }),
       });
 
@@ -54,7 +53,7 @@ const SearchBar = () => {
       }
 
       const data = await response.json();
-      setFilteredBooks(data); 
+      setFilteredBooks(data);
       setMessage('');
     } catch (error) {
       console.error('Error al realizar la solicitud:', error);
@@ -71,7 +70,7 @@ const SearchBar = () => {
   };
   return (
     <>
-      <div className=" flex items-end flex-col justify-end rounded-lg pt-5">
+      <div className="flex flex-col items-end justify-end rounded-lg pt-5">
         <div
           className="relative flex h-9 w-96 items-center overflow-hidden rounded-full bg-blue-600"
           style={{ backgroundColor: '#264E61' }}
@@ -95,17 +94,13 @@ const SearchBar = () => {
 
         {/* Contenedor de resultados */}
         {filteredBooks.length > 0 && (
-          <div className=" w-96 bg-slate-200 z-10">
+          <div className="z-10 w-96 bg-slate-200">
             {filteredBooks.map((book) => (
-              <div
-                key={book.id}
-                className="p-4 hover:bg-gray-100 cursor-pointer"
-              > 
-             <Link key={book.id} href={`/book/${book.id}`}>
-    {book.title}
-
-  </Link>
-              </div>  
+              <div key={book.id} className="cursor-pointer p-4 hover:bg-gray-100">
+                <Link key={book.id} href={`/book/${book.id}`}>
+                  {book.title}
+                </Link>
+              </div>
             ))}
           </div>
         )}

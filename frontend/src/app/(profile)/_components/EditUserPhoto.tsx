@@ -10,7 +10,7 @@ interface EditUserPhotoProps {
 }
 
 export default function EditUserPhoto({ photo, setPhoto }: EditUserPhotoProps) {
-  const [pickedImage, setPickedImage] = useState<string | ArrayBuffer | null>(null);
+  const [pickedImage, setPickedImage] = useState<any>(null);
   const imageInput = useRef<HTMLInputElement>(null);
 
   function handlePickClick() {

@@ -15,8 +15,9 @@ export default function Navbar() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const timerRef = useRef<number | null>(null);
 
-  const { isLogged } = useUserStore((state) => ({
+  const { isLogged, userId } = useUserStore((state) => ({
     isLogged: state.isLogged,
+    userId: state.id,
   }));
 
   //////////////////////////////
@@ -64,7 +65,6 @@ export default function Navbar() {
             isOpenMenu ? 'block' : 'hidden'
           }`}
         >
-
           <li
             onClick={() => setShowCategory((show) => !show)}
             onMouseEnter={handleMouseEnter}
@@ -99,7 +99,7 @@ export default function Navbar() {
 
           <li>
             {isLogged ? (
-              <Link href="/user" className={stylesLink}>
+              <Link href={`/user/${userId}`} className={stylesLink}>
                 Mi perfil
               </Link>
             ) : (
@@ -154,7 +154,6 @@ export default function Navbar() {
           </li>
         </ul>
       )}
-
 
       {showCategory && (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

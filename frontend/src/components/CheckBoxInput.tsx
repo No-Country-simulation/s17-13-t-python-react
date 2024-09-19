@@ -8,7 +8,6 @@ interface Props {
   customClass?: string;
 }
 
-
 interface CheckBoxChange {
   e: ChangeEvent<HTMLInputElement>;
   field: ControllerRenderProps;

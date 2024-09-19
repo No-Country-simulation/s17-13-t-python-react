@@ -37,8 +37,6 @@ export const useUserStore = create<UserState>((set) => ({
   setBasicInfo: (info) =>
     set((state) => ({
       ...state,
-      ...Object.fromEntries(
-        Object.entries(info).filter(([_, value]) => value !== undefined)
-      )
+      ...Object.fromEntries(Object.entries(info).filter(([_, value]) => value !== undefined)),
     })),
 }));

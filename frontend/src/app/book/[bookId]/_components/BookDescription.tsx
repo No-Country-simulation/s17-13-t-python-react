@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import Star from './Star';
-import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
+import { GetBookResponse, BookExtraInfo } from '@/app/manager/_validators/bookSchema';
 
 interface Props {
   book: GetBookResponse;
+  avg_rating: number;
   handlerViewer: () => void;
+  author: string;
 }
 
-export default function BookDescription({ book, handlerViewer }: Props) {
+export default function BookDescription({ book, handlerViewer, avg_rating, author }: Props) {
   return (
     <section className="grid grid-cols-[1fr] grid-rows-2 gap-9 lg:h-[600px] lg:grid-cols-[1fr_1.5fr] lg:grid-rows-1 lg:gap-0 lg:px-8 lg:py-4">
       <div className="relative h-full w-full">
@@ -35,12 +37,12 @@ export default function BookDescription({ book, handlerViewer }: Props) {
         <div className="mb-2 flex items-center gap-5">
           <h2 className="text-3xl font-semibold">{book.title}</h2>
           <div className="flex gap-1">
-            <Star size={21} defaultRating={3} color="#264E61" />
+            <Star size={21} defaultRating={avg_rating} color="#264E61" />
           </div>
         </div>
 
         <div className="mb-7">
-          <p className="text-base">Autor: {book.author_id}</p>
+          <p className="text-base">Autor: {author}</p>
           <p className="text-base">Editorial: {book.publisher}</p>
           <p className="text-base">Páginas: {book.pages}</p>
         </div>

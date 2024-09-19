@@ -50,7 +50,10 @@ export default function PreferencesForm({ genders }: Props) {
       <div className="flex items-center justify-between">
         <div>
           {errors.genders && (
-            <ErrorMessage customClass="text-base text-red-500 md:text-lg" error={errors.genders.message!} />
+            <ErrorMessage
+              customClass="text-base text-red-500 md:text-lg"
+              error={errors.genders.message!}
+            />
           )}
         </div>
 

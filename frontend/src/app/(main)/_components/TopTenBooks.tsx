@@ -1,4 +1,3 @@
-import ErrorMessage from '@/components/ErrorMessage';
 import TopTenBooksList from './TopTenBooksList';
 import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
@@ -21,7 +20,8 @@ export default async function TopTenBooks({ books }: Props) {
           Sumérgete en nuestra lista y encuentra tu próxima lectura favorita.
         </p>
       </div>
-      {<TopTenBooksList books={books} />}
+
+      <TopTenBooksList books={books} />
     </section>
   );
 }

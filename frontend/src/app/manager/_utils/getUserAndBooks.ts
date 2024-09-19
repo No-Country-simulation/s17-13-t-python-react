@@ -1,6 +1,6 @@
 import fetcher from '@/utils/fetcher';
 import { GetBookResponse } from '../_validators/bookSchema';
-fetcher
+fetcher;
 
 interface GetUserResponse {
   id: number;

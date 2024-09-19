@@ -63,7 +63,6 @@ export default function Register() {
 
     const { email, id, name } = logger.data;
 
-    
     setBasicInfo({ id, name, email, isLogged: true, role: 'user' });
 
     if (!logger.data.preferences) {

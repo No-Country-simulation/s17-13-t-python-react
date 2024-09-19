@@ -8,4 +8,5 @@ export const reviewSchema = z.object({
 });
 
 export type ReviewValues = z.infer<typeof reviewSchema>;
+export type ReviewResponse = ReviewValues & { id: number };
 export type keyReviewType = keyof ReviewValues;

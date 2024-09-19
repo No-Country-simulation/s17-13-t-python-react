@@ -4,11 +4,12 @@ import BookViewer from './BookViewer';
 import { useState } from 'react';
 import { Book } from '@/interfaces/Book.interface';
 import BookDescription from './BookDescription';
+import { GetBookResponse } from '@/app/manager/_validators/bookSchema';
 
 ////////////////////////////
 
 interface BookOverviewProps {
-  book: Book;
+  book: GetBookResponse;
 }
 
 interface Props {
@@ -28,6 +29,6 @@ export default function BookOverview({ book }: BookOverviewProps) {
   return !isViewViewer ? (
     <BookDescription book={book} handlerViewer={toggleViewer} />
   ) : (
-    <BookViewer handlerViewer={toggleViewer} />
+    <BookViewer images={[book.img, book.img]} title={book.title} handlerViewer={toggleViewer} />
   );
 }

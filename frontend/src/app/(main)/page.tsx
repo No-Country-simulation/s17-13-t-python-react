@@ -6,6 +6,7 @@ import ListBookSkeleton from '@/components/Skeleton/ListBookSkeleton';
 import DynamicBooks from './_components/DynamicBooks';
 import DynamicGallery from '@/components/DynamicGallery';
 import Modal from './_components/Modal';
+import TopTenBooks from './_components/TopTenBooks';
 
 export default async function Home() {
   const newBooks = await fetcher<GetBookResponse[]>('/servicesBook/newBook');
@@ -24,7 +25,7 @@ export default async function Home() {
 
       {typeof topBooks !== 'string' && (
         <Suspense fallback={<ListBookSkeleton />}>
-          <DynamicGallery books={topBooks} carouselTitle="Agregados recientemente" />
+          <TopTenBooks books={topBooks} />
         </Suspense>
       )}
 
@@ -36,7 +37,7 @@ export default async function Home() {
 
       {typeof mostWantedBooks !== 'string' && (
         <Suspense fallback={<ListBookSkeleton />}>
-          <DynamicGallery books={mostWantedBooks} carouselTitle="Agregados recientemente" />
+          <DynamicGallery books={mostWantedBooks} carouselTitle="Los mas buscados" />
         </Suspense>
       )}
     </div>

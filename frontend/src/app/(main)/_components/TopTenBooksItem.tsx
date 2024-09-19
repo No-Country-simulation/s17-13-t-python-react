@@ -15,9 +15,7 @@ export default function TopTenBooksItem({ book, index }: TopTenBooksItemProps) {
         )}
 
         <h2 className="mb-1 mt-4 text-xl font-bold">Top {index}</h2>
-        <h3 className="text-lg font-semibold">
-          {book.title}
-        </h3>
+        <h3 className="text-lg font-semibold">{book.title}</h3>
       </div>
     </li>
   );
