@@ -64,7 +64,6 @@ export default function Navbar() {
             isOpenMenu ? 'block' : 'hidden'
           }`}
         >
-
           <li
             onClick={() => setShowCategory((show) => !show)}
             onMouseEnter={handleMouseEnter}
@@ -112,7 +111,7 @@ export default function Navbar() {
       </nav>
 
       {isOpenMenu && (
-        <ul className="absolute left-14 top-24 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
+        <ul className="absolute left-14 top-24 z-40 mx-4 flex w-[19.5rem] max-w-[90%] flex-col items-start gap-4 bg-[#62262E] p-4 shadow-lg md:hidden">
           <li onClick={() => setShowCategory((show) => !show)}>
             <a className={stylesLink}>Categoría</a>
           </li>
@@ -154,8 +153,6 @@ export default function Navbar() {
           </li>
         </ul>
       )}
-
-
       {showCategory && (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <Category />
