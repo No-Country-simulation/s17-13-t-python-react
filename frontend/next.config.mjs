@@ -22,6 +22,18 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'encrypted-tbn2.gstatic.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.cdn3.buscalibre.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.cdn2.buscalibre.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.cdn1.buscalibre.com',
+      }
     ],
   },
 };
