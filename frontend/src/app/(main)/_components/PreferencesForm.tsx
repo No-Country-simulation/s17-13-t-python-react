@@ -1,18 +1,21 @@
 'use client';
 
 import { GetGenreResponse } from '@/app/manager/_validators/genreSchema';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { PreferencesSchema, PreferencesValues } from '../_validators/modalSchemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorMessage from '@/components/ErrorMessage';
 import FeedbackButton from '@/components/FeedbackButton';
 import CheckBoxInput from '@/components/CheckBoxInput';
+import { createPreferences } from '@/libs/createPreferences.action';
+import { useUserStore } from '@/app/store/userStore';
 
 interface Props {
   genders: GetGenreResponse[];
 }
 
 export default function PreferencesForm({ genders }: Props) {
+  const { id } = useUserStore((state) => ({ id: state.id }));
   const {
     handleSubmit,
     control,
@@ -24,12 +27,18 @@ export default function PreferencesForm({ genders }: Props) {
   });
 
   const onSubmit: SubmitHandler<PreferencesValues> = async (formData) => {
-    console.log(formData);
+    if (id === null) {
+      return;
+    }
+    await createPreferences({
+      gender_ids: [1],
+      user_ids: Number(id),
+    });
   };
 
   const inputStyles = `
     h-[46px] max-w-40 rounded-3xl px-5 font-medium text-base 
-     grid place-items-center transition-colors 
+    grid place-items-center transition-colors 
     cursor-pointer border-[.1rem] border-auxiliary  
   `;
 
@@ -50,7 +59,10 @@ export default function PreferencesForm({ genders }: Props) {
       <div className="flex items-center justify-between">
         <div>
           {errors.genders && (
-            <ErrorMessage customClass="text-base text-red-500 md:text-lg" error={errors.genders.message!} />
+            <ErrorMessage
+              customClass="text-base text-red-500 md:text-lg"
+              error={errors.genders.message!}
+            />
           )}
         </div>
 
